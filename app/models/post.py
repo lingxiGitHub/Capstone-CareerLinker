@@ -14,7 +14,7 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')),nullable=False)
-    post = db.Column(db.String(500), nullable=False)
+    post_content = db.Column(db.String(500), nullable=False)
     post_photo = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
@@ -26,7 +26,7 @@ class Post(db.Model):
         return {
             'id': self.id,
             "user_id" : self.user_id,
-            "post" : self.post,
+            "post_content" : self.post_content,
             "post_photo":self.post_photo,
             "created_at":self.created_at,
             "updated_at":self.updated_at,

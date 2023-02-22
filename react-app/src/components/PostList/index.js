@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react"
 import { getAllPosts } from "../../store/post";
 import Post from "../Post";
+import AddPostModal from "../AddPostModal"
+import OpenModalButton from "../OpenModalButton"
 
 function PostList() {
     const sessionUser = useSelector(state => state.session.user);
@@ -13,7 +15,7 @@ function PostList() {
         return state.posts.allPosts
     })
 
-    console.log(allPostsObj)
+    // console.log(allPostsObj)
     const allPosts = allPostsObj ? Object.values(allPostsObj) : []
 
     const [isLoaded, setIsLoaded] = useState(false);
@@ -25,19 +27,32 @@ function PostList() {
     return (
         isLoaded && (
             <>
-            
-            <div>
+                <div>
+                    {sessionUser && (
 
-                {
-                    allPosts.map(post=>{
-                        return (
-                            <div key={post.id} to={`/${post.id}`}>
-                            <Post post={post}/>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+                        <OpenModalButton
+                            buttonText="Start a post"
+                            modalComponent={<AddPostModal />}
+                        />
+                    )}
+
+                </div>
+
+                <ul>
+                    {
+                        allPosts.map(post => {
+                            // console.log("post has id?",post)
+                            return (
+
+                                <li key={post.post_id}>
+                                    <Post post={post} />
+                                </li>
+                            )
+
+                        })
+                    }
+                </ul>
+
             </>
         )
     )

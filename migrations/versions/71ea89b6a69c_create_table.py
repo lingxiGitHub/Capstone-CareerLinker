@@ -1,20 +1,16 @@
 """create table
 
-Revision ID: 321b9b8b3aaa
+Revision ID: 71ea89b6a69c
 Revises: 
-Create Date: 2023-02-21 14:51:22.758688
+Create Date: 2023-02-22 10:38:22.658857
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = '321b9b8b3aaa'
+revision = '71ea89b6a69c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,15 +30,10 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
-
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('post', sa.String(length=500), nullable=False),
+    sa.Column('post_content', sa.String(length=500), nullable=False),
     sa.Column('post_photo', sa.String(length=255), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
     sa.Column('updated_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
@@ -50,9 +41,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
