@@ -18,15 +18,17 @@ function Post({ post }) {
             <>
                 <OpenModalButton
                     buttonText="Edit"
-                    // onItemClick={closeMenu}
+                    className="left-bottons"
                     modalComponent={<EditPostModal post={post} />}
                 />
 
                 <OpenModalButton
                     buttonText="Delete"
-                    // onItemClick={closeMenu}
+                    className="left-bottons"
                     modalComponent={<DeletePost post={post} />}
                 />
+
+
             </>
         )
     }
@@ -44,7 +46,12 @@ function Post({ post }) {
                 <img className="indi-post-photo" src={post.post_photo} alt=""></img>
                 {/* <div>{post.updated_at}</div> */}
 
-                {sessionLinks}
+                <div className="post-buttons">
+                    <div className="left-bottons">
+                        {sessionLinks}
+                    </div>
+                    <button className="comment-button">Comment</button>
+                </div>
             </div>
         </>
     )

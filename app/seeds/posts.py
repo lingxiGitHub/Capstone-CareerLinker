@@ -5,9 +5,9 @@ def seed_posts():
     p1 = Post(
         user_id='1', post_content="this is a testing post1", post_photo="https://media.istockphoto.com/id/952729630/photo/test-pushing-keyboard-with-finger-3d-illustration.jpg?s=612x612&w=is&k=20&c=H9Ao_VuwDGk1eGutJAOUrgkEKiJCj0Z9_qreA4ux0fY=")
     p2 = Post(
-        user_id='2', post_content="this is a testing post2", post_photo="")
+        user_id='2', post_content="this is a testing post2", post_photo="https://media.licdn.com/dms/image/C5622AQFRWMU6ulYmZA/feedshare-shrink_800/0/1675683501981?e=1680134400&v=beta&t=OsmLsRtA5olXihBVD-NgGJWxLwqZiiQIuzXSfRNPwy4")
     p3 = Post(
-        user_id='3', post_content="this is a testing post3", post_photo="")
+        user_id='3', post_content="this is a testing post3", post_photo="https://coburgbanks.co.uk/wp-content/uploads/2018/10/Friday-Funnies-2-e1540551275776.jpg")
     p4 = Post(
         user_id='4', post_content="this is a testing post4", post_photo="")
     p5 = Post(
