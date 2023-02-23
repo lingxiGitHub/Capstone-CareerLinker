@@ -29,13 +29,18 @@ function PostList() {
             <>
                 <div>
                     {sessionUser && (
+                        <div className="create-post-section">
 
-                        <OpenModalButton
-                            buttonText="Start a post"
-                            modalComponent={<AddPostModal />}
-                        />
+                            <div>profile pic</div>
+                            <OpenModalButton
+                                className="start-a-post-button"
+                                buttonText="Start a post"
+                                modalComponent={<AddPostModal />}
+                            />
+
+                        </div>
                     )}
-
+                    <hr></hr>
                 </div>
 
                 <ul>

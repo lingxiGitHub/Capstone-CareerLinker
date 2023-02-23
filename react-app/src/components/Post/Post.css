@@ -1,9 +1,46 @@
-.indi-post-photo{
+.indi-post-photo {
     width: 200px;
 }
 
 
-.indi-post-area{
-    margin:10px;
-    border:1px black solid;
+.indi-post-area {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px rgba(0, 0, 0, 0.9) solid;
+    width: 576px;
+    height: auto;
+    border-radius: 8px;
+
+}
+
+.post-user-name {
+    /* margin-left: 50px; */
+    margin-top: 20px;
+    font-size:14px;
+    font-weight: 600;
+}
+
+.post-user-title {
+    /* margin-left:50px; */
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.profile-photo{
+    width:48px;
+    border-radius: 50%;
+    margin:5px;
+}
+
+.post-top-section{
+    display: flex;
+    flex-direction: row;
+}
+
+.post-content{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }

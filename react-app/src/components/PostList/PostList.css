@@ -1,0 +1,24 @@
+.start-a-post-button {
+    border-radius: 35px;
+    width: 462px;
+    height: 56px;
+    padding: 10px;
+    margin: 4px;
+    text-align: left;
+    vertical-align: middle;
+    border-color: rgba(0, 0, 0, 0.3);
+    color:rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: white;
+}
+
+.create-post-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
