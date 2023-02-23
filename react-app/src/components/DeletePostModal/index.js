@@ -26,8 +26,9 @@ export default function DeletePost({ post }) {
     return (
         <>
             <form>
-                <h3>Confirm Delete?</h3>
+                <h3 className="confirm">Confirm Delete?</h3>
                 <button
+                className="yes-button"
                     onClick={handleDelete}
                 >Yes</button>
             </form>

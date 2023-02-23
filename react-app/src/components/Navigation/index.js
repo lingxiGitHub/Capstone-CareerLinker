@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import logo from "./linkedin-logo.png"
 
 
 
@@ -12,7 +13,7 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<ul className='header'>
-			<img></img>
+			<img className="logo" src={logo}></img>
 			<li>
 				<NavLink exact to="/">Home</NavLink>
 			</li>

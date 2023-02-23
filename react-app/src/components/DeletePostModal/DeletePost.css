@@ -1,0 +1,22 @@
+.yes-button {
+
+    background-color: rgb(1, 70, 138);
+    color: white;
+    border-radius: 16px;
+    border-color: white;
+    height: 32px;
+    width: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+.confirm {
+    width: 500px;
+    /* display: block; */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

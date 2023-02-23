@@ -6,12 +6,32 @@
   display: none;
 }
 
-.header{
+.header {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   flex-direction: row;
+  background-color: white;
+  height: 52px;
+  border-width: 0px;
+  margin-top: 0px;
+  width: 100vw;
 }
 
-li{
+li {
   list-style: none;
+}
+
+.logo {
+  width: 25px;
+}
+
+.profile-button{
+  width: 24px;
+  height:24px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

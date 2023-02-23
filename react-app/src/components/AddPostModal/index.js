@@ -9,7 +9,7 @@ function AddPostModal() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [post_content, setPost_content] = useState("")
+    const [post_content, setPost_content] = useState("What do you want to talk about?")
     const [post_photo, setPost_photo] = useState("")
 
     const [errors, setErrors] = useState([]);
@@ -26,9 +26,9 @@ function AddPostModal() {
         }
 
         return dispatch(addPostThunk(newPost))
-            .then(()=>history.push(`/`))
+            .then(() => history.push(`/`))
             .then(closeModal())
-            .then(()=>dispatch(getAllPosts()))
+            .then(() => dispatch(getAllPosts()))
             .catch(
                 async (res) => {
                     const data = await res.json();
@@ -39,12 +39,16 @@ function AddPostModal() {
     }
 
     return (
-        <>
-            <h2>Create a post</h2>
+        <div className="create-post-modal-border">
+            <h2 className="create-a-post-text">Create a post</h2>
+            <hr></hr>
             <img src={sessionUser.profile_photo} alt=""></img>
-            <div>{sessionUser.first_name} {sessionUser.last_name}</div>
+            <div className="create-post-user-name">{sessionUser.first_name} {sessionUser.last_name}</div>
 
-            <form onSubmit={handleSubmit}>
+            <form
+                className="create-post-form"
+                onSubmit={handleSubmit}
+            >
 
                 <ul>
                     {errors.map((error, idx) => (
@@ -53,8 +57,9 @@ function AddPostModal() {
                 </ul>
 
                 <label>
-                    <span>Post</span>
+                    {/* <span>Post</span> */}
                     <textarea
+                        className="post-text-area"
                         type="text"
                         value={post_content}
                         onChange={(e) => setPost_content(e.target.value)}
@@ -65,8 +70,9 @@ function AddPostModal() {
                 </label>
 
                 <label>
-                    <span>Post Photo</span>
+                    <span>Attach Photo</span>
                     <input
+                        className="photo-url-place"
                         type="text"
                         value={post_photo}
                         onChange={(e) => setPost_photo(e.target.value)}
@@ -76,11 +82,11 @@ function AddPostModal() {
 
                 </label>
 
-                <button type="submit">Post</button>
+                <button className="post-submit-button" type="submit">Post</button>
 
             </form>
 
-        </>
+        </div>
     )
 
 }

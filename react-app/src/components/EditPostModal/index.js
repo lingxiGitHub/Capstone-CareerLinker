@@ -50,7 +50,8 @@ function EditPostModal({ post }) {
 
     return (
         <>
-            <h2>Edit Post</h2>
+            <h2 className="edit-post-text">Edit Post</h2>
+            <hr></hr>
             <form
                 className="update-post-form"
                 onSubmit={handleUpdate}
@@ -86,7 +87,7 @@ function EditPostModal({ post }) {
 
                 </label>
 
-                <button type="submit">Post</button>
+                <button className="update-button" type="submit">Update</button>
 
 
 
