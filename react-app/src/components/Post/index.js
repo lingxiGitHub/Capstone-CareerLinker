@@ -3,13 +3,21 @@ import OpenModalButton from "../OpenModalButton"
 import EditPostModal from "../EditPostModal"
 import { useDispatch, useSelector } from "react-redux";
 import DeletePost from "../DeletePostModal";
+import AddComment from "../AddComment";
 import headshot from "./default-user-photo.jpeg"
+import ShowComment from "../ShowComment";
 
 function Post({ post }) {
 
     const sessionUser = useSelector(state => state.session.user);
     // console.log(sessionUser.id)
     // console.log(post.post_user_id)
+    const allCommentsObj = useSelector(state => state.comments.allComments)
+    const allComments = allCommentsObj ? Object.values(allCommentsObj) : []
+    const postComments = allComments.filter(comment => comment.comment_post_id === post.post_id)
+    // console.log("%%%post id", post.post_id)
+    // console.log("%%%post comments", postComments)
+    // console.log("@@@@",post.post_id)
 
     let sessionLinks;
 
@@ -50,7 +58,19 @@ function Post({ post }) {
                     <div className="left-bottons">
                         {sessionLinks}
                     </div>
-                    <button className="comment-button">Comment</button>
+                    <OpenModalButton
+                        buttonText="Comment"
+                        className="left-bottons"
+                        modalComponent={<AddComment post={post} />}
+                    />
+                    <button>show comments</button>
+                </div>
+
+                <div>
+                    <div>comments</div>
+
+                    <ShowComment postComments={postComments} post={post} />
+
                 </div>
             </div>
         </>

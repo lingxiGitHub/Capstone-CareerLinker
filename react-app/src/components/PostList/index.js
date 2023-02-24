@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react"
 import { getAllPosts } from "../../store/post";
+import { getAllComments } from "../../store/comment";
 import Post from "../Post";
 import AddPostModal from "../AddPostModal"
 import OpenModalButton from "../OpenModalButton"
@@ -21,7 +22,9 @@ function PostList() {
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getAllPosts()).then(() => setIsLoaded(true));
+        dispatch(getAllPosts())
+        dispatch(getAllComments())
+        .then(() => setIsLoaded(true));
     }, [dispatch])
 
     return (

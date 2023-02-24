@@ -43,7 +43,7 @@ export const addPostThunk = (newPost) => async dispatch => {
         // createdRestaurantId = createdRestaurant.id
         // console.log("createdRestaurantId", createdRestaurantId)
     } else {
-        console.log("add restaurant failed in store")
+        console.log("add post failed in store")
     }
 
 }
