@@ -44,7 +44,7 @@ def posts():
 
 #create a comment
 @comment_routes.route('/posts/<int:postId>/comments', methods=["POST"])
-# @login_required
+@login_required
 def create_comment(postId):
   post = Post.query.get(postId)
 
@@ -80,42 +80,52 @@ def create_comment(postId):
     return form.errors
 
 
-# #edit a post
-# @post_routes.route('/<int:postId>', methods=["PUT"])
-# # @login_required
-# def edit_post_by_post_id(postId):
-#   post = Post.query.get(postId)
-# #   print("post at edit BE route--->",post.to_dict())
-# #   print("current user id ---->",current_user.id)
-#   if not post:
-#     return {"errors": ["post couldn't be found"]}, 404
+#edit a post
+@comment_routes.route('/posts/<int:postId>/comments/<int:commentId>', methods=["PUT"])
+@login_required
+def edit_comment_by_post_id(postId,commentId):
+  post = Post.query.get(postId)
 
-#   form = PostForm()
-#   form["csrf_token"].data = request.cookies["csrf_token"]
+  if not post:
+    return {"errors": ["post couldn't be found"]}, 404
 
-#   if form.validate_on_submit():
+  comment = Comment.query.get(commentId)
 
-#     post.id=int(postId)
-#     post.user_id = int(current_user.id)
-#     post.post_content = request.get_json()["post_content"]
-#     post.post_photo = request.get_json()["post_photo"]
+  if not comment:
+    return {"errors": ["comment couldn't be found"]}, 404
+
+  form = CommentForm()
+  form["csrf_token"].data = request.cookies["csrf_token"]
+
+
+  if form.validate_on_submit():
+
+    comment.id=int(commentId)
+    comment.user_id = int(current_user.id)
+    comment.post_id = postId
+    comment.comment_content = request.get_json()["comment_content"]
   
 
-#     db.session.commit()
-#     return post.to_dict()
+    db.session.commit()
+    return comment.to_dict()
 
 
-#   if form.errors:
-#     return form.errors
+  if form.errors:
+    return form.errors
 
 
-# #delete a post
-# @post_routes.route("/<int:postId>",methods=["DELETE"])
+#delete a post
+@comment_routes.route('/posts/<int:postId>/comments/<int:commentId>',methods=["DELETE"])
 # @login_required
-# def delete_post(postId):
-#     post=Post.query.get(postId)
-#     if not post:
-#         return {"errors":["Post could not be found"]},404
-#     db.session.delete(post)
-#     db.session.commit()
-#     return {"message":["Post successfully deleted"]},200
+def delete_comment(postId,commentId):
+    post=Post.query.get(postId)
+    if not post:
+        return {"errors":["Post could not be found"]},404
+    
+    comment=Comment.query.get(commentId)
+    if not comment:
+        return {"errors":["Comment could not be found"]},404
+    
+    db.session.delete(comment)
+    db.session.commit()
+    return {"message":["Comment successfully deleted"]},200

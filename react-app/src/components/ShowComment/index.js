@@ -1,5 +1,9 @@
 import "./ShowComment.css"
 import { useDispatch, useSelector } from "react-redux";
+import OpenModalButton from "../OpenModalButton";
+import EditComment from "../EditComment";
+import DeleteCommentComponent from "../DeleteComment";
+
 
 function ShowComment({ post, postComments }) {
 
@@ -23,8 +27,16 @@ function ShowComment({ post, postComments }) {
 
                                 {comment.comment_user_id ==sessionUser.id  && (
                                     <>
-                                        <button>Edit Comment</button>
-                                        <button>Delete Comment</button>
+                                        <OpenModalButton
+                                            buttonText="Edit"
+                                            // className="left-bottons"
+                                            modalComponent={<EditComment post={post} comment={comment}/>}
+                                        />
+                                        <OpenModalButton
+                                            buttonText="Delete"
+                                            // className="left-bottons"
+                                            modalComponent={<DeleteCommentComponent post={post} comment={comment} />}
+                                        />
                                     </>
                                 )}
 

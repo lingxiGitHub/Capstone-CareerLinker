@@ -31,7 +31,7 @@ export const createComment = (newComment) =>({
 
 export const addCommentThunk = (newComment, postId)=>async dispatch =>{
 
-    console.log("*****",postId)
+    // console.log("*****",postId)
 
     const response = await fetch (`/api/posts/${postId}/comments`,{
         method: "POST",
@@ -50,8 +50,72 @@ export const addCommentThunk = (newComment, postId)=>async dispatch =>{
 }
 
 //edit comment
+const UPDATE_COMMENT = "commentss/updateComment"
+
+export const updateComment = (comment) => ({
+    type: UPDATE_COMMENT,
+    comment
+})
+
+export const updateCommentThunk = (comment, postId, commentId) => async dispatch => {
+    // console.log("post at update post thunk", post)
+    const {
+        id,
+        user_id,
+        post_id,
+        comment_content,
+
+    } = comment
+
+    const res = await fetch(`/api/posts/${+postId}/comments/${+commentId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id,
+            user_id,
+            post_id,
+            comment_content,
+            
+        })
+    })
+
+    if (res.ok) {
+        // console.log("edit post thunk res is ok", res)
+        const updatedComment = await res.json()
+        // console.log("%%%%%%%%updatedPost", updatedPost)
+        dispatch(updateComment(updatedComment))
+        dispatch(getAllPosts())
+        dispatch(getAllComments())
+        return updatedComment
+    } else {
+        console.log("edit comment thunk failed")
+    }
+
+
+}
 
 //delete comment
+const DELETE_COMMENT = "posts/deleteComment"
+export const deleteComment = (postId, commentId) => ({
+    type: DELETE_COMMENT,
+    postId,
+    commentId
+})
+
+export const deleteCommentThunk = (postId, commentId) => async dispatch => {
+
+    const res = await fetch(`/api/posts/${postId}/comments/${commentId}`, {
+        method: "DELETE"
+    })
+    if (res.ok) {
+        dispatch(deleteComment(postId,commentId))
+        dispatch(getAllPosts())
+        dispatch(getAllComments())
+    }
+
+}
 
 //reducer
 const initialState = {}
@@ -73,9 +137,18 @@ export default function commentsReducer(state = initialState, action) {
             }
         case ADD_COMMENT:{
             const addCommentState ={...state}
-            console.log("!!!!",addCommentState)
-            addCommentState.allComments[action.newComment.comment_id]=action.comment
+            // console.log("!!!!",addCommentState)
+            addCommentState.allComments[action.newComment.comment_id]=action.newComment
             return addCommentState
+        }
+
+        case UPDATE_COMMENT: {
+            const updateCommentState = { ...state }
+            console.log("look at update reducer", updateCommentState)
+            updateCommentState.allComments[action.comment.comment_id] = action.comment
+            // console.log("look")
+            // console.log("updateSpotState",updateSpotState)
+            return updateCommentState
         }
 
         default:
