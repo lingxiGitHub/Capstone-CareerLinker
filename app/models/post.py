@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
-from .user import User
+# from .user import User
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -14,13 +14,13 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')),nullable=False)
-    post_content = db.Column(db.String(500), nullable=False)
-    post_photo = db.Column(db.String(255))
+    post_content = db.Column(db.String(1000), nullable=False)
+    post_photo = db.Column(db.String(1000))
     created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
 
     user = db.relationship("User", back_populates="posts")
-    comments = db.relationship("Comment", back_populates="post")
+    comments = db.relationship("Comment", back_populates="post", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

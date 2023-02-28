@@ -11,6 +11,7 @@ import OpenModalButton from "../OpenModalButton"
 
 function PostList() {
     const sessionUser = useSelector(state => state.session.user);
+    // console.log(sessionUser)
 
     const allPostsObj = useSelector((state) => {
         return state.posts.allPosts
@@ -34,7 +35,7 @@ function PostList() {
                     {sessionUser && (
                         <div className="create-post-section">
 
-                            <div>profile pic</div>
+                            <img className="profile-photo" src={sessionUser.profile_photo} alt=""></img>
                             <OpenModalButton
                                 className="start-a-post-button"
                                 buttonText="Start a post"
@@ -48,7 +49,7 @@ function PostList() {
 
                 <ul>
                     {
-                        allPosts.map(post => {
+                        allPosts.reverse().map(post => {
                             // console.log("post has id?",post)
                             return (
 

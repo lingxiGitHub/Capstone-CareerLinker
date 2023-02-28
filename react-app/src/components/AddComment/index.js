@@ -11,7 +11,7 @@ import { getAllPosts } from "../../store/post";
 function AddComment({ post }) {
     //how to get the post id for comments
     let postId = +post.post_id
-    console.log("&&&", postId)
+    // console.log("&&&", postId)
 
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -35,7 +35,7 @@ function AddComment({ post }) {
             .then(() => history.push(`/`))
             .then(closeModal())
             .then(() => dispatch(getAllPosts()))
-            .then(()=>dispatch(getAllComments()))
+            .then(() => dispatch(getAllComments()))
             .catch(
                 async (res) => {
                     const data = await res.json();
@@ -48,11 +48,12 @@ function AddComment({ post }) {
 
     return (
         <>
-            <h2>Create a Comment</h2>
+            <h2 className="create-a-comment-text">Create a Comment</h2>
             <hr></hr>
 
             <form
                 onSubmit={handleSubmit}
+                className="create-comment-form"
             >
 
                 <ul>
@@ -64,7 +65,7 @@ function AddComment({ post }) {
                 <label>
 
                     <input
-
+                        className="comment-text-area"
                         type="text"
                         value={comment_content}
                         onChange={(e) => setComment_content(e.target.value)}

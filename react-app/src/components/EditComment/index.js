@@ -40,7 +40,7 @@ function EditComment({post,comment}){
 
     return (
         <>
-        <h2>Edit Comment</h2>
+        <h2 className="edit-comment-text">Edit Comment</h2>
         <hr></hr>
 
         <form

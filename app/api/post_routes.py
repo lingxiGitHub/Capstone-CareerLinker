@@ -10,7 +10,7 @@ post_routes=Blueprint("posts",__name__)
 #get all posts
 @post_routes.route("/")
 def posts():
-    all_posts = Post.query.all()
+    all_posts = Post.query.order_by(Post.created_at.desc()).all()
     # print(all_posts[0].to_dict())
     all_users=User.query.all()
     # print(all_users.to_dict())
@@ -19,10 +19,12 @@ def posts():
         # print(post.id)
         post.user_first_name=None
         post.user_last_name=None
+        post.user_profile_photo=None
         for user in all_users:
             if post.user_id ==user.id:
                 post.user_first_name=user.first_name
                 post.user_last_name=user.last_name
+                post.user_profile_photo=user.profile_photo
 
  
     
@@ -35,15 +37,27 @@ def posts():
             "post_content":post.post_content,
             "post_photo":post.post_photo,
             "created_at":post.created_at,
-            "updated_at":post.updated_at
+            "updated_at":post.updated_at,
+            "profile_photo":post.user_profile_photo
         } for post in all_posts]
     }
 
     return data
 
+# get a post
+@post_routes.route("/<int:postId>")
+def post_by_id(postId):
+  post = Post.query.get(postId)
+  data={"post":[{
+    "post_id":post.id,
+    "post_content":post.post_content
+  }]}
+
+  return data
+
 #create a post
 @post_routes.route('/', methods=["POST"])
-# @login_required
+@login_required
 def create_post():
 
   form = PostForm()
@@ -71,7 +85,7 @@ def create_post():
 
 #edit a post
 @post_routes.route('/<int:postId>', methods=["PUT"])
-# @login_required
+@login_required
 def edit_post_by_post_id(postId):
   post = Post.query.get(postId)
 #   print("post at edit BE route--->",post.to_dict())
@@ -103,8 +117,10 @@ def edit_post_by_post_id(postId):
 @login_required
 def delete_post(postId):
     post=Post.query.get(postId)
+    print("!!!!!",post)
     if not post:
         return {"errors":["Post could not be found"]},404
+
     db.session.delete(post)
     db.session.commit()
     return {"message":["Post successfully deleted"]},200

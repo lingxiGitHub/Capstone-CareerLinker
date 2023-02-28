@@ -1,11 +1,24 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+# ---- many to many ----
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.orm import relationship
+# from sqlalchemy.schema import Column, ForeignKey, Table
+# from sqlalchemy.types import Integer, String
+# ---- many to many ----
 
 
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get('SCHEMA')
+
+user_conversations=db.Table(
+    "user_conversations",
+    db.Model.metadata,
+    db.Column('users', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('conversations', db.Integer, db.ForeignKey('conversations.id'), primary_key=True)
+)
 
 
 class User(db.Model, UserMixin):
@@ -20,10 +33,20 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
-    profile_photo=db.Column(db.String(255))
+    profile_photo=db.Column(db.String(500))
 
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
+    messages_users = db.relationship("Message", back_populates="user")
+
+    #user to conversation: many to many
+
+    user_join=db.relationship(
+        "Conversation",
+        secondary=user_conversations,
+        back_populates="conversation_join",
+        cascade="all, delete"
+    )
 
     @property
     def password(self):

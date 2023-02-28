@@ -1,0 +1,41 @@
+.create-a-comment-text {
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 24px;
+
+}
+
+
+.comment-text-area {
+    height: 96px;
+    width: 439px;
+    margin: 10px;
+    border-radius: 10px;
+
+}
+
+
+.create-comment-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.comment-submit-button {
+    background-color: rgb(1, 70, 138);
+    color: white;
+    border-radius: 16px;
+    border-color: white;
+    height: 32px;
+    width: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+    margin-bottom: 45px;
+
+
+}

@@ -1,0 +1,25 @@
+.three-dots-comment {
+
+    display: inline-flex;
+    justify-content: center;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    display: block;
+    fill: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: 600;
+    height: 32px;
+    min-height: 24px;
+    width: 32px;
+    align-items: center;
+    line-height: 20px;
+    text-align: center;
+    background-color: none;
+    background-image: none;
+    border-style: none;
+    border-radius: 50%;
+    border-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    overflow: hidden;
+}

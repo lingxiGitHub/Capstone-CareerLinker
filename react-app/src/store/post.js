@@ -151,7 +151,7 @@ export default function postsReducer(state = initialState, action) {
 
         case DELETE_POST:{
             const deletePostState={...state}
-            console.log(deletePostState)
+            // console.log(deletePostState)
             // delete deletePostState.allPosts[action.post.id]
             return deletePostState
         }

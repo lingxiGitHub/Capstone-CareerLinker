@@ -42,7 +42,7 @@ function AddPostModal() {
         <div className="create-post-modal-border">
             <h2 className="create-a-post-text">Create a post</h2>
             <hr></hr>
-            <img src={sessionUser.profile_photo} alt=""></img>
+            <img className="profile-photo" src={sessionUser.profile_photo} alt=""></img>
             <div className="create-post-user-name">{sessionUser.first_name} {sessionUser.last_name}</div>
 
             <form

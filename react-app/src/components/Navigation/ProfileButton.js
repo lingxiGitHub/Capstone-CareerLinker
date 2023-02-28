@@ -4,11 +4,14 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { login } from "../../store/session";
+import { useModal } from "../../context/Modal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const { closeModal } = useModal();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -39,9 +42,9 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button 
-      className="profile-button"
-      onClick={openMenu}
+      <button
+        className="profile-button"
+        onClick={openMenu}
       >
         <i className="fas fa-user-circle" />
       </button>
@@ -67,6 +70,16 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+
+
+            <button
+              className="demo-button"
+              onClick={() => {
+                dispatch(login("demo@aa.io", "password"));
+                closeModal();
+              }
+              }
+            >Demo User</button>
           </>
         )}
       </ul>

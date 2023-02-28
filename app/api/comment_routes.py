@@ -20,10 +20,12 @@ def posts():
         # print(post.id)
         comment.user_first_name=None
         comment.user_last_name=None
+        comment.user_profile_photo=None
         for user in all_users:
             if comment.user_id ==user.id:
                 comment.user_first_name=user.first_name
                 comment.user_last_name=user.last_name
+                comment.user_profile_photo=user.profile_photo
 
  
     
@@ -34,6 +36,7 @@ def posts():
             "comment_post_id":comment.post_id,
             "comment_user_first_name":comment.user_first_name,
             "comment_user_last_name":comment.user_last_name,
+            "comment_user_profile_photo":comment.user_profile_photo,
             "comment_content":comment.comment_content,
             "created_at":comment.created_at,
             "updated_at":comment.updated_at
@@ -116,7 +119,7 @@ def edit_comment_by_post_id(postId,commentId):
 
 #delete a post
 @comment_routes.route('/posts/<int:postId>/comments/<int:commentId>',methods=["DELETE"])
-# @login_required
+@login_required
 def delete_comment(postId,commentId):
     post=Post.query.get(postId)
     if not post:

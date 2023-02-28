@@ -144,7 +144,7 @@ export default function commentsReducer(state = initialState, action) {
 
         case UPDATE_COMMENT: {
             const updateCommentState = { ...state }
-            console.log("look at update reducer", updateCommentState)
+            // console.log("look at update reducer", updateCommentState)
             updateCommentState.allComments[action.comment.comment_id] = action.comment
             // console.log("look")
             // console.log("updateSpotState",updateSpotState)
