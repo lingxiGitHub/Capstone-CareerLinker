@@ -1,40 +1,40 @@
 from app.models import db, User, environment, SCHEMA
 
+demo = User(
+        username='Demo', email='demo@aa.io', password='password', first_name="Demo", last_name="User", profile_photo="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
+marnie = User(
+        username='marnie', email='marnie@aa.io', password='password', first_name="Marnie", last_name="Stevens",profile_photo="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80")
+bobbie = User(
+        username='bobbie', email='bobbie@aa.io', password='password', first_name="Bobbie", last_name="Jackson",profile_photo="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80")
+tommy = User(
+        username='Tommy-Bahama', email='Tommy_Bahama@hotmail.com', password='password', first_name="Tommy", last_name="Bahama",profile_photo="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80")
+eleanor = User(
+        username='Eleanor-Auker', email='Eleanor_Auker@hotmail.com', password='password', first_name="Eleanor", last_name="Auker",profile_photo="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
+james = User(
+        username='James-Bacher', email='James_Bacher@hotmail.com', password='password', first_name="James", last_name="Bacher",profile_photo="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1448&q=80")
+hazel = User(
+        username='Hazel-Zane', email='Hazel_Zane@hotmail.com', password='password', first_name="Hazel", last_name="Zane",profile_photo="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=689&q=80")
+ellis = User(
+        username='Ellis-Wink', email='Ellis_Wink@hotmail.com', password='password', first_name="Ellis", last_name="Wink",profile_photo="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80")
+audrey = User(
+        username='Audrey-Wherry', email='Audrey_Wherry@hotmail.com', password='password', first_name="Audrey", last_name="Wherry",profile_photo="https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1044&q=80")
+olive = User(
+        username='Olive-Tomson', email='Olive_Tomson@hotmail.com', password='password', first_name="Olive", last_name="Tomson",profile_photo="https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
+william = User(
+        username='William-Tandy', email='William_Tandy@hotmail.com', password='password', first_name="William", last_name="Tandy",profile_photo="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
+charlie = User(
+        username='Charlie-Staple', email='Charlie_Staple@hotmail.com', password='password', first_name="Charlie", last_name="Staple",profile_photo="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
+ivy = User(
+        username='Ivy-Rosemond', email='Ivy_Rosemond@hotmail.com', password='password', first_name="Ivy", last_name="Rosemond",profile_photo="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
+ella = User(
+        username='Ella-Tolly', email='Ella_Tolly@hotmail.com', password='password', first_name="Ella", last_name="Tolly",profile_photo="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80")
+adrian = User(
+        username='Adrian', email='Adrian@gmail.com', password='adrianiscool', first_name='Adrian', last_name='Tran',profile_photo="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
 
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password', first_name="Demo", last_name="User", profile_photo="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', first_name="Marnie", last_name="Stevens",profile_photo="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80")
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', first_name="Bobbie", last_name="Jackson",profile_photo="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80")
-    tommy = User(
-        username='Tommy-Bahama', email='Tommy_Bahama@hotmail.com', password='password', first_name="Tommy", last_name="Bahama",profile_photo="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80")
-    eleanor = User(
-        username='Eleanor-Auker', email='Eleanor_Auker@hotmail.com', password='password', first_name="Eleanor", last_name="Auker",profile_photo="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
-    james = User(
-        username='James-Bacher', email='James_Bacher@hotmail.com', password='password', first_name="James", last_name="Bacher",profile_photo="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1448&q=80")
-    hazel = User(
-        username='Hazel-Zane', email='Hazel_Zane@hotmail.com', password='password', first_name="Hazel", last_name="Zane",profile_photo="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=689&q=80")
-    ellis = User(
-        username='Ellis-Wink', email='Ellis_Wink@hotmail.com', password='password', first_name="Ellis", last_name="Wink",profile_photo="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80")
-    audrey = User(
-        username='Audrey-Wherry', email='Audrey_Wherry@hotmail.com', password='password', first_name="Audrey", last_name="Wherry",profile_photo="https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1044&q=80")
-    olive = User(
-        username='Olive-Tomson', email='Olive_Tomson@hotmail.com', password='password', first_name="Olive", last_name="Tomson",profile_photo="https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-    william = User(
-        username='William-Tandy', email='William_Tandy@hotmail.com', password='password', first_name="William", last_name="Tandy",profile_photo="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
-    charlie = User(
-        username='Charlie-Staple', email='Charlie_Staple@hotmail.com', password='password', first_name="Charlie", last_name="Staple",profile_photo="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-    ivy = User(
-        username='Ivy-Rosemond', email='Ivy_Rosemond@hotmail.com', password='password', first_name="Ivy", last_name="Rosemond",profile_photo="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
-    ella = User(
-        username='Ella-Tolly', email='Ella_Tolly@hotmail.com', password='password', first_name="Ella", last_name="Tolly",profile_photo="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80")
-    adrian = User(
-        username='Adrian', email='Adrian@gmail.com', password='adrianiscool', first_name='Adrian', last_name='Tran',profile_photo="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
-
+    
     userList = [demo, marnie, bobbie, tommy, eleanor, james, hazel,
                 ellis, audrey, olive, william, charlie, ivy, ella, adrian]
 

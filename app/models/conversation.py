@@ -35,10 +35,10 @@ class Conversation(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
 
     #user to conversation: many to many
-    conversation_join = db.relationship(
+    users = db.relationship(
         "User",
         secondary=user_conversations,
-        back_populates="user_join",
+        back_populates="conversations",
         cascade="all, delete"
     )
 
