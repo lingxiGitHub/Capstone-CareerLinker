@@ -2,7 +2,9 @@ import "./ShowConversations.css"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react"
-import { getAllConversations } from "../../store/conversation";
+import { getAllConversations } from "../../../store/conversation";
+import ShowMessageComp from "../ShowMessage";
+import { NavLink } from "react-router-dom";
 
 
 
@@ -31,14 +33,17 @@ export default function ShowConversations() {
     return (
         isLoaded && (
             <div className="message-middle">
-                <div>this is conversation list</div>
+                <div>Conversations</div>
 
                 <div>
 
                     {allConversation.map(conversation => {
-                        console.log("@@@@@", conversation)
+                        // console.log("@@@@@", conversation)
                         return (
-                            <div>{conversation.conversation_id}</div>
+                            <div>
+                                <NavLink exact to="messaging">{conversation.conversation_id}</NavLink>
+                                {/* <ShowMessageComp /> */}
+                            </div>
                         )
 
                     })}

@@ -1,0 +1,17 @@
+.messaging-page {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
+.conversation-list {
+    background-color: white;
+    width: 500px;
+}
+
+
+.messaging-list {
+    background-color: white;
+    width: 500px;
+}

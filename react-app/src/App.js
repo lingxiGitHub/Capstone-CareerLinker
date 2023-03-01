@@ -5,9 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-
 import PostList from "./components/PostList"
-import ShowMessages from "./components/ShowConversations";
+import MessagingPage from "./components/MessagingPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +30,7 @@ function App() {
             <PostList />
           </Route>
           <Route exact path="/messaging">
-            <ShowMessages />
+            <MessagingPage />
           </Route>
         </Switch>
       )}

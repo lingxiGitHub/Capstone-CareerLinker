@@ -7,15 +7,36 @@ export const loadMessage = (list) => ({
 })
 
 export const getAllMessages = () => async dispatch => {
-    const response = await fetch("/api/conversations")
+    const response = await fetch("/api/messages")
     if (response.ok) {
         const list = await response.json()
-        console.log(list)
-        dispatch(loadConversation(list))
+        console.log("message list", list)
+        dispatch(loadMessage(list))
     } else {
-        console.log("get all conversation fetch failed")
+        console.log("get all message fetch failed")
     }
 }
+
+//load single message by conversation id
+
+const LOADSINGLEMESSAGE = "message/loadSingleMessage"
+export const loadSingleMessage = (detailedMessage) => ({
+    type: LOADSINGLEMESSAGE,
+    singleMessage: detailedMessage
+})
+
+export const getSingleMessage = (conversationId) => async dispatch => {
+    const response = await fetch("/api/conversations/1/messages")
+    if (response.ok) {
+        const detailedMessage = await response.json()
+        console.log("single message", detailedMessage)
+        dispatch(loadSingleMessage(detailedMessage))
+    } else {
+        console.log("get single message fetch failed")
+    }
+
+}
+
 
 
 //create
@@ -29,21 +50,35 @@ export const getAllMessages = () => async dispatch => {
 
 const initialState = {}
 
-export default function conversationReducer(state = initialState, action) {
+export default function messageReducer(state = initialState, action) {
     switch (action.type) {
         case LOAD:
-            const newAllConversations = {}
-            action.allConversations.forEach(conversation => {
-                // console.log("message at store",message)
+            const newAllMessages = {}
+            action.allMessages.forEach(message => {
+                console.log("message at store", message)
 
-                return newAllConversations[conversation.conversation_id] = conversation
+                return newAllMessages[message.message_id] = message
 
             });
 
             return {
                 ...state,
-                allConversations: {
-                    ...newAllConversations
+                allMessages: {
+                    ...newAllMessages
+                }
+            }
+        case LOADSINGLEMESSAGE:
+            const newSingleMessage = {}
+            action.singleMessage.forEach(message => {
+                console.log("single message at store", message)
+
+                return newSingleMessage[message.message_id] = message
+            })
+
+            return {
+                ...state,
+                singleMessage: {
+                    ...newSingleMessage
                 }
             }
 

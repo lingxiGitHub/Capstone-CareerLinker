@@ -1,0 +1,14 @@
+.message-line {
+    display: flex;
+    flex-direction: row;
+}
+
+.loading-message {
+    background-color: white;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
