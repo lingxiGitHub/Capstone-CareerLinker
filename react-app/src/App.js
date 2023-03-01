@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 
 import PostList from "./components/PostList"
+import ShowMessages from "./components/ShowConversations";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <PostList />
+          </Route>
+          <Route exact path="/messaging">
+            <ShowMessages />
           </Route>
         </Switch>
       )}

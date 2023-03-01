@@ -117,7 +117,7 @@ def edit_post_by_post_id(postId):
 @login_required
 def delete_post(postId):
     post=Post.query.get(postId)
-    print("!!!!!",post)
+    # print("!!!!!",post)
     if not post:
         return {"errors":["Post could not be found"]},404
 

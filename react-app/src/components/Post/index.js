@@ -1,10 +1,7 @@
 import "./Post.css"
 import OpenModalButton from "../OpenModalButton"
-import EditPostModal from "../EditPostModal"
-import { useDispatch, useSelector } from "react-redux";
-import DeletePost from "../DeletePostModal";
+import { useSelector } from "react-redux";
 import AddComment from "../AddComment";
-import headshot from "./default-user-photo.jpeg"
 import ShowComment from "../ShowComment";
 import ThreeDots from "../ThreeDots";
 
@@ -21,11 +18,11 @@ function Post({ post }) {
     // console.log("%%%post comments", postComments)
     // console.log("@@@@",post)
 
-    let sessionLinks;
+    // let sessionLinks;
 
-    const commentSvg = (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
-        <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
-    </svg>)
+    // const commentSvg = (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
+    //     <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
+    // </svg>)
 
 
 

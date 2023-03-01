@@ -8,9 +8,9 @@ from app.forms import CommentForm
 
 comment_routes=Blueprint("comments",__name__)
 
-#get all posts
+#get all comments
 @comment_routes.route("/comments")
-def posts():
+def comments():
     all_comments = Comment.query.all()
     # print(all_posts[0].to_dict())
     all_users=User.query.all()

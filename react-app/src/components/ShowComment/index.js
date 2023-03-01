@@ -1,11 +1,8 @@
 import "./ShowComment.css"
-import { useDispatch, useSelector } from "react-redux";
-import OpenModalButton from "../OpenModalButton";
-import EditComment from "../EditComment";
-import DeleteCommentComponent from "../DeleteComment";
+import {useSelector } from "react-redux";
 import React, { useState, useEffect, useRef } from "react";
 import CommentThreeDots from "../CommentThreeDots"
-import { getAllComments } from "../../store/comment";
+
 
 
 function ShowComment({ post, postComments }) {
@@ -23,10 +20,10 @@ function ShowComment({ post, postComments }) {
     const sessionUser = useSelector(state => state.session.user);
     // console.log(sessionUser)
 
-    let sessionLinks;
+    // let sessionLinks;
 
     //can change the use state from true to false later on
-    const [showCommnet, setShowComment] = useState(true);
+    const [showCommnet, setShowComment] = useState(false);
     const ulRef = useRef();
 
     const openComment = () => {
@@ -49,7 +46,7 @@ function ShowComment({ post, postComments }) {
     }, [showCommnet]);
 
     const ulClassName = "comment-dropdown" + (showCommnet ? "" : " hidden")
-    const closeComment = () => setShowComment(false)
+    // const closeComment = () => setShowComment(false)
 
 
     return (

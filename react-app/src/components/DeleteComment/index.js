@@ -1,6 +1,6 @@
 import "./DeleteComment.css"
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from 'react-router-dom';
 import { deleteCommentThunk, getAllComments } from "../../store/comment";
@@ -13,7 +13,7 @@ export default function DeleteCommentComponent({post, comment}){
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
     const handleDelete=(e)=>{

@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
 	return (
 		<ul className='header'>
 			<li>
-				<NavLink exact to="/"><img className="logo" src={logo}></img></NavLink>
+				<NavLink exact to="/"><img className="logo" src={logo} alt=""></img></NavLink>
 			</li>
 
 			<li>

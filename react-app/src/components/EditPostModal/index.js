@@ -1,8 +1,7 @@
 import "./EditPost.css"
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useHistory } from 'react-router-dom';
 import { updatePostThunk } from "../../store/post";
 
 function EditPostModal({ post }) {
@@ -11,7 +10,7 @@ function EditPostModal({ post }) {
     // console.log("post user id in edit modal", post.post_user_id)
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
     const [post_content, setPost_content] = useState(post.post_content)
     const [post_photo, setPost_photo] = useState(post.post_photo)
@@ -43,9 +42,9 @@ function EditPostModal({ post }) {
             )
     }
 
-    const sessionUser = useSelector(state => state.session.user);
+    // const sessionUser = useSelector(state => state.session.user);
 
-    let sessionLinks;
+    // let sessionLinks;
 
 
     return (

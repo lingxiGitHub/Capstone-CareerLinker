@@ -1,6 +1,6 @@
 import "./DeletePost.css"
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from 'react-router-dom';
 import { deletePostThunk, getAllPosts } from "../../store/post"

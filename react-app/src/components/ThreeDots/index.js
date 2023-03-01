@@ -1,6 +1,6 @@
 import "./ThreeDots.css"
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import EditPostModal from "../EditPostModal";
 import DeletePost from "../DeletePostModal";
@@ -13,8 +13,8 @@ export default function ThreeDots({ post }) {
             <path d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"></path>
         </svg>
     )
-    const sessionUser = useSelector(state => state.session.user)
-    const dispatch = useDispatch();
+    // const sessionUser = useSelector(state => state.session.user)
+    // const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
@@ -40,7 +40,7 @@ export default function ThreeDots({ post }) {
  
 
     const ulClassName = "three-dots-dropdown" + (showMenu ? "" : " hidden");
-    const closeMenu = () => setShowMenu(false);
+    // const closeMenu = () => setShowMenu(false);
 
 
     return (
