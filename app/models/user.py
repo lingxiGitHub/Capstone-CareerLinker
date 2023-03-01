@@ -20,6 +20,8 @@ user_conversations=db.Table(
     db.Column('conversations', db.Integer, db.ForeignKey('conversations.id'), primary_key=True)
 )
 
+if environment == "production":
+    user_conversations.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
