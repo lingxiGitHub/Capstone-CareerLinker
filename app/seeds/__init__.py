@@ -22,22 +22,21 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_users()
     
-    print("before seed users")
+    seed_conversations()
     seed_users()
-    print("user seeded")
+    seed_messages()
     seed_posts()
     seed_comments()
-    seed_conversations()
-    seed_messages()
+
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
-    undo_messages()
-    undo_conversations()
     undo_comments()
     undo_posts()
+    undo_messages()
     undo_users()
+    undo_conversations()
     # Add other undo functions here
