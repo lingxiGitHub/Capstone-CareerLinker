@@ -16,8 +16,8 @@ SCHEMA = os.environ.get('SCHEMA')
 user_conversations=db.Table(
     "user_conversations",
     db.Model.metadata,
-    db.Column('users', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-    db.Column('conversations', db.Integer, db.ForeignKey('conversations.id'), primary_key=True)
+    db.Column('users', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
+    db.Column('conversations', db.Integer, db.ForeignKey(add_prefix_for_prod('conversations.id')), primary_key=True)
 )
 
 if environment == "production":
