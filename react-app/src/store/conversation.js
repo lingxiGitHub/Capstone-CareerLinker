@@ -12,7 +12,7 @@ export const getAllConversations = () => async dispatch => {
     const response = await fetch("/api/conversations")
     if (response.ok) {
         const list = await response.json()
-        console.log(list)
+        // console.log(list)
         dispatch(loadConversation(list))
     } else {
         console.log("get all conversation fetch failed")

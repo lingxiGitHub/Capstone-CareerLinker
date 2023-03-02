@@ -10,7 +10,7 @@ export const getAllMessages = () => async dispatch => {
     const response = await fetch("/api/messages")
     if (response.ok) {
         const list = await response.json()
-        console.log("message list", list)
+        // console.log("message list", list)
         dispatch(loadMessage(list))
     } else {
         console.log("get all message fetch failed")
@@ -26,10 +26,11 @@ export const loadSingleMessage = (detailedMessage) => ({
 })
 
 export const getSingleMessage = (conversationId) => async dispatch => {
-    const response = await fetch("/api/conversations/1/messages")
+    
+    const response = await fetch(`/api/conversations/${conversationId}/messages`)
     if (response.ok) {
         const detailedMessage = await response.json()
-        console.log("single message", detailedMessage)
+        // console.log("single message", detailedMessage)
         dispatch(loadSingleMessage(detailedMessage))
     } else {
         console.log("get single message fetch failed")
@@ -55,7 +56,7 @@ export default function messageReducer(state = initialState, action) {
         case LOAD:
             const newAllMessages = {}
             action.allMessages.forEach(message => {
-                console.log("message at store", message)
+                // console.log("message at store", message)
 
                 return newAllMessages[message.message_id] = message
 
@@ -70,7 +71,7 @@ export default function messageReducer(state = initialState, action) {
         case LOADSINGLEMESSAGE:
             const newSingleMessage = {}
             action.singleMessage.forEach(message => {
-                console.log("single message at store", message)
+                // console.log("single message at store", message)
 
                 return newSingleMessage[message.message_id] = message
             })

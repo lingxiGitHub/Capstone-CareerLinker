@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react"
 import { getAllConversations } from "../../../store/conversation";
 import ShowMessageComp from "../ShowMessage";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 
@@ -41,7 +41,7 @@ export default function ShowConversations() {
                         // console.log("@@@@@", conversation)
                         return (
                             <div>
-                                <NavLink exact to="messaging">{conversation.conversation_id}</NavLink>
+                                <Link to={`/messaging/${conversation.conversation_id}`}>{conversation.conversation_id}</Link>
                                 {/* <ShowMessageComp /> */}
                             </div>
                         )

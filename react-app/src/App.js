@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import PostList from "./components/PostList"
 import MessagingPage from "./components/MessagingPage"
+import Splash from "./components/Splash";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,11 +27,17 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/">
+          <Route exact path="/home">
             <PostList />
           </Route>
           <Route exact path="/messaging">
             <MessagingPage />
+          </Route>
+          <Route exact path="/messaging/:conversationId">
+            <MessagingPage />
+          </Route>
+          <Route exact path="/">
+            <Splash />
           </Route>
         </Switch>
       )}

@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify,request,session
 from flask_login import login_required,current_user
 from app.models import db
 from app.models import User,Conversation,Message
+from app.forms import MessageForm
 
 message_routes=Blueprint("messages",__name__)
 
@@ -45,6 +46,24 @@ def messages():
     return data
 
 
+#create a message
+@message_routes.route("/messages",methods=["POST"])
+# @login_required
+def create_message():
+   form=MessageForm()
+   form["csrf_token"].data = request.cookies["csrf_token"]
 
+   if form.validate_on_submit():
+    message=Message(
+        user_id=int(current_user.id),
+        message_content=request.get_json()["message_content"],
+        conversation_id=request.get_json()["conversation_id"]
+    )
 
+    db.session.add(message)
+    db.session.commit()
+    return message.to_dict()
+
+   if form.errors:
+     return form.errors
 
