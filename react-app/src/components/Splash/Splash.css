@@ -1,22 +1,35 @@
-.splash-container{
+.splash-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: white;
+    overflow: hidden;
+    width: 100vw;
 }
 
-.splash-container-left{
+@media (max-width:1250px) {
+    .splash-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: white;
+    }
+
+}
+
+.splash-container-left {
     width: 620px;
     padding-right: 30px;
 }
 
-.splash-container-right{
+.splash-container-right {
     width: 620px;
 }
 
-.welcome-word{
-    color:rgb(143,88,73);
+.welcome-word {
+    color: rgb(143, 88, 73);
     font-size: 32px;
     font-weight: 300;
     line-height: 38.4px;

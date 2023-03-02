@@ -3,13 +3,13 @@ import "./ShowMessage.css"
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
-import {  getSingleMessage } from "../../../store/message";
+import { getSingleMessage } from "../../../store/message";
 import { useParams } from 'react-router-dom';
 
 export default function ShowMessageComp() {
 
     let { conversationId } = useParams()
-    console.log("conversation id", conversationId)
+    // console.log("conversation id", conversationId)
 
     const sessionUser = useSelector(state => state.session.user);
 
@@ -21,12 +21,24 @@ export default function ShowMessageComp() {
 
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch()
-    useEffect(() => {
-        // dispatch(getsingleMessages())
-        dispatch(getSingleMessage(conversationId))
 
-            .then(() => setIsLoaded(true));
-    }, [dispatch, conversationId])
+    let intervalId
+    useEffect(() => {
+        if (intervalId) {
+            clearInterval(intervalId)
+        }
+
+        // dispatch(getSingleMessage(conversationId))
+        //     .then(() => setIsLoaded(true));
+
+
+        intervalId = setInterval(() => {
+            dispatch(getSingleMessage(conversationId))
+                .then(() => setIsLoaded(true));
+        }, 1000);
+
+        return () => clearInterval(intervalId)
+     }, [dispatch, conversationId])
 
     return (
 
