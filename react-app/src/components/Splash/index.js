@@ -2,9 +2,14 @@ import LoginFormPage from "../LoginFormPage"
 import SignupFormPage from "../SignupFormPage"
 import SignupFormModal from "../SignupFormModal"
 import "./Splash.css"
+import { useDispatch } from "react-redux";
+// import { login } from "../../store/session";
+import { useModal } from "../../context/Modal";
 
 
 export default function Splash() {
+    // const dispatch = useDispatch();
+    // const { closeModal } = useModal();
 
     const splashSVG = (<img src="https://static.licdn.com/aero-v1/sc/h/dxf91zhqd2z6b0bwg85ktm5s4"></img>)
     return (
@@ -14,8 +19,7 @@ export default function Splash() {
               
 
                 <div><LoginFormPage /></div>
-                {/* <p>Not a member?</p>
-               <button>{SignupFormModal}</button> */}
+              
             </div>
             <div className="splash-container-right">{splashSVG}</div>
         </div>

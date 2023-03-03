@@ -3,10 +3,12 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useHistory, } from 'react-router-dom';
+import { useModal } from "../../context/Modal";
 import './LoginForm.css';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,6 +56,14 @@ function LoginFormPage() {
           </label>
 
           <button className="sign-in-button" type="submit">Sign In</button>
+          <button
+            className="demo-button"
+            onClick={() => {
+              dispatch(login("demo@aa.io", "password"));
+              closeModal();
+            }
+            }
+          >Demo User</button>
         </div>
       </form>
     </>
