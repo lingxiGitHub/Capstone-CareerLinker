@@ -1,4 +1,4 @@
-# LinkedLing (a Linkedin Clone)
+# LinkedLing
 
 
 
