@@ -1,4 +1,6 @@
 import LoginFormPage from "../LoginFormPage"
+import SignupFormPage from "../SignupFormPage"
+import SignupFormModal from "../SignupFormModal"
 import "./Splash.css"
 
 
@@ -12,6 +14,8 @@ export default function Splash() {
               
 
                 <div><LoginFormPage /></div>
+                {/* <p>Not a member?</p>
+               <button>{SignupFormModal}</button> */}
             </div>
             <div className="splash-container-right">{splashSVG}</div>
         </div>

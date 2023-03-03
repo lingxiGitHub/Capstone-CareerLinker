@@ -1,6 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify,request
 from flask_login import login_required
 from app.models import User
+from app.forms import SignUpForm
+from app.models import db
 
 user_routes = Blueprint('users', __name__)
 

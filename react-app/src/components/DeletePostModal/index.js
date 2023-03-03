@@ -20,7 +20,7 @@ export default function DeletePost({ post }) {
         dispatch(deletePostThunk(+post.post_id))
             .then(() => dispatch(getAllPosts()))
             .then(() => closeModal())
-            .then(() => history.push("/"))
+            .then(() => history.push("/home"))
     }
 
     return (

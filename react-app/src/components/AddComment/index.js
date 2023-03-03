@@ -19,10 +19,10 @@ function AddComment({ post }) {
     const [errors, setErrors] = useState([]);
     const sessionUser = useSelector(state => state.session.user)
 
-    const [comment_content, setComment_content] = useState("Add a comment...")
+    const [comment_content, setComment_content] = useState("")
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newComment = {
@@ -31,18 +31,33 @@ function AddComment({ post }) {
             comment_content,
         }
 
-        return dispatch(addCommentThunk(newComment, postId))
-            .then(() => history.push(`/`))
-            .then(closeModal())
-            .then(() => dispatch(getAllPosts()))
-            .then(() => dispatch(getAllComments()))
-            .catch(
-                async (res) => {
-                    const data = await res.json();
-                    console.log("data", data.errors)
-                    if (data && data.errors) setErrors(data.errors);
-                }
-            )
+        if (comment_content.length>500){
+            setErrors([
+                "Comment must be less than 500 characters"
+            ])
+            return
+        }
+
+        const data = await dispatch(addCommentThunk(newComment, postId))
+        if (data && data.errors) setErrors(data.errors)
+
+        history.push(`/home`)
+        closeModal()
+        dispatch(getAllPosts())
+        dispatch(getAllComments())
+
+        // return dispatch(addCommentThunk(newComment, postId))
+        //     .then(() => history.push(`/home`))
+        //     .then(closeModal())
+        //     .then(() => dispatch(getAllPosts()))
+        //     .then(() => dispatch(getAllComments()))
+        //     .catch(
+        //         async (res) => {
+        //             const data = await res.json();
+        //             console.log("data", data.errors)
+        //             if (data && data.errors) setErrors(data.errors);
+        //         }
+        //     )
 
     }
 
@@ -67,6 +82,7 @@ function AddComment({ post }) {
                     <input
                         className="comment-text-area"
                         type="text"
+                        placeholder="Add a comment..."
                         value={comment_content}
                         onChange={(e) => setComment_content(e.target.value)}
 

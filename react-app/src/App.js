@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import PostList from "./components/PostList"
 import MessagingPage from "./components/MessagingPage"
 import Splash from "./components/Splash";
+import Footer from "./components/Footer"
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
+        <>
         <Switch>
           <Route path="/login" >
             <LoginFormPage />
@@ -39,7 +41,10 @@ function App() {
           <Route exact path="/">
             <Splash />
           </Route>
-        </Switch>
+        
+        </Switch> 
+         <Footer />
+         </>
       )}
     </>
   );

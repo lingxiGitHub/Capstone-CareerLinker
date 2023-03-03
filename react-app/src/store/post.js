@@ -14,8 +14,14 @@ export const getAllPosts = () => async dispatch => {
         const listObj = await response.json()
         const list = listObj.posts
         dispatch(loadPost(list))
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
     } else {
-        console.log("get all post fetch failed")
+        return ["An error occurred. Please try again."];
     }
 }
 
@@ -42,10 +48,15 @@ export const addPostThunk = (newPost) => async dispatch => {
         // console.log("createdPost", createdPost)
         // createdRestaurantId = createdRestaurant.id
         // console.log("createdRestaurantId", createdRestaurantId)
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            console.log("%%%%",data.errors)
+            return data.errors;
+        }
     } else {
-        console.log("add post failed in store")
+        return ["An error occurred. Please try again."];
     }
-
 }
 
 //edit a post
@@ -85,30 +96,34 @@ export const updatePostThunk = (post) => async dispatch => {
         dispatch(updatePost(updatedPost))
         dispatch(getAllPosts())
         return updatedPost
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
     } else {
-        console.log("edit post thunk is not ok")
+        return ["An error occurred. Please try again."];
     }
-
-
 }
 
 
 //delete a post
-const DELETE_POST="posts/deletePost"
-export const deletePost=(id)=>({
-    type:DELETE_POST,
+const DELETE_POST = "posts/deletePost"
+export const deletePost = (id) => ({
+    type: DELETE_POST,
     id
 })
 
-export const deletePostThunk = (id)=>async dispatch=>{
+export const deletePostThunk = (id) => async dispatch => {
 
-const res =await fetch(`/api/posts/${id}`,{
-    method:"DELETE"
-})
-if (res.ok){
-    dispatch(deletePost(id))
-    dispatch(getAllPosts())
-}
+    const res = await fetch(`/api/posts/${id}`, {
+        method: "DELETE"
+    })
+    if (res.ok) {
+        dispatch(deletePost(id))
+        dispatch(getAllPosts())
+    }
 
 }
 
@@ -149,8 +164,8 @@ export default function postsReducer(state = initialState, action) {
             return updatePostState
         }
 
-        case DELETE_POST:{
-            const deletePostState={...state}
+        case DELETE_POST: {
+            const deletePostState = { ...state }
             // console.log(deletePostState)
             // delete deletePostState.allPosts[action.post.id]
             return deletePostState

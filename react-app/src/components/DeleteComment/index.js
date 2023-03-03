@@ -22,7 +22,7 @@ export default function DeleteCommentComponent({post, comment}){
             .then(() => dispatch(getAllPosts()))
             .then(() => dispatch(getAllComments()))
             .then(() => closeModal())
-            .then(() => history.push("/"))
+            .then(() => history.push("/home"))
     }
 
     return (

@@ -2,7 +2,8 @@ import "./EditPost.css"
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { updatePostThunk } from "../../store/post";
+import { updatePostThunk, getAllPosts } from "../../store/post";
+import { useHistory } from 'react-router-dom';
 
 function EditPostModal({ post }) {
 
@@ -10,7 +11,7 @@ function EditPostModal({ post }) {
     // console.log("post user id in edit modal", post.post_user_id)
 
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
 
     const [post_content, setPost_content] = useState(post.post_content)
     const [post_photo, setPost_photo] = useState(post.post_photo)
@@ -18,7 +19,7 @@ function EditPostModal({ post }) {
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
-    const handleUpdate = (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
         const updatedPost = {
             id: post.post_id,
@@ -28,18 +29,20 @@ function EditPostModal({ post }) {
 
         }
 
+        if (post_content.length > 1000) {
+            setErrors([
+                "post must be less than 1000 characters"
+            ])
+            return
+        }
 
+        const data = await dispatch(updatePostThunk(updatedPost))
+        if (data && data.errors) setErrors(data.errors)
 
-        dispatch(updatePostThunk(updatedPost))
-            .then(console.log("after update thunk", updatedPost))
-            .then(closeModal())
-            .catch(
-                async (res) => {
-                    const data = await res.json();
-                    console.log("data", data.errors)
-                    if (data && data.errors) setErrors(data.errors);
-                }
-            )
+        history.push(`/home`)
+        dispatch(getAllPosts())
+        closeModal()
+
     }
 
     // const sessionUser = useSelector(state => state.session.user);

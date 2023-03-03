@@ -7,6 +7,16 @@ from app.forms import PostForm
 
 post_routes=Blueprint("posts",__name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 #get all posts
 @post_routes.route("/")
 def posts():
@@ -78,9 +88,11 @@ def create_post():
     db.session.add(post)
     db.session.commit()
     return post.to_dict()
+  else:
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-  if form.errors:
-    return form.errors
+  # if form.errors:
+  #   return form.errors
 
 
 #edit a post
@@ -108,8 +120,8 @@ def edit_post_by_post_id(postId):
     return post.to_dict()
 
 
-  if form.errors:
-    return form.errors
+  else:
+     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 #delete a post

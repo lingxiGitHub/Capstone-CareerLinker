@@ -9,14 +9,14 @@ function AddPostModal() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [post_content, setPost_content] = useState("What do you want to talk about?")
+    const [post_content, setPost_content] = useState("")
     const [post_photo, setPost_photo] = useState("")
 
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
     const sessionUser = useSelector(state => state.session.user)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newPost = {
@@ -25,17 +25,26 @@ function AddPostModal() {
             post_photo
         }
 
-        return dispatch(addPostThunk(newPost))
-            .then(() => history.push(`/`))
-            .then(closeModal())
-            .then(() => dispatch(getAllPosts()))
-            .catch(
-                async (res) => {
-                    const data = await res.json();
-                    console.log("data", data.errors)
-                    if (data && data.errors) setErrors(data.errors);
-                }
-            )
+        if (post_content.length>1000){
+            setErrors([
+                "post must be less than 1000 characters"
+            ])
+            return
+        }
+
+        const data = await dispatch(addPostThunk(newPost))
+        if (data && data.errors) setErrors(data.errors)
+
+        history.push(`/home`)
+        closeModal()
+        dispatch(getAllPosts())
+        // .catch(
+        //     async (res) => {
+        //         const data = await res.json();
+        //         console.log("data errors", data.errors)
+        //         if (data && data.errors) setErrors(data.errors);
+        //     }
+        // )
     }
 
     return (
@@ -62,6 +71,7 @@ function AddPostModal() {
                         className="post-text-area"
                         type="text"
                         value={post_content}
+                        placeholder="What do you want to talk about?"
                         onChange={(e) => setPost_content(e.target.value)}
                         required
 

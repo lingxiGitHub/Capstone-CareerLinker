@@ -12,18 +12,34 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [first_name, setFirst_name] = useState("")
+  const [profile_photo, setProfile_photo] = useState("")
+  const [last_name, setLast_name] = useState("")
 
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const regex = new RegExp(".+@.+\\..+")
+    const isvalidEmail = regex.test(email)
+
+    if (!isvalidEmail) {
+
+      setErrors([
+        "Not a valid email",
+      ]);
+      return
+    }
+
+    
     if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password));
-        if (data) {
-          setErrors(data)
-        }
+      const data = await dispatch(signUp(username, email, password,profile_photo,first_name,last_name));
+      if (data) {
+        setErrors(data)
+      }
     } else {
-        setErrors(['Confirm Password field must be the same as the Password field']);
+      setErrors(['Confirm Password field must be the same as the Password field']);
     }
   };
 
@@ -52,6 +68,33 @@ function SignupFormPage() {
             required
           />
         </label>
+        <label>
+          First Name
+          <input
+            type="text"
+            value={first_name}
+            onChange={(e) => setFirst_name(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Last Name
+          <input
+            type="text"
+            value={last_name}
+            onChange={(e) => setLast_name(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Profile Photo optional
+          <input
+            type="text"
+            value={profile_photo}
+            onChange={(e) => setProfile_photo(e.target.value)}
+          />
+        </label>
+
         <label>
           Password
           <input

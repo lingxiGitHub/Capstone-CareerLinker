@@ -18,7 +18,7 @@ function Navigation({ isLoaded }) {
 			</li>
 
 			<li>
-				<NavLink exact to="/">Home</NavLink>
+				<NavLink exact to="/home">Home</NavLink>
 			</li>
 			<li>
 				<NavLink exact to="/messaging"> Messaging</NavLink>

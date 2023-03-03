@@ -16,36 +16,49 @@ export const getAllComments = () => async dispatch => {
         const listObj = await response.json()
         const list = listObj.comments
         dispatch(loadComment(list))
+
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
     } else {
-        console.log("get all comment fetch failed")
+        return ["An error occurred. Please try again."];
     }
 }
 
 //create comment
 const ADD_COMMENT = "comments/addComments"
 
-export const createComment = (newComment) =>({
+export const createComment = (newComment) => ({
     type: ADD_COMMENT,
     newComment
 })
 
-export const addCommentThunk = (newComment, postId)=>async dispatch =>{
+export const addCommentThunk = (newComment, postId) => async dispatch => {
 
     // console.log("*****",postId)
 
-    const response = await fetch (`/api/posts/${postId}/comments`,{
+    const response = await fetch(`/api/posts/${postId}/comments`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(newComment)
     });
-    if (response.ok){
+    if (response.ok) {
         const createdComment = await response.json()
         // dispatch(getAllPosts)
 
-    }else{
-        console.log("add comment failed in store")
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
     }
 }
 
@@ -67,7 +80,7 @@ export const updateCommentThunk = (comment, postId, commentId) => async dispatch
 
     } = comment
 
-    const res = await fetch(`/api/posts/${+postId}/comments/${+commentId}`, {
+    const response = await fetch(`/api/posts/${+postId}/comments/${+commentId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -77,20 +90,26 @@ export const updateCommentThunk = (comment, postId, commentId) => async dispatch
             user_id,
             post_id,
             comment_content,
-            
+
         })
     })
 
-    if (res.ok) {
+    if (response.ok) {
         // console.log("edit post thunk res is ok", res)
-        const updatedComment = await res.json()
+        const updatedComment = await response.json()
         // console.log("%%%%%%%%updatedPost", updatedPost)
         dispatch(updateComment(updatedComment))
         dispatch(getAllPosts())
         dispatch(getAllComments())
         return updatedComment
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
     } else {
-        console.log("edit comment thunk failed")
+        return ["An error occurred. Please try again."];
     }
 
 
@@ -110,9 +129,17 @@ export const deleteCommentThunk = (postId, commentId) => async dispatch => {
         method: "DELETE"
     })
     if (res.ok) {
-        dispatch(deleteComment(postId,commentId))
+        dispatch(deleteComment(postId, commentId))
         dispatch(getAllPosts())
         dispatch(getAllComments())
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
     }
 
 }
@@ -135,10 +162,10 @@ export default function commentsReducer(state = initialState, action) {
                     ...newAllComments
                 }
             }
-        case ADD_COMMENT:{
-            const addCommentState ={...state}
+        case ADD_COMMENT: {
+            const addCommentState = { ...state }
             // console.log("!!!!",addCommentState)
-            addCommentState.allComments[action.newComment.comment_id]=action.newComment
+            addCommentState.allComments[action.newComment.comment_id] = action.newComment
             return addCommentState
         }
 

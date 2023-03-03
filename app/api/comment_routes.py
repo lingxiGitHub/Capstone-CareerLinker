@@ -8,6 +8,16 @@ from app.forms import CommentForm
 
 comment_routes=Blueprint("comments",__name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 #get all comments
 @comment_routes.route("/comments")
 def comments():
@@ -71,17 +81,8 @@ def create_comment(postId):
     db.session.commit()
     return comment.to_dict()
 
-  if form.errors:
-    return form.errors
-
-
-    db.session.add(post)
-    db.session.commit()
-    return post.to_dict()
-
-  if form.errors:
-    return form.errors
-
+  else:
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 #edit a post
 @comment_routes.route('/posts/<int:postId>/comments/<int:commentId>', methods=["PUT"])
@@ -111,10 +112,9 @@ def edit_comment_by_post_id(postId,commentId):
 
     db.session.commit()
     return comment.to_dict()
-
-
-  if form.errors:
-    return form.errors
+    
+  else:
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 #delete a post

@@ -23,7 +23,7 @@
   text-align: left;
 }
 
-.profile-dropdown li button{
+.profile-dropdown li button {
   text-align: left;
   margin: 0;
   padding: 0;
@@ -46,8 +46,11 @@
   background-color: white;
   height: 52px;
   border-width: 0px;
-  margin-top: 0px;
+  top: 0;
   width: 100vw;
+  position: fixed;
+  margin:0px;
+  border-bottom: 1px solid rgb(211, 211, 211);
 }
 
 li {
