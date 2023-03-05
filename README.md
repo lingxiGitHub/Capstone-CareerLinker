@@ -19,16 +19,27 @@ Hosting:
 Render
 
 
-
-## 🚧 To do list for future features
-Need to build Messaging and job posting
-
-
-
 ## 🌐 Landing Page
+
+You can log in with creditials or as a demo user to test the features.
 
 ![Screen Shot 2023-03-02 at 4 23 41 PM](https://user-images.githubusercontent.com/113320584/222599643-c6a9df11-13f4-43a3-9152-4774e3bb2964.png)
 
+
+## 🏠 Home Page
+
+All users can see a selection of the most recent Posts.
+Logged-in users can create/edit/delete existingposts.
+
+
+All users can see a list of comments for posts.
+Logged-in users can create /edit /delete a new comment for posts.
+
+![Screen Shot 2023-03-04 at 3 27 01 PM](https://user-images.githubusercontent.com/113320584/222933247-5aa17241-5256-48db-b02b-32bbe8a42561.png)
+
+
+## 🚧 To do list for future features
+Need to build Messaging and job posting
 
 
 ## 🏁 Get started
