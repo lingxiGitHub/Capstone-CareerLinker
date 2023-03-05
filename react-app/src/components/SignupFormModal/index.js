@@ -29,15 +29,15 @@ function SignupFormModal() {
 			return
 		}
 
-		if (password.length>4 || password.length>20){
-			setErrors([
-				"password must be between 4 and 20 characters",
-			]);
-			return
-		}
+		// if (password.length>4 || password.length>20){
+		// 	setErrors([
+		// 		"password must be between 4 and 20 characters",
+		// 	]);
+		// 	return
+		// }
 
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password, first_name, last_name, profile_photo));
+			const data = await dispatch(signUp({username, email, password, first_name, last_name, profile_photo}));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -64,7 +64,7 @@ function SignupFormModal() {
 			>
 				<ul>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<li class="error-red" key={idx}>{error}</li>
 					))}
 				</ul>
 				<label><span>

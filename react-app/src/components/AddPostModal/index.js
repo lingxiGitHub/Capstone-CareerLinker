@@ -11,7 +11,7 @@ function AddPostModal() {
 
     const [post_content, setPost_content] = useState("")
     const [post_photo, setPost_photo] = useState("")
-
+    const [photoError, setPhotoError] = useState(false)
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
     const sessionUser = useSelector(state => state.session.user)
@@ -25,7 +25,7 @@ function AddPostModal() {
             post_photo
         }
 
-        if (post_content.length>1000){
+        if (post_content.length > 1000) {
             setErrors([
                 "post must be less than 1000 characters"
             ])
@@ -33,18 +33,19 @@ function AddPostModal() {
         }
 
         const data = await dispatch(addPostThunk(newPost))
-        if (data && data.errors) setErrors(data.errors)
+        if (data && data.errors) {
+            setErrors(data.errors)
+            return
+        }
+        if (photoError) {
+            setErrors(["invalid photo"])
+            return
+        }
 
         history.push(`/home`)
         closeModal()
         dispatch(getAllPosts())
-        // .catch(
-        //     async (res) => {
-        //         const data = await res.json();
-        //         console.log("data errors", data.errors)
-        //         if (data && data.errors) setErrors(data.errors);
-        //     }
-        // )
+   
     }
 
     return (
@@ -61,7 +62,7 @@ function AddPostModal() {
 
                 <ul>
                     {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
+                        <li class="error-red" key={idx}>{error}</li>
                     ))}
                 </ul>
 
@@ -85,11 +86,16 @@ function AddPostModal() {
                         className="photo-url-place"
                         type="text"
                         value={post_photo}
-                        onChange={(e) => setPost_photo(e.target.value)}
+                        onChange={(e) => { setPhotoError(false); setPost_photo(e.target.value); }}
 
 
                     />
-
+                    {photoError && (
+                        <div>Invalid image url</div>
+                    )}
+                    <img className="hidden-broken-image" src={post_photo}
+                        onError={e => setPhotoError(true)}
+                    />
                 </label>
 
                 <button className="post-submit-button" type="submit">Post</button>

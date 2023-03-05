@@ -73,7 +73,7 @@ function ProfileButton({ user }) {
 
 
             <button
-              className="demo-button"
+              className="demo-button-drop-down"
               onClick={() => {
                 dispatch(login("demo@aa.io", "password"));
                 closeModal();

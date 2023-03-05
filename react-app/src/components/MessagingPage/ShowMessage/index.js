@@ -5,9 +5,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getSingleMessage } from "../../../store/message";
 import { useParams } from 'react-router-dom';
+import CreateMessageBox from "../../CreateMessage";
+import { createRef } from "react";
 
 export default function ShowMessageComp() {
 
+    const messageContainerRef = createRef()
     let { conversationId } = useParams()
     // console.log("conversation id", conversationId)
 
@@ -19,6 +22,18 @@ export default function ShowMessageComp() {
 
     const singleMessage = singleMessageObj ? Object.values(singleMessageObj) : []
 
+    console.log("-->", singleMessage)
+
+    let otherPersonName;
+    let otherPersonTitle;
+
+    for (let item of singleMessage) {
+        if (item.message_user_id != sessionUser.id) {
+            otherPersonName = item.message_user_first_name + " " + item.message_user_last_name;
+            otherPersonTitle = item.message_user_title
+        }
+    }
+
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch()
 
@@ -28,30 +43,58 @@ export default function ShowMessageComp() {
             clearInterval(intervalId)
         }
 
-        // dispatch(getSingleMessage(conversationId))
-        //     .then(() => setIsLoaded(true));
+
+        //**************turn off the fetch********************** */
+        dispatch(getSingleMessage(conversationId))
+            .then(() => {
+                setIsLoaded(true)
+            });
 
 
-        intervalId = setInterval(() => {
-            dispatch(getSingleMessage(conversationId))
-                .then(() => setIsLoaded(true));
-        }, 1000);
 
-        return () => clearInterval(intervalId)
-     }, [dispatch, conversationId])
+        //**************turn on the fetch********************** */
+
+        // intervalId = setInterval(() => {
+        //     dispatch(getSingleMessage(conversationId))
+        //         .then(() => setIsLoaded(true));
+        // }, 1000);
+
+        // return () => clearInterval(intervalId)
+
+
+        // **************turn on the fetch********************** */
+    }, [dispatch, conversationId])
 
     return (
 
-        isLoaded && (
+        isLoaded && sessionUser && (
             <div className="loading-message">
-                <div>loading message here</div>
-                {singleMessage.map(message => {
-                    return (
-                        <div className="message-line">
-                            {message.message_content}
-                        </div>
-                    )
-                })}
+
+                <div className="top-section-word">
+                    <div className="top-other-person-name">{otherPersonName}</div>
+                    <div className="top-other-person-title">{otherPersonTitle}</div>
+                </div>
+                <div
+                    ref={messageContainerRef}
+                    className="message-container">
+
+                    {singleMessage.map(message => {
+                        // console.log("$$$$", message)
+
+                        return (
+                            <div className="other-message">
+                                <div>{message.message_user_first_name} {message.message_user_last_name}</div>
+                                <img className="profile-photo" src={message.message_user_profile_photo} alt=""></img>
+                                <div>{message.message_updated_at}</div>
+                                <div>{message.message_content}</div>
+                            </div>)
+
+
+                    })}
+
+
+                </div>
+                <CreateMessageBox conversationId={conversationId} />
             </div>
         )
     )

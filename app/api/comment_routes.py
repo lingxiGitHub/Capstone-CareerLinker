@@ -31,11 +31,13 @@ def comments():
         comment.user_first_name=None
         comment.user_last_name=None
         comment.user_profile_photo=None
+        comment.user_title=None
         for user in all_users:
             if comment.user_id ==user.id:
                 comment.user_first_name=user.first_name
                 comment.user_last_name=user.last_name
                 comment.user_profile_photo=user.profile_photo
+                comment.user_title=user.title
 
  
     
@@ -48,6 +50,7 @@ def comments():
             "comment_user_last_name":comment.user_last_name,
             "comment_user_profile_photo":comment.user_profile_photo,
             "comment_content":comment.comment_content,
+            "comment_user_title":comment.user_title,
             "created_at":comment.created_at,
             "updated_at":comment.updated_at
         } for comment in all_comments]

@@ -1,5 +1,5 @@
 from app.models import db, User,Post,Comment,Conversation, environment, SCHEMA
-from .users import demo,marnie,bobbie
+from .users import demo,marnie,bobbie,tommy
 
 def seed_conversations():
     con1= Conversation (
@@ -10,7 +10,11 @@ def seed_conversations():
       users=[demo,bobbie]
     )
 
-    all_conversations = [con1,con2]
+    con3= Conversation(
+        users=[marnie,tommy]
+    )
+
+    all_conversations = [con1,con2,con3]
     add_conversations=[db.session.add(conversation) for conversation in all_conversations]
     db.session.commit()
 

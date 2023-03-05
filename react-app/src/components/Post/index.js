@@ -40,7 +40,7 @@ function Post({ post }) {
                             <div className="post-user-name">{post.post_user_first_name} {post.post_user_last_name}</div>
 
 
-                            <div className="post-user-title">place holder for titles</div>
+                            <div className="post-user-title">{post.title}</div>
 
                         </div>
                     </div>

@@ -27,9 +27,14 @@
     justify-content: center;
     align-items: center;
     bottom: 0;
+    width: 25px;
 }
 
 
 .git-hub-svg{
     align-items: end;
+}
+
+.linkedin-in-svg{
+    fill:rgb(1, 70, 138);
 }

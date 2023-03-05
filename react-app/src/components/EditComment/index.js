@@ -67,7 +67,7 @@ function EditComment({ post, comment }) {
 
                 <ul>
                     {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
+                        <li class="error-red" key={idx}>{error}</li>
                     ))}
                 </ul>
 

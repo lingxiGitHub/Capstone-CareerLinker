@@ -20,19 +20,23 @@ function LoginFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    history.push("/home")
+
     if (data) {
       setErrors(data);
+    } else {
+      history.push("/home")
     }
+
   };
 
   return (
-    <>
+    <div className="splash-left-flex">
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}
+        className="splash-left">
         <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li class="error-red" key={idx}>{error}</li>
           ))}
         </ul>
         <div className="splash-log-in">
@@ -54,19 +58,20 @@ function LoginFormPage() {
               required
             />
           </label>
-
           <button className="sign-in-button" type="submit">Sign In</button>
-          <button
-            className="demo-button"
-            onClick={() => {
-              dispatch(login("demo@aa.io", "password"));
-              closeModal();
-            }
-            }
-          >Demo User</button>
         </div>
       </form>
-    </>
+
+      <button
+        className="demo-button"
+        onClick={() => {
+          dispatch(login("demo@aa.io", "password"));
+          closeModal();
+          history.push("/home")
+        }
+        }
+      >Demo User</button>
+    </div>
   );
 }
 

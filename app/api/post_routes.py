@@ -30,11 +30,13 @@ def posts():
         post.user_first_name=None
         post.user_last_name=None
         post.user_profile_photo=None
+        post.user_title=None
         for user in all_users:
             if post.user_id ==user.id:
                 post.user_first_name=user.first_name
                 post.user_last_name=user.last_name
                 post.user_profile_photo=user.profile_photo
+                post.user_title=user.title
 
  
     
@@ -48,7 +50,8 @@ def posts():
             "post_photo":post.post_photo,
             "created_at":post.created_at,
             "updated_at":post.updated_at,
-            "profile_photo":post.user_profile_photo
+            "profile_photo":post.user_profile_photo,
+            "title":post.user_title
         } for post in all_posts]
     }
 

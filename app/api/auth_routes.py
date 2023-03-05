@@ -42,7 +42,7 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors':["Invalid credentials"]}, 401
 
 
 @auth_routes.route('/logout')
@@ -69,7 +69,7 @@ def sign_up():
             password=form.data['password'],
             first_name = form.data['first_name'],
             last_name = form.data['last_name'],
-            profile_photo = form.data["profile_photo"]
+            profile_photo = "https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM=",
         )
         db.session.add(user)
         db.session.commit()

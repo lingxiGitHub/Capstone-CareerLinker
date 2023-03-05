@@ -10,7 +10,7 @@ def seed_messages():
     m2=Message(
         user_id='2',
         conversation_id="1",
-        message_content="Hello, Demo. This is user 2"
+        message_content="Hello, Demo. This is user 2."
     )
 
     m3=Message(
@@ -22,10 +22,22 @@ def seed_messages():
     m4=Message(
         user_id='3',
         conversation_id="2",
-        message_content="Hello, Demo. This is user 3"
+        message_content="Hello, Demo. This is user 3."
     )
 
-    all_messages = [m1,m2,m3,m4]
+    m5 = Message(
+        user_id="2",
+        conversation_id="3",
+        message_content="hello user 4. This is user2."
+    )
+
+    m6 = Message(
+        user_id="4",
+        conversation_id="3",
+        message_content="hello user 2. This is user 4."
+    )
+
+    all_messages = [m1,m2,m3,m4,m5,m6]
     add_messages = [db.session.add(message) for message in all_messages]
     db.session.commit()
 

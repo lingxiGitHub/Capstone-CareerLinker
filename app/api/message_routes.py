@@ -11,18 +11,30 @@ message_routes=Blueprint("messages",__name__)
 def get_message_by_conversation_id(conversationId):
     all_message = Message.query.all()
     all_conversation = Conversation.query.all()
+    all_users=User.query.all()
     found_messages=Message.query.filter(Message.conversation_id == conversationId).all()
     data=[]
     for message in found_messages:
         data.append({
             "message_id":message.id,
             "message_user_id":message.user_id,
+            "message_user_first_name":None,
+            "message_user_last_name":None,
+            "message_user_profile_photo":None,
+            "message_user_title":None,
             "message_conversaton_id":message.conversation_id,
             "message_content":message.message_content,
             "message_created_at":message.created_at,
             "message_updated_at":message.updated_at,
 
         })
+    for item in data:
+       for user in all_users:
+          if user.id == item["message_user_id"]:
+             item["message_user_first_name"]=user.first_name
+             item["message_user_last_name"]=user.last_name
+             item["message_user_profile_photo"]=user.profile_photo
+             item["message_user_title"]=user.title
 
     return data
 
@@ -55,7 +67,7 @@ def create_message():
 
    if form.validate_on_submit():
     message=Message(
-        user_id=int(current_user.id),
+        user_id=request.get_json()["user_id"],
         message_content=request.get_json()["message_content"],
         conversation_id=request.get_json()["conversation_id"]
     )

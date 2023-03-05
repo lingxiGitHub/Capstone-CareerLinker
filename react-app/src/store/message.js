@@ -26,7 +26,7 @@ export const loadSingleMessage = (detailedMessage) => ({
 })
 
 export const getSingleMessage = (conversationId) => async dispatch => {
-    
+
     const response = await fetch(`/api/conversations/${conversationId}/messages`)
     if (response.ok) {
         const detailedMessage = await response.json()
@@ -37,15 +37,44 @@ export const getSingleMessage = (conversationId) => async dispatch => {
     }
 
 }
+//create message
 
+const ADD_MESSAGE = "messages/addMessages"
 
+export const createMessage = (newMessage) => ({
+    type: ADD_MESSAGE,
+    newMessage
+})
 
-//create
+export const addMessageThunk = (newMessage) => async dispatch => {
+    // let createdRestaurantId;
+    // console.log("I am in addRestaurantThunk")
+    const response = await fetch("/api/messages", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newMessage)
+    });
+    if (response.ok) {
+        const createdMessage = await response.json()
 
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+}
 
-//update
+//edit
 
 //delete
+
+
 
 //reducer
 
@@ -82,6 +111,15 @@ export default function messageReducer(state = initialState, action) {
                     ...newSingleMessage
                 }
             }
+
+        case ADD_MESSAGE: {
+            const addMessageState = { ...state }
+            // console.log("look at update reducer", addPostState)
+            addMessageState.allMessages[action.message.id] = action.message
+            // console.log("look")
+            // console.log("updateSpotState",updateSpotState)
+            return addMessageState
+        }
 
         default:
             return state;

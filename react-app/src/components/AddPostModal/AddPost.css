@@ -59,3 +59,7 @@
 .create-post-user-name{
     margin-left: 24px;
 }
+
+.hidden-broken-image{
+    display: none;
+}

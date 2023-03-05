@@ -36,6 +36,8 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(20), nullable=False)
     last_name = db.Column(db.String(20), nullable=False)
     profile_photo=db.Column(db.String(500))
+    title=db.Column(db.String(50))
+
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
     messages_users = db.relationship("Message", back_populates="user")
@@ -68,4 +70,5 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'first_name': self.first_name,
             "profile_photo":self.profile_photo,
+            "title":self.title
         }

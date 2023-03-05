@@ -1,6 +1,32 @@
 .message-middle {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+   
+    border-radius: 10px;
+  
+}
+
+.messaging-word{
+    font-weight: 800px;
+    font-size: 16px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    border-width: 0.5px;
+    /* border-right-width: 0.25px; */
+    border-style: solid;
+    border-color: rgba(0,0,0,0.08);
+    width: 284px;
+    padding-left: 16px;
+}
+
+.conversation-div{
+    border-color: rgba(0,0,0,0.08);
+    border-width: 1px;
+    border-style: solid;
+    width: 316px;
+    padding: 5px;
+    padding-left: 16px;
 }

@@ -10,7 +10,7 @@ import OpenModalButton from "../OpenModalButton"
 
 function PostList() {
     const sessionUser = useSelector(state => state.session.user);
-    // console.log(sessionUser)
+    console.log(sessionUser)
 
     const allPostsObj = useSelector((state) => {
         return state.posts.allPosts
@@ -24,12 +24,14 @@ function PostList() {
     useEffect(() => {
         dispatch(getAllPosts())
         dispatch(getAllComments())
-        .then(() => setIsLoaded(true));
+            .then(() => setIsLoaded(true));
     }, [dispatch])
 
     return (
         isLoaded && (
-            <>
+
+
+            <div className="home-post-container">
                 <div>
                     {sessionUser && (
                         <div className="create-post-section">
@@ -43,9 +45,9 @@ function PostList() {
 
                         </div>
                     )}
-                    <hr></hr>
-                </div>
 
+                </div>
+                <hr className="the-line"></hr>
                 <ul>
                     {
                         allPosts.reverse().map(post => {
@@ -61,7 +63,8 @@ function PostList() {
                     }
                 </ul>
 
-            </>
+            </div>
+
         )
     )
 
