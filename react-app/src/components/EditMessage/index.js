@@ -44,7 +44,7 @@ export default function EditMessageComponent({ message, conversationId }) {
     return (
         <>
             <h2 className="edit-message-text">Edit Message</h2>
-            <hr></hr>
+            {/* <hr></hr> */}
 
             <form
                 className="update-message-form"
@@ -59,7 +59,7 @@ export default function EditMessageComponent({ message, conversationId }) {
 
                 <label>
 
-                    <input
+                    <textarea
                         type="text"
                         value={message_content}
                         onChange={(e) => setMessage_content(e.target.value)}

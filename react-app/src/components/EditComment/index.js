@@ -73,7 +73,7 @@ function EditComment({ post, comment }) {
 
                 <label>
 
-                    <input
+                    <textarea
                         type="text"
                         value={comment_content}
                         onChange={(e) => setComment_content(e.target.value)}
