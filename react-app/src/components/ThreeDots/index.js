@@ -27,7 +27,7 @@ export default function ThreeDots({ post }) {
         if (!showMenu) return;
 
         const closeMenu = (e) => {
-            if (!ulRef.current.contains(e.target)) {
+            if (!ulRef.current?.contains(e.target)) {
                 setShowMenu(false);
             }
         };
@@ -56,7 +56,7 @@ export default function ThreeDots({ post }) {
                 <li className="three-dots-li">
                     <OpenModalButton
                         buttonText="Edit"
-                        className="edit-delete-post-button"
+                        className="edit-delete-button"
                         modalComponent={<EditPostModal post={post} />}
                     />
                 </li>
@@ -64,7 +64,7 @@ export default function ThreeDots({ post }) {
                 <li className="three-dots-li">
                     <OpenModalButton
                         buttonText="Delete"
-                        className="edit-delete-post-button"
+                        className="edit-delete-button"
                         modalComponent={<DeletePost post={post} />}
                     />
                 </li>

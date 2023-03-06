@@ -25,6 +25,7 @@
 
 .three-dots-drop-down {
     position: relative;
+
 }
 
 .three-dots-dropdown {
@@ -36,8 +37,9 @@
     border: 1px solid;
     border-radius: 10px;
     border-color: rgba(0, 0, 0, 0.9);
-    width: 60px;
+    /* width: 60px; */
     list-style-type: none;
+    padding: 0;
 
 }
 
@@ -46,7 +48,7 @@
 }
 
 
-.edit-delete-post-button {
+.edit-delete-button {
     background-color: white;
     border-color: rgba(0, 0, 0, 0.9);
     border-style: none;
@@ -66,14 +68,11 @@
     top: 40px;
     right: -8px;
     /* vertical-align: baseline; */
-    width: 100%;
-
-
-
+    width: 100px;
 
 }
 
-.edit-delete-post-button:hover {
+.edit-delete-button:hover {
     background-color: gray;
 }
 

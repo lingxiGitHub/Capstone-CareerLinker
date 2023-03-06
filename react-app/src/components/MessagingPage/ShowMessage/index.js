@@ -7,6 +7,11 @@ import { getSingleMessage } from "../../../store/message";
 import { useParams } from 'react-router-dom';
 import CreateMessageBox from "../../CreateMessage";
 import { createRef } from "react";
+import DeleteMessage from "../../DeleteMessage";
+import EditMessageComponent from "../../EditMessage";
+import OpenModalButton from "../../OpenModalButton";
+import MessageThreeDots from "../../MessageThreeDots";
+
 
 export default function ShowMessageComp() {
 
@@ -22,7 +27,7 @@ export default function ShowMessageComp() {
 
     const singleMessage = singleMessageObj ? Object.values(singleMessageObj) : []
 
-    console.log("-->", singleMessage)
+    // console.log("-->", singleMessage)
 
     let otherPersonName;
     let otherPersonTitle;
@@ -86,7 +91,22 @@ export default function ShowMessageComp() {
                                 <div>{message.message_user_first_name} {message.message_user_last_name}</div>
                                 <img className="profile-photo" src={message.message_user_profile_photo} alt=""></img>
                                 <div>{message.message_updated_at}</div>
+
+                                {message.message_user_id == sessionUser.id && (
+
+                                    <div className="message-three-dots">
+                                        <MessageThreeDots
+                                            messageId={message.message_id}
+                                            conversationId={conversationId}
+                                            message={message}
+                                        />
+                                    </div>
+
+
+                                )}
+
                                 <div>{message.message_content}</div>
+
                             </div>)
 
 

@@ -3,7 +3,7 @@ import "./AddComment.css"
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useHistory,  } from 'react-router-dom';
+import { useHistory, } from 'react-router-dom';
 import { addCommentThunk, getAllComments } from "../../store/comment";
 import { getAllPosts } from "../../store/post";
 
@@ -31,7 +31,7 @@ function AddComment({ post }) {
             comment_content,
         }
 
-        if (comment_content.length>500){
+        if (comment_content.length > 500) {
             setErrors([
                 "Comment must be less than 500 characters"
             ])
@@ -41,11 +41,12 @@ function AddComment({ post }) {
         const data = await dispatch(addCommentThunk(newComment, postId))
         if (data && data.errors) setErrors(data.errors)
 
-        history.push(`/home`)
-        closeModal()
-        dispatch(getAllPosts())
-        dispatch(getAllComments())
 
+
+        await closeModal()
+        await dispatch(getAllPosts())
+        await dispatch(getAllComments())
+        history.push(`/home`)
         // return dispatch(addCommentThunk(newComment, postId))
         //     .then(() => history.push(`/home`))
         //     .then(closeModal())

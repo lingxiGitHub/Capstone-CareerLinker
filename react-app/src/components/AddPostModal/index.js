@@ -37,7 +37,7 @@ function AddPostModal() {
             setErrors(data.errors)
             return
         }
-        if (photoError) {
+        if (post_photo && photoError) {
             setErrors(["invalid photo"])
             return
         }

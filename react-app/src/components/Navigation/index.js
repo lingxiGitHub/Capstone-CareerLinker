@@ -24,9 +24,12 @@ function Navigation({ isLoaded }) {
 			<li>
 				<NavLink className="nav-link" exact to="/home">Home</NavLink>
 			</li>
-			<li>
-				<NavLink className="nav-link" exact to="/messaging"> Messaging</NavLink>
-			</li>
+			{sessionUser && (
+				<li>
+					<NavLink className="nav-link" exact to="/messaging"> Messaging</NavLink>
+				</li>
+
+			)}
 			{/* <li>
 				<NavLink className="nav-link" exact to="/jobs"> Jobs</NavLink>
 			</li> */}

@@ -6,6 +6,16 @@ from app.forms import MessageForm
 
 message_routes=Blueprint("messages",__name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 #get message of one conversation id
 @message_routes.route("/conversations/<int:conversationId>/messages")
 def get_message_by_conversation_id(conversationId):
@@ -76,6 +86,49 @@ def create_message():
     db.session.commit()
     return message.to_dict()
 
-   if form.errors:
-     return form.errors
+   else:
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
+
+#edit a message
+@message_routes.route('/messages/<int:messageId>', methods=["PUT"])
+@login_required
+def edit_message_by_message_id(messageId):
+  message = Message.query.get(messageId)
+#   print("post at edit BE route--->",post.to_dict())
+#   print("current user id ---->",current_user.id)
+  if not message:
+    return {"errors": ["Message couldn't be found"]}, 404
+
+  form = MessageForm()
+  form["csrf_token"].data = request.cookies["csrf_token"]
+
+  if form.validate_on_submit():
+
+    message.id=int(messageId)
+    message.user_id = int(current_user.id)
+    message.message_content = request.get_json()["message_content"]
+    message.conversation_id = request.get_json()["conversation_id"]
+   
+  
+
+    db.session.commit()
+    return message.to_dict()
+
+
+  else:
+     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+#delete a message
+
+@message_routes.route("/messages/<int:messageId>",methods=["DELETE"])
+@login_required
+def delete_message(messageId):
+   message=Message.query.get(messageId)
+
+   if not message:
+      return {"errors":["Message could not be found"]},404
+   
+   db.session.delete(message)
+   db.session.commit()
+   return {"message":["Message successfully deleted"]},200

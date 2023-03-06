@@ -32,8 +32,14 @@ export const getSingleMessage = (conversationId) => async dispatch => {
         const detailedMessage = await response.json()
         // console.log("single message", detailedMessage)
         dispatch(loadSingleMessage(detailedMessage))
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
     } else {
-        console.log("get single message fetch failed")
+        return ["An error occurred. Please try again."];
     }
 
 }
@@ -71,9 +77,94 @@ export const addMessageThunk = (newMessage) => async dispatch => {
 }
 
 //edit
+const UPDATE_MESSAGE = "messages/updateMessage"
+
+export const updateMessage = (message) => ({
+    type: UPDATE_MESSAGE,
+    message
+})
+
+export const updateMessageThunk = (message, conversationId) => async dispatch => {
+    // console.log("post at update post thunk", post)
+    const {
+        messageId,
+        user_id,
+        message_content,
+        conversation_id
+    } = message
+
+    const res = await fetch(`/api/messages/${+messageId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            messageId,
+            user_id,
+            message_content,
+            conversation_id:conversationId,
+        })
+    })
+
+    if (res.ok) {
+        // console.log("edit post thunk res is ok", res)
+        const updatedMessage = await res.json()
+        // console.log("%%%%%%%%updatedPost", updatedPost)
+        dispatch(updateMessage(updatedMessage))
+        return updatedMessage
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+
+    // const response = await fetch(`/api/conversations/${conversationId}/messages`)
+    // if (response.ok) {
+    //     const detailedMessage = await response.json()
+    //     // console.log("single message", detailedMessage)
+    //     dispatch(loadSingleMessage(detailedMessage))
+    // }
+}
+
 
 //delete
+const DELETE_MESSAGE = "messages/deleteMessage"
+export const deleteMessage = (messageId) => ({
+    type: DELETE_MESSAGE,
+    messageId
+})
 
+export const deleteMessageThunk = (messageId,conversationId) => async dispatch => {
+
+    const res = await fetch(`/api/messages/${messageId}`, {
+        method: "DELETE"
+    })
+    if (res.ok) {
+        dispatch(deleteMessage(messageId))
+        // dispatch(loadSingleMessage(detailedMessage))
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+
+    // const response = await fetch(`/api/conversations/${conversationId}/messages`)
+    // if (response.ok) {
+    //     const detailedMessage = await response.json()
+    //     // console.log("single message", detailedMessage)
+    //     await dispatch(loadSingleMessage(detailedMessage))
+    // }
+
+
+}
 
 
 //reducer
@@ -115,12 +206,27 @@ export default function messageReducer(state = initialState, action) {
         case ADD_MESSAGE: {
             const addMessageState = { ...state }
             // console.log("look at update reducer", addPostState)
-            addMessageState.allMessages[action.message.id] = action.message
+            addMessageState.singleMessage[action.message.id] = action.message
             // console.log("look")
             // console.log("updateSpotState",updateSpotState)
             return addMessageState
         }
 
+        case UPDATE_MESSAGE: {
+            const updateMessageState = { ...state }
+            // console.log("look at update reducer", updatePostState)
+            updateMessageState.singleMessage[action.message.id] = action.message
+            // console.log("look")
+            // console.log("updateSpotState",updateSpotState)
+            return updateMessageState
+        }
+
+        case DELETE_MESSAGE: {
+            const deleteMessageState = { ...state }
+            // console.log(deletePostState)
+            // delete deletePostState.allPosts[action.post.id]
+            return deleteMessageState
+        }
         default:
             return state;
     }

@@ -1,5 +1,5 @@
 import "./ShowComment.css"
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import React, { useState, useEffect, useRef } from "react";
 import CommentThreeDots from "../CommentThreeDots"
 
@@ -23,7 +23,7 @@ function ShowComment({ post, postComments }) {
     // let sessionLinks;
 
     //can change the use state from true to false later on
-    const [showCommnet, setShowComment] = useState(false);
+    const [showCommnet, setShowComment] = useState(true);
     const ulRef = useRef();
 
     const openComment = () => {
@@ -35,6 +35,7 @@ function ShowComment({ post, postComments }) {
         if (!showCommnet) return;
 
         const closeComment = (e) => {
+            if (!ulRef.current) return
             if (!ulRef.current.contains(e.target)) {
                 setShowComment(false);
             }

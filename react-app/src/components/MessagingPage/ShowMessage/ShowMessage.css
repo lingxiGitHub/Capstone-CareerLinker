@@ -38,15 +38,7 @@
 
 }
 
-.my-message {
-    align-self: flex-end;
-    /* margin: 15px; */
-    margin-right: 16px;
-    border-style: dashed;
-    border-color: red;
-    border-width: 0.5px;
 
-}
 
 
 .other-message {
@@ -60,6 +52,8 @@
     border-style: dashed;
     border-color: blue;
     border-width: 0.5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .top-section-word {
