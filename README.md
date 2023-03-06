@@ -37,9 +37,14 @@ Logged-in users can create /edit /delete a new comment for posts.
 
 ![Screen Shot 2023-03-04 at 3 27 01 PM](https://user-images.githubusercontent.com/113320584/222933247-5aa17241-5256-48db-b02b-32bbe8a42561.png)
 
+## Messaging Page
+Logged-in users can chat with each other. They can also edit/delete sent messages.
+
+![Screen Shot 2023-03-05 at 11 19 36 PM](https://user-images.githubusercontent.com/113320584/223044060-d60bf6b9-cf75-4b84-969d-2d8f35493cb7.png)
+
 
 ## 🚧 To do list for future features
-Need to build Messaging and job posting
+Continue to finish the features for messaging page as well as the job posting page. I also would like to build bonus functions for reactions and search.
 
 
 ## 🏁 Get started
