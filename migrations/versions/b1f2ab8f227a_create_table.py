@@ -47,7 +47,7 @@ def upgrade():
                         length=50), nullable=False),
                     sa.Column('profile_photo', sa.String(
                         length=500), nullable=True),
-                    sa.Column('title', sa.String(length=50), nullable=True),
+                    sa.Column('title', sa.String(length=100), nullable=True),
                     sa.PrimaryKeyConstraint('id'),
                     sa.UniqueConstraint('email'),
                     sa.UniqueConstraint('username')

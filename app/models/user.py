@@ -36,7 +36,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(20), nullable=False)
     last_name = db.Column(db.String(20), nullable=False)
     profile_photo=db.Column(db.String(500))
-    title=db.Column(db.String(50))
+    title=db.Column(db.String(100))
 
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")

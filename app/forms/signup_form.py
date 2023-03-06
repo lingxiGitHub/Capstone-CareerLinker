@@ -28,3 +28,4 @@ class SignUpForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password', validators=[DataRequired(),Length(min=4,max=20,message="Password must be between 4 - 20 charaters")])
     profile_photo = StringField("profile_photo",default="https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM=")
+    title=StringField("title",default="default title")
