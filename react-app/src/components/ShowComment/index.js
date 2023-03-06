@@ -35,15 +35,16 @@ function ShowComment({ post, postComments }) {
         if (!showCommnet) return;
 
         const closeComment = (e) => {
+            if (e.target.className === "comment-button") return;
             if (!ulRef.current) return
             if (!ulRef.current.contains(e.target)) {
                 setShowComment(false);
             }
         };
 
-        document.addEventListener("click", closeComment);
+        document.querySelector(".home-post-container")?.addEventListener("click", closeComment);
 
-        return () => document.removeEventListener("click", closeComment);
+        return () => document.querySelector(".home-post-container")?.removeEventListener("click", closeComment);
     }, [showCommnet]);
 
     const ulClassName = "comment-dropdown" + (showCommnet ? "" : " hidden")

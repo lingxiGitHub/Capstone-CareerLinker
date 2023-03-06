@@ -40,6 +40,8 @@ export default function ShowMessageComp() {
     }
 
     const [isLoaded, setIsLoaded] = useState(false);
+    const [pollingEnabled, setPollingEnabled] = useState(false);
+
     const dispatch = useDispatch()
 
     let intervalId
@@ -49,11 +51,24 @@ export default function ShowMessageComp() {
         }
 
 
+        if (pollingEnabled) {
+
+            intervalId = setInterval(() => {
+                dispatch(getSingleMessage(conversationId))
+                    .then(() => setIsLoaded(true));
+            }, 1000);
+
+            return () => clearInterval(intervalId)
+
+        } else {
+            dispatch(getSingleMessage(conversationId))
+                .then(() => {
+                    setIsLoaded(true)
+                });
+
+
+        }
         //**************turn off the fetch********************** */
-        dispatch(getSingleMessage(conversationId))
-            .then(() => {
-                setIsLoaded(true)
-            });
 
 
 
@@ -68,17 +83,27 @@ export default function ShowMessageComp() {
 
 
         // **************turn on the fetch********************** */
-    }, [dispatch, conversationId])
+    }, [dispatch, pollingEnabled, conversationId])
 
     return (
 
         isLoaded && sessionUser && (
             <div className="loading-message">
+                <div className="message-top-right">
 
-                <div className="top-section-word">
-                    <div className="top-other-person-name">{otherPersonName}</div>
-                    <div className="top-other-person-title">{otherPersonTitle}</div>
+                    <div className="top-section-word">
+                        <div className="top-other-person-name">{otherPersonName}</div>
+                        <div className="top-other-person-title">{otherPersonTitle}</div>
+                    </div>
+                    <input
+                        // className="toggle-input"
+                        type="checkbox"
+                        id="switch"
+                        onChange={e => setPollingEnabled(!pollingEnabled)}
+                    /><label className="toggle-label" for="switch">Toggle</label>
+
                 </div>
+
                 <div
                     ref={messageContainerRef}
                     className="message-container">
@@ -87,25 +112,36 @@ export default function ShowMessageComp() {
                         // console.log("$$$$", message)
 
                         return (
-                            <div className="other-message">
-                                <div>{message.message_user_first_name} {message.message_user_last_name}</div>
-                                <img className="profile-photo" src={message.message_user_profile_photo} alt=""></img>
-                                <div>{message.message_updated_at}</div>
+                            <div className="message-card">
+                                <img className="message-photo" src={message.message_user_profile_photo} alt=""></img>
 
-                                {message.message_user_id == sessionUser.id && (
+                                <div className="message-right">
 
-                                    <div className="message-three-dots">
-                                        <MessageThreeDots
-                                            messageId={message.message_id}
-                                            conversationId={conversationId}
-                                            message={message}
-                                        />
+                                    <div className="message-first-line">
+                                        <div className="name-and-time">
+
+                                            <div className="message-user-name">{message.message_user_first_name} {message.message_user_last_name}</div>
+                                            <div className="message-time">{new Date(message.message_updated_at).toLocaleString()}</div>
+                                        </div>
+
+                                        {message.message_user_id == sessionUser.id && (
+
+                                            <div className="message-three-dots">
+                                                <MessageThreeDots
+                                                    messageId={message.message_id}
+                                                    conversationId={conversationId}
+                                                    message={message}
+                                                />
+                                            </div>
+
+
+                                        )}
                                     </div>
 
 
-                                )}
+                                    <div className="message-content-font">{message.message_content}</div>
+                                </div>
 
-                                <div>{message.message_content}</div>
 
                             </div>)
 

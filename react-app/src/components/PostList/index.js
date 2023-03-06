@@ -47,7 +47,7 @@ function PostList() {
                     )}
 
                 </div>
-                <hr className="the-line"></hr>
+                {/* <hr className="the-line"></hr> */}
                 <ul>
                     {
                         allPosts.reverse().map(post => {

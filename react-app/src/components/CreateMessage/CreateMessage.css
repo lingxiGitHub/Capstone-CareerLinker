@@ -10,6 +10,7 @@
     margin-left: 10px;
     height: 100px;
     word-break: break-word;
+    width: calc(100% - 26px);
 }
 
 
@@ -32,4 +33,5 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+    width: 100%;
 }
