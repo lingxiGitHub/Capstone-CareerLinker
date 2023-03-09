@@ -57,7 +57,7 @@ function SignupFormModal() {
 
 	return (
 		<>
-			<h1 className="sign-up-word">Sign Up</h1>
+			<h1 className="sign-up-word">Make the most of your professional life</h1>
 			<form 
 			className="sign-up-form"
 			onSubmit={handleSubmit}

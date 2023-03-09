@@ -43,19 +43,26 @@ function PostList() {
 
 
             <div className="home-post-container">
-                <div className="home-left">
-                    <div>
-                        {sessionUser && (
-                            <div className="left-card">
-                                <img className="profile-photo" src={sessionUser.profile_photo} alt=""></img>
-                                <div>{sessionUser.first_name} {sessionUser.last_name}</div>
-                                <div>{sessionUser.title}</div>
-                                <div>Connections</div>
-                                <div>See Premium features</div>
-                            </div>
-                        )}
+
+
+                {sessionUser && (
+                    <div className="left-card">
+                        <div className="premium">PREMIUM</div>
+                        <div>cover photo</div>
+                        <img className="profile-photo-72" src={sessionUser.profile_photo} alt=""></img>
+                        <div className="left-card-name">{sessionUser.first_name} {sessionUser.last_name}</div>
+                        <div className="left-card-title">{sessionUser.title}</div>
+                        {/* <div className="connection-count">
+                            <div className="left-card-connections">Connections</div>
+                            <div>Num</div> */}
+                        {/* </div> */}
+                        <hr className="left-card-line"></hr>
+                        <div>See Premium features</div>
+                        <hr className="left-card-line"></hr>
                     </div>
-                </div>
+                )}
+
+
                 <div className="home-middle">
                     <div>
                         {sessionUser && (

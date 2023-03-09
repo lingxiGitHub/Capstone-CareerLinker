@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useHistory, } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 import './LoginForm.css';
 
 function LoginFormPage() {
@@ -71,7 +73,20 @@ function LoginFormPage() {
         }
         }
       >Demo User</button>
+
+      <div class="lines">
+        <div class="line-1"></div>
+        <p className="or">or</p>
+        <div class="line-2"></div>
+      </div>
+    
+      <OpenModalButton
+        buttonText="New to Linkedin? Join now"
+        className="splash-sign-up"
+        modalComponent={<SignupFormModal />}
+      />
     </div>
+    
   );
 }
 
