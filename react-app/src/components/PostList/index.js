@@ -32,37 +32,66 @@ function PostList() {
 
 
             <div className="home-post-container">
-                <div>
-                    {sessionUser && (
-                        <div className="create-post-section">
+                <div className="home-left">
+                    <div>
+                        {sessionUser && (
+                            <div className="left-card">
+                                <img className="profile-photo" src={sessionUser.profile_photo} alt=""></img>
+                                <div>{sessionUser.first_name} {sessionUser.last_name}</div>
+                                <div>{sessionUser.title}</div>
+                                <div>Connections</div>
+                                <div>See Premium features</div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <div className="home-middle">
+                    <div>
+                        {sessionUser && (
+                            <div className="create-post-section">
 
-                            <img className="profile-photo" src={sessionUser.profile_photo} alt=""></img>
-                            <OpenModalButton
-                                className="start-a-post-button"
-                                buttonText="Start a post"
-                                modalComponent={<AddPostModal />}
-                            />
+                                <img className="profile-photo" src={sessionUser.profile_photo} alt=""></img>
+                                <OpenModalButton
+                                    className="start-a-post-button"
+                                    buttonText="Start a post"
+                                    modalComponent={<AddPostModal />}
+                                />
 
-                        </div>
-                    )}
+                            </div>
+                        )}
+
+                    </div>
+                    <hr className="the-line"></hr>
+                    <ul className="post-main-ul">
+                        {
+                            allPosts.reverse().map(post => {
+                                // console.log("post has id?",post)
+                                return (
+
+                                    <li key={post.post_id}>
+                                        <Post post={post} />
+                                    </li>
+                                )
+
+                            })
+                        }
+                    </ul>
+                </div>
+                <div className="home-right">
+                    <div className="linkedin-news">Linkedin News</div>
+                    <div className="news-bold">LinkedIn News</div>
+                    <div className="news-slim">LinkedIn News</div>
+                    <div className="news-bold">LinkedIn News</div>
+                    <div className="news-slim">LinkedIn News</div>
+                    <div className="news-bold">LinkedIn News</div>
+                    <div className="news-slim">LinkedIn News</div>
+                    <div className="news-bold">LinkedIn News</div>
+                    <div className="news-slim">LinkedIn News</div>
+                    <div className="news-bold">LinkedIn News</div>
+                    <div className="news-slim">LinkedIn News</div>
+                    <button className="show-less-news">Show less</button>
 
                 </div>
-                {/* <hr className="the-line"></hr> */}
-                <ul>
-                    {
-                        allPosts.reverse().map(post => {
-                            // console.log("post has id?",post)
-                            return (
-
-                                <li key={post.post_id}>
-                                    <Post post={post} />
-                                </li>
-                            )
-
-                        })
-                    }
-                </ul>
-
             </div>
 
         )
