@@ -9,6 +9,7 @@ import AddPostModal from "../AddPostModal"
 import OpenModalButton from "../OpenModalButton"
 
 function PostList() {
+    const [showLess, setShowLess] = useState(true);
     const sessionUser = useSelector(state => state.session.user);
     console.log(sessionUser)
 
@@ -26,6 +27,16 @@ function PostList() {
         dispatch(getAllComments())
             .then(() => setIsLoaded(true));
     }, [dispatch])
+
+
+    const arrowDownSVG = (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" class="mercado-match" width="16" height="16" focusable="false">
+        <path d="M1 5l7 4.61L15 5v2.39L8 12 1 7.39z"></path>
+    </svg>)
+
+    const arrowUpSVG = (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" class="mercado-match" width="16" height="16" focusable="false">
+        <path d="M15 11L8 6.39 1 11V8.61L8 4l7 4.61z"></path>
+    </svg>)
+
 
     return (
         isLoaded && (
@@ -77,20 +88,40 @@ function PostList() {
                         }
                     </ul>
                 </div>
-                <div className="home-right">
-                    <div className="linkedin-news">Linkedin News</div>
-                    <div className="news-bold">LinkedIn News</div>
-                    <div className="news-slim">LinkedIn News</div>
-                    <div className="news-bold">LinkedIn News</div>
-                    <div className="news-slim">LinkedIn News</div>
-                    <div className="news-bold">LinkedIn News</div>
-                    <div className="news-slim">LinkedIn News</div>
-                    <div className="news-bold">LinkedIn News</div>
-                    <div className="news-slim">LinkedIn News</div>
-                    <div className="news-bold">LinkedIn News</div>
-                    <div className="news-slim">LinkedIn News</div>
-                    <button className="show-less-news">Show less</button>
+                <div className="home-right" >
+                    <div className={`${showLess ? "show-less" : ""}`}>
+                        <div className="linkedin-news">Linkedin News</div>
+                        <div className="news-bold"> ◦ JPMorgan embraces Florida, Texas</div>
+                        <div className="news-slim">6h ago · 121,043 readers</div>
+                        <div className="news-bold">◦ FTC digs deeper into Twitter</div>
+                        <div className="news-slim">4h ago · 78,080 readers</div>
+                        <div className="news-bold">◦ Payrolls jumped recently: ADP</div>
+                        <div className="news-slim">6h ago · 31,045 readers</div>
+                        <div className="news-bold">◦ New vaccine proves effective against Delta</div>
+                        <div className="news-slim">6h ago · 21,542 readers</div>
+                        <div className="news-bold">◦ Apple unveils latest iPhone model</div>
+                        <div className="news-slim">6h ago · 19,031 readers</div>
+                        <div className="news-bold">◦ New study links coffee to longer lifespan</div>
+                        <div className="news-slim">6h ago · 17,983 readers</div>
+                        <div className="news-bold">◦ NASA to launch new Mars rover mission</div>
+                        <div className="news-slim">6h ago · 5,728 readers</div>
+                        <div className="news-bold">◦ World Leaders Meet to Discuss Climate Crisis</div>
+                        <div className="news-slim">6h ago · 2,333 readers</div>
+                        <div className="news-bold">◦ SpaceX Launches Mission to Mars</div>
+                        <div className="news-slim">6h ago · 1,003 readers</div>
+                        <div className="news-bold">◦ China's Economy Continues to Grow</div>
+                        <div className="news-slim">6h ago · 566 readers</div>
 
+
+                    </div>
+                    <button
+                        className="show-less-news"
+                        onClick={e => setShowLess(!showLess)}
+                    >{showLess ? (
+                        <span>Show More {arrowDownSVG}</span>
+                    ) : (
+                        <span>Show Less {arrowDownSVG}</span>
+                    )}</button>
                 </div>
             </div>
 

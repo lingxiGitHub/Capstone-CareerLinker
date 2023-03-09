@@ -60,13 +60,7 @@
 }
 
 
-.home-right {
-    margin-top: 24px;
-    width: 300px;
-    height: 560px;
-    border: 1px black solid;
-    background-color: white;
-}
+
 
 
 .post-main-ul {
@@ -76,18 +70,32 @@
 .news-bold {
     font-size: 14px;
     font-weight: 600;
-    margin-top: 4px;
+    margin: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 16px;
+    padding-left: 8px;
 }
 
 .news-slim {
     font-size: 12px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 12px;
+    padding-left: 26px;
 }
 
 .linkedin-news {
     font-size: 16px;
     font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 16px;
+
 }
 
 .show-less-news {
@@ -98,5 +106,29 @@
     border-style: none;
     border-width: 0px;
     background-color: white;
+    margin-left: 16px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
 
+
+
+.home-right {
+    margin-top: 24px;
+    width: 300px;
+    /* height: 560px; */
+    border: 1px black solid;
+    background-color: white;
+    border-radius: 8px;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-width: 1px; 
+    /* max-height: 560px; */
+    transition: height 1s;
+}
+
+.show-less {
+
+    max-height: 230px;
+   
+    overflow: hidden;
 }
