@@ -13,6 +13,7 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get('SCHEMA')
 
+#join table 
 user_conversations=db.Table(
     "user_conversations",
     db.Model.metadata,
@@ -22,6 +23,19 @@ user_conversations=db.Table(
 
 if environment == "production":
     user_conversations.schema = SCHEMA
+
+#join table
+likes=db.Table(
+    "likes",
+    db.Model.metadata,
+    db.Column('users', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
+    db.Column('posts', db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')), primary_key=True)
+)
+
+if environment == "production":
+    likes.schema = SCHEMA
+
+####
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -50,6 +64,15 @@ class User(db.Model, UserMixin):
         back_populates="users",
         cascade="all, delete"
     )
+
+    # user to posts - likes : many to many
+
+    likes=db.relationship(
+        'Post',
+        secondary=likes,
+        back_populates="users",
+        cascade="all, delete"
+        )
 
     @property
     def password(self):

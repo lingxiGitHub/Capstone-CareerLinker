@@ -4,6 +4,7 @@ from app.models import db
 from app.models import User
 from app.models import Post
 from app.forms import PostForm
+from app.models.user import likes
 
 post_routes=Blueprint("posts",__name__)
 
@@ -139,3 +140,71 @@ def delete_post(postId):
     db.session.delete(post)
     db.session.commit()
     return {"message":["Post successfully deleted"]},200
+
+#get likes of a post
+@post_routes.route('/<int:postId>/like')
+@login_required
+def get_all_like(postId):
+  post=Post.query.get(postId)
+  if not post:
+     return {"errors":["Post could not be found"]},404
+  
+  liked_users=User.query.join(likes).filter(likes.c.posts==postId).all()
+  
+  return {"liked_users": [user.to_dict() for user in liked_users]}
+  
+#get all likes of all posts
+# @post_routes.route('/likes')
+# @login_required
+# def get_all_likes():
+#   all_posts=Post.query.all()
+#   all_users=User.query.all()
+#   liked_post=Post.query.join(likes).all()
+#   print(liked_post)
+#   liked_users=User.query.join(likes).all()
+#   print(liked_users)
+
+#   data=[]
+#   for post in liked_post:
+#      post.likedUser_first_name=None
+#      for user in liked_users:
+#         if post.user_id == user.id:
+#            post.likedUser_first_name=user.first_name
+#            data.append({
+#               post.id:post.likedUser_first_name
+#            })
+  
+
+    
+     
+        
+     
+     
+  
+  # return data
+
+#add a like to a post
+@post_routes.route('/<int:postId>/like', methods=["POST"])
+@login_required
+def add_like_to_a_post(postId):
+  
+  post=Post.query.get(postId)
+  if not post:
+        return {"errors":["Post could not be found"]},404
+  pass
+
+  # form = PostForm()
+  # form["csrf_token"].data = request.cookies["csrf_token"]
+
+  # if form.validate_on_submit():
+  #   post = Post(
+  #     user_id = int(current_user.id),
+  #     post_content = request.get_json()["post_content"],
+  #     post_photo = request.get_json().get("post_photo"),
+  #   )
+
+  #   db.session.add(post)
+  #   db.session.commit()
+  #   return post.to_dict()
+  # else:
+  #   return {'errors': validation_errors_to_error_messages(form.errors)}, 400

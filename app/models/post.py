@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
-# from .user import User
+from .user import likes
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -21,6 +21,14 @@ class Post(db.Model):
 
     user = db.relationship("User", back_populates="posts")
     comments = db.relationship("Comment", back_populates="post", cascade="all, delete-orphan")
+
+    #user to post - likes :many to many
+    users = db.relationship(
+        "User",
+        secondary=likes,
+        back_populates="likes",
+        cascade="all, delete"
+    )
 
     def to_dict(self):
         return {

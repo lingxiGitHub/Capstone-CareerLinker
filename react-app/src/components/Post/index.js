@@ -24,6 +24,13 @@ function Post({ post }) {
         <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
     </svg>)
 
+    const likeSVG = (
+        <svg role="none" aria-hidden="true" class="artdeco-button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" data-supported-dps="24x24" data-test-icon="thumbs-up-outline-medium">
+            <use href="#thumbs-up-outline-medium" width="24" height="24"></use>
+        </svg>
+    )
+
+
 
 
     return (
@@ -61,12 +68,18 @@ function Post({ post }) {
                 {sessionUser && (
 
                     <div className="comment-and-like">
-                        {commentSvg}
-                        <OpenModalButton
-                            buttonText="Comment"
-                            className="comment-button"
-                            modalComponent={<AddComment post={post} />}
-                        />
+                        <div>
+                            <botton className="comment-button">{likeSVG}Likes</botton>
+                        </div>
+
+                        <div className="comment-button">
+                            {commentSvg}
+                            <OpenModalButton
+                                buttonText="Comment"
+                                className="comment-button"
+                                modalComponent={<AddComment post={post} />}
+                            />
+                        </div>
 
 
 

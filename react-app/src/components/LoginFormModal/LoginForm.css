@@ -14,7 +14,9 @@
     text-overflow: ellipsis;
     margin-left: 3px;
     border-color: rgba(0, 0, 0, 0.35);
-    margin: 28px 12px 6px 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  
 
 }
 
@@ -50,6 +52,7 @@
 
     font-size: 32px;
     font-weight: 600;
+    margin-top: 50px;
 
 }
 
@@ -65,4 +68,5 @@
 .log-in-p {
     font-size: 14px;
     font-weight: 400;
+    margin-top: 0px;
 }

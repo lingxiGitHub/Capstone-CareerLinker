@@ -124,6 +124,7 @@
     /* justify-content: flex-end; */
     /* width: 25%; */
     margin: 20px;
+    justify-content: space-around;
 }
 
 

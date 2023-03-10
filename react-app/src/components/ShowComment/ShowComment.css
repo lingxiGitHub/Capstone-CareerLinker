@@ -17,14 +17,12 @@
 }
 
 
-.show-comment-button {
-    margin-right: 0;
-}
+
 
 
 .count-comments {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .show-comment-button {
@@ -32,7 +30,9 @@
     font-weight: 400;
     background-color: white;
     border-style: none;
-    color: rgba(0, 0, 0, 0.6)
+    color: rgba(0, 0, 0, 0.6);
+    margin-right: 16px;
+    margin-bottom: 10px;
 }
 
 .comment-container {
@@ -83,7 +83,21 @@
     padding-left: 16px;
 }
 
-.name-plus-three-dots{
+.name-plus-three-dots {
     display: flex;
     justify-content: space-between;
+}
+
+.comment-like-count-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.like-count-div {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 16px;
+    margin-bottom: 10px;
 }

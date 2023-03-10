@@ -8,21 +8,11 @@ import CommentThreeDots from "../CommentThreeDots"
 function ShowComment({ post, postComments }) {
 
 
-    // const [isLoaded, setIsLoaded] = useState(false);
-    // const dispatch = useDispatch()
 
-    // useEffect(()=>{
-    //     dispatch(getAllComments())
-    //         .then(() => setIsLoaded(true));
-    // },[dispatch])
 
 
     const sessionUser = useSelector(state => state.session.user);
-    // console.log(sessionUser)
 
-    // let sessionLinks;
-
-    //can change the use state from true to false later on
     const [showCommnet, setShowComment] = useState(true);
     const ulRef = useRef();
 
@@ -54,12 +44,24 @@ function ShowComment({ post, postComments }) {
     return (
 
         <>
-            <div className="count-comments">
-                {postComments.length > 0 && (<button
-                    className="show-comment-button"
-                    onClick={openComment}
-                >{postComments.length} comments</button>)}
-            </div>
+
+            {postComments.length > 0 && (
+
+                <div className="comment-like-count-line">
+
+                    <div className="like-count-div">
+                        likes count
+                    </div>
+                    <button
+                        className="show-comment-button"
+                        onClick={openComment}
+                    >{postComments.length} comments</button>
+
+                </div>
+            )}
+
+
+
             <ul
                 className={ulClassName}
                 ref={ulRef}
