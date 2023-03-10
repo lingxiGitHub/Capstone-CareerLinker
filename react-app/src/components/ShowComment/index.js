@@ -12,6 +12,21 @@ function ShowComment({ post, postComments }) {
 
 
     const sessionUser = useSelector(state => state.session.user);
+    const allLikes = useSelector(state => state.likes.allLikes)
+    // console.log("######", allLikes)
+    // console.log(post.post_id)
+    const myLikes = allLikes[post.post_id]
+    const likedUsers = []
+    if (myLikes.length) {
+
+        for (let item of myLikes) {
+            likedUsers.push(item.user_first_name + " " + item.user_last_name)
+        }
+        console.log("&&&&", likedUsers)
+    }
+
+
+
 
     const [showCommnet, setShowComment] = useState(true);
     const ulRef = useRef();
@@ -50,7 +65,12 @@ function ShowComment({ post, postComments }) {
                 <div className="comment-like-count-line">
 
                     <div className="like-count-div">
-                        likes count
+                        {likedUsers.length ? (
+                            `liked by ${likedUsers[likedUsers.length - 1]} and ${likedUsers.length - 1} others`
+                        ) : (
+                            <></>
+                        )}
+
                     </div>
                     <button
                         className="show-comment-button"

@@ -154,25 +154,34 @@ def get_all_like(postId):
   return {"liked_users": [user.to_dict() for user in liked_users]}
   
 #get all likes of all posts
-# @post_routes.route('/likes')
-# @login_required
-# def get_all_likes():
-#   all_posts=Post.query.all()
-#   all_users=User.query.all()
-#   liked_post=Post.query.join(likes).all()
-#   print(liked_post)
-#   liked_users=User.query.join(likes).all()
-#   print(liked_users)
+@post_routes.route('/likes')
+@login_required
+def get_all_likes():
+  all_posts=Post.query.all()
+  # all_users=User.query.all()
+  liked_post=Post.query.join(likes).all()
+  print(liked_post)
+  liked_users=User.query.join(likes).all()
+  print(liked_users)
 
-#   data=[]
-#   for post in liked_post:
-#      post.likedUser_first_name=None
-#      for user in liked_users:
-#         if post.user_id == user.id:
-#            post.likedUser_first_name=user.first_name
-#            data.append({
-#               post.id:post.likedUser_first_name
-#            })
+  data={}
+  for post in all_posts:
+     print(post.id)
+     users=User.query.join(likes).filter(likes.c.posts==post.id).all()
+     print(users)
+     user_id_list=[]
+     for user in users:
+        user_id_list.append({
+           "user_id":user.id,
+           "user_first_name":user.first_name,
+           "user_last_name":user.last_name
+           })
+     data[post.id]=user_id_list
+   
+
+        
+  return data
+        
   
 
     

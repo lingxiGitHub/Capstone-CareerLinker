@@ -7,6 +7,7 @@ import { getAllComments } from "../../store/comment";
 import Post from "../Post";
 import AddPostModal from "../AddPostModal"
 import OpenModalButton from "../OpenModalButton"
+import { getAllLikes } from "../../store/like";
 
 function PostList() {
     const [showLess, setShowLess] = useState(true);
@@ -25,6 +26,7 @@ function PostList() {
     useEffect(() => {
         dispatch(getAllPosts())
         dispatch(getAllComments())
+        dispatch(getAllLikes())
             .then(() => setIsLoaded(true));
     }, [dispatch])
 

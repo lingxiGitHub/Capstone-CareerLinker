@@ -5,13 +5,15 @@ import postsReducer from './post';
 import commentsReducer from "./comment"
 import conversationReducer from './conversation';
 import messageReducer from './message';
+import likeReducer from './like';
 
 const rootReducer = combineReducers({
   session,
   posts: postsReducer,
   comments: commentsReducer,
   conversations: conversationReducer,
-  messages:messageReducer
+  messages:messageReducer,
+  likes:likeReducer
 });
 
 
