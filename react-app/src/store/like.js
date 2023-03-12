@@ -25,31 +25,38 @@ export const getAllLikes = () => async dispatch => {
 }
 
 
-//load likes for a single post
+//create like
 
-// const LOADSINGLELIKE = "like/loadSingleLike"
-// export const loadSingleLike = (likedUsers) => ({
-//     type: LOADSINGLELIKE,
-//     likedUsers: likedUsers
-// })
+const ADD_LIKE = "likes/addLikes"
 
-// export const getSingleLike = (postId) => async dispatch => {
+export const createLike = (newLike) => ({
+    type: ADD_LIKE,
+    newLike
+})
 
-//     const response = await fetch(`/api/posts/${postId}/like`)
-//     if (response.ok) {
-//         const likedUsers = await response.json()
-//         dispatch(loadSingleLike(likedUsers))
-//     } else if (response.status < 500) {
-//         const data = await response.json();
-//         if (data.errors) {
-//             console.log("%%%%", data.errors)
-//             return data.errors;
-//         }
-//     } else {
-//         return ["An error occurred. Please try again."];
-//     }
+export const addLikeThunk = (user_id,post_id) => async dispatch => {
+    // let createdRestaurantId;
+    // console.log("I am in addRestaurantThunk")
+    const response = await fetch("/api/posts/createLike", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({user_id,post_id})
+    });
+    if (response.ok) {
+        const createdMessage = await response.json()
 
-// }
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+}
 
 //reducer
 

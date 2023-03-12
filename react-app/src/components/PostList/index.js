@@ -12,7 +12,7 @@ import { getAllLikes } from "../../store/like";
 function PostList() {
     const [showLess, setShowLess] = useState(true);
     const sessionUser = useSelector(state => state.session.user);
-    console.log(sessionUser)
+    // console.log(sessionUser)
 
     const allPostsObj = useSelector((state) => {
         return state.posts.allPosts

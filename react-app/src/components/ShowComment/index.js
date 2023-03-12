@@ -22,7 +22,7 @@ function ShowComment({ post, postComments }) {
         for (let item of myLikes) {
             likedUsers.push(item.user_first_name + " " + item.user_last_name)
         }
-        console.log("&&&&", likedUsers)
+        // console.log("&&&&", likedUsers)
     }
 
 

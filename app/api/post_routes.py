@@ -3,7 +3,9 @@ from flask_login import login_required,current_user
 from app.models import db
 from app.models import User
 from app.models import Post
+# from app.models import Like
 from app.forms import PostForm
+# from app.forms import LikeForm
 from app.models.user import likes
 
 post_routes=Blueprint("posts",__name__)
@@ -152,6 +154,9 @@ def get_all_like(postId):
   liked_users=User.query.join(likes).filter(likes.c.posts==postId).all()
   
   return {"liked_users": [user.to_dict() for user in liked_users]}
+
+
+
   
 #get all likes of all posts
 @post_routes.route('/likes')
@@ -182,38 +187,23 @@ def get_all_likes():
         
   return data
         
-  
 
-    
-     
-        
-     
-     
-  
-  # return data
 
 #add a like to a post
-@post_routes.route('/<int:postId>/like', methods=["POST"])
+@post_routes.route('/createLike', methods=["POST"])
 @login_required
-def add_like_to_a_post(postId):
-  
-  post=Post.query.get(postId)
-  if not post:
-        return {"errors":["Post could not be found"]},404
-  pass
+def add_like_to_a_post():
+  user_id = int(current_user.id)
+  post_id = request.get_json()["post_id"]
 
-  # form = PostForm()
-  # form["csrf_token"].data = request.cookies["csrf_token"]
-
-  # if form.validate_on_submit():
-  #   post = Post(
-  #     user_id = int(current_user.id),
-  #     post_content = request.get_json()["post_content"],
-  #     post_photo = request.get_json().get("post_photo"),
-  #   )
-
-  #   db.session.add(post)
-  #   db.session.commit()
-  #   return post.to_dict()
-  # else:
-  #   return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+  result= db.session.query(likes).filter_by(users=user_id,posts=post_id).first()
+  print(result)
+  if result:
+     return jsonify({'exist': True})
+  else:
+    like=likes.insert().values(users=user_id,posts=post_id)
+    db.session.execute(like)
+    db.session.commit()
+    return jsonify({'success': True})
+# else:
+#   return {'errors': validation_errors_to_error_messages(form.errors)}, 400
