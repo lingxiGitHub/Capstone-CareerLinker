@@ -8,7 +8,8 @@ import Navigation from "./components/Navigation";
 import PostList from "./components/PostList"
 import MessagingPage from "./components/MessagingPage"
 import Splash from "./components/Splash";
-import Footer from "./components/Footer"
+import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,29 +23,31 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <>
-        <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/home">
-            <PostList />
-          </Route>
-          <Route exact path="/messaging">
-            <MessagingPage />
-          </Route>
-          <Route exact path="/messaging/:conversationId">
-            <MessagingPage />
-          </Route>
-          <Route exact path="/">
-            <Splash />
-          </Route>
-        
-        </Switch> 
-         <Footer />
-         </>
+          <Switch>
+            <Route path="/login" >
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route exact path="/home">
+              <PostList />
+            </Route>
+            <Route exact path="/messaging">
+              <MessagingPage />
+            </Route>
+            <Route exact path="/messaging/:conversationId">
+              <MessagingPage />
+            </Route>
+            <Route exact path="/">
+              <Splash />
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+          <Footer />
+        </>
       )}
     </>
   );
