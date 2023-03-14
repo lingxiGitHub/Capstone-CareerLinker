@@ -2,16 +2,18 @@ import "./Post.css"
 import thumbs from "./Thumbs-ss.png"
 import OpenModalButton from "../OpenModalButton"
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import AddComment from "../AddComment";
 import ShowComment from "../ShowComment";
 import ThreeDots from "../ThreeDots";
-import { addLikeThunk } from "../../store/like";
+import { addLikeThunk, deleteLikeThunk } from "../../store/like";
 import { getAllPosts } from "../../store/post";
 import { getAllLikes } from "../../store/like";
 
 
 function Post({ post }) {
     const dispatch = useDispatch();
+
     const sessionUser = useSelector(state => state.session.user);
     // console.log(sessionUser.id)
     // console.log(post.post_user_id)
@@ -25,7 +27,7 @@ function Post({ post }) {
     // let sessionLinks;
     const isLiked = useSelector(state => state.likes.allLikes[post.post_id].some(user => user.user_id === sessionUser.id))
     // console.log(isLiked)
-
+    const [liked, setLiked] = useState(isLiked);
     const commentSvg = (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="comment-cloud" width="24" height="24" focusable="false">
         <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
     </svg>)
@@ -36,13 +38,30 @@ function Post({ post }) {
 
     const handleLike = async (e) => {
         // e.preventDefault();
-        await dispatch(addLikeThunk(+sessionUser.id, +post.post_id))
+        // console.log("liked status", liked)
+        // console.log("user_id pass in", sessionUser.id)
+        // console.log("post_id pass in", post.post_id)
+        const user_id = +sessionUser.id;
+        const post_id = +post.post_id
+
+        if (liked == false) {
+            await dispatch(addLikeThunk({ user_id, post_id }))
+            setLiked(true)
+        } else {
+            await dispatch(deleteLikeThunk({ user_id, post_id }))
+            setLiked(false)
+        }
+
         // dispatch(getAllPosts())
         dispatch(getAllLikes())
 
 
 
     }
+
+    // const handleUnLike =async (e)=>{
+    //     await setLiked(false)
+    // }
 
 
     return (

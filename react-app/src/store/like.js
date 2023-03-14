@@ -34,7 +34,7 @@ export const createLike = (newLike) => ({
     newLike
 })
 
-export const addLikeThunk = (user_id,post_id) => async dispatch => {
+export const addLikeThunk = ({ user_id, post_id }) => async dispatch => {
     // let createdRestaurantId;
     // console.log("I am in addRestaurantThunk")
     const response = await fetch("/api/posts/createLike", {
@@ -42,13 +42,47 @@ export const addLikeThunk = (user_id,post_id) => async dispatch => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({user_id,post_id})
+        body: JSON.stringify({ user_id, post_id })
     });
     if (response.ok) {
         const createdMessage = await response.json()
 
     } else if (response.status < 500) {
         const data = await response.json();
+        if (data.errors) {
+            console.log("%%%%", data.errors)
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+}
+
+//delete a like
+
+// const DELETE_LIKE = "likes/deleteLike"
+// export const deleteLike = (like) => ({
+//     type: DELETE_LIKE,
+//     like
+// })
+
+export const deleteLikeThunk = ({user_id,post_id}) => async dispatch => {
+    // console.log("???i am in delete like thunk")
+    // console.log("???user_id pass in", user_id)
+    // console.log("???post_id pass in", post_id)
+    const res = await fetch(`/api/posts/deleteLike`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user_id, post_id })
+    })
+    if (res.ok) {
+        console.log("delete the like res ok")
+
+        dispatch(getAllLikes())
+    } else if (res.status < 500) {
+        const data = await res.json();
         if (data.errors) {
             console.log("%%%%", data.errors)
             return data.errors;
@@ -107,7 +141,7 @@ export default function likeReducer(state = initialState, action) {
         //     return updateMessageState
         // }
 
-        // case DELETE_MESSAGE: {
+        // case DELETE_LIKE: {
         //     const deleteMessageState = { ...state }
         //     // console.log(deletePostState)
         //     // delete deletePostState.allPosts[action.post.id]

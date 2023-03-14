@@ -205,5 +205,21 @@ def add_like_to_a_post():
     db.session.execute(like)
     db.session.commit()
     return jsonify({'success': True})
-# else:
-#   return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+#delete a like to a post
+@post_routes.route("/deleteLike",methods=["DELETE"])
+@login_required
+def delete_like_to_a_post():
+  user_id = request.get_json()["user_id"]
+  print("!!!user id", user_id)
+  post_id = request.get_json()["post_id"]
+  print("!!!post id", post_id)
+  result = db.session.execute("DELETE FROM likes WHERE posts = :post_id AND users = :user_id", 
+                                {"post_id": post_id, "user_id": user_id})
+
+  if result.rowcount == 0:
+        return jsonify({'error': 'Like not found'})
+  db.session.commit()
+  return jsonify({'message': 'Like deleted successfully'})
