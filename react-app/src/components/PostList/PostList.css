@@ -20,16 +20,17 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: 24px;
+    /* margin-top: 24px; */
 
 }
 
 .the-line {
     display: flex;
     width: 540px;
-
     margin-left: auto;
     margin-right: auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 .home-post-container {
@@ -59,6 +60,7 @@
 
 .post-main-ul {
     padding: 0px;
+
 }
 
 .news-bold {
@@ -192,6 +194,34 @@
     margin-left: 5px;
 }
 
-.left-card-line{
-    width:225px;
+.left-card-line {
+    width: 225px;
+}
+
+
+.left-card-span {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    width: 200px;
+}
+
+.span-one {
+    color: rgba(0, 0, 0, 0.6)
+}
+
+.span-two {
+    color: rgb(10, 102, 194);
+}
+
+.create-post-container {
+    width: 555px;
+    height: 116px;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
 }

@@ -94,10 +94,14 @@
     justify-content: space-between;
 }
 
-.like-count-div {
+
+
+.like-count-button{
     font-size: 12px;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 0.6);
-    margin-left: 21px;
-    margin-bottom: 10px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.6);
+        margin-left: 18px;
+        margin-bottom: 10px;
+        background-color: white;
+        border-style: none;
 }

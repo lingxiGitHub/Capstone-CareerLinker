@@ -2,6 +2,8 @@ import "./ShowComment.css"
 import { useSelector } from "react-redux";
 import React, { useState, useEffect, useRef } from "react";
 import CommentThreeDots from "../CommentThreeDots"
+import OpenModalButton from "../OpenModalButton";
+import ReactionModal from "../Reaction";
 
 
 
@@ -16,6 +18,7 @@ function ShowComment({ post, postComments }) {
     // console.log("######", allLikes)
     // console.log(post.post_id)
     const myLikes = allLikes[post.post_id]
+    console.log("my likes",myLikes)
     const likedUsers = []
     if (myLikes.length) {
 
@@ -64,12 +67,22 @@ function ShowComment({ post, postComments }) {
 
                 <div className="comment-like-count-line">
 
-                    <div className="like-count-div">
+                    <div>
                         {likedUsers.length ? (
-                            `liked by ${likedUsers[likedUsers.length - 1]} and ${likedUsers.length - 1} others`
+                            <>
+                            <OpenModalButton
+                            buttonText={`liked by ${likedUsers[likedUsers.length - 1]} and ${likedUsers.length - 1} others`}
+                                    className="like-count-button"
+                                    modalComponent={<ReactionModal myLikes={myLikes}/>}
+                            />
+                            
+                            </>
+                            
                         ) : (
                             <></>
                         )}
+
+                      
 
                     </div>
                     <button

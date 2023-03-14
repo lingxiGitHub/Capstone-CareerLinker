@@ -41,7 +41,7 @@ def seed_posts():
         post_content="As much as we value our careers and professional lives, it's important to remember that family is at the core of everything we do. Our loved ones provide us with support, motivation, and a sense of purpose that goes beyond any job or title. Whether it's spending quality time with our children, supporting our parents and siblings, or simply enjoying a meal with our loved ones, family time is crucial for maintaining a healthy work-life balance and a sense of personal fulfillment.", post_photo="https://cf.ltkcdn.net/family/images/std/200821-800x533r1-family.webp")
     p10 = Post(
         user_id='10', 
-        users=[audrey,charlie],
+        users=[demo, marnie, bobbie, tommy, eleanor, james, hazel, ellis, audrey, olive, william, charlie, ivy, ella, adrian],
         post_content="One thing I've come to realize is that success isn't just about achieving your goals; it's also about the relationships you build along the way. I feel incredibly fortunate to have worked with some amazing people who have supported and encouraged me throughout my career.", post_photo="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 
     all_posts = [p1, p2, p3, p4, p5, p6, p7, p8 ,p9, p10]

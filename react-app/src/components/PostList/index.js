@@ -59,6 +59,9 @@ function PostList() {
                             <div>Num</div> */}
                         {/* </div> */}
                         <hr className="left-card-line"></hr>
+                        <div className="left-card-span"><span className="span-one">Who's viewed your profile</span><span className="span-two">63</span></div>
+                        <div className="left-card-span"><span className="span-one">Connections</span><span className="span-two">500+</span></div>
+                        <hr className="left-card-line"></hr>
                         <div>See Premium features</div>
                         <hr className="left-card-line"></hr>
                     </div>
@@ -66,7 +69,7 @@ function PostList() {
 
 
                 <div className="home-middle">
-                    <div>
+                    <div className="create-post-container">
                         {sessionUser && (
                             <div className="create-post-section">
 

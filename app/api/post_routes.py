@@ -179,7 +179,9 @@ def get_all_likes():
         user_id_list.append({
            "user_id":user.id,
            "user_first_name":user.first_name,
-           "user_last_name":user.last_name
+           "user_last_name":user.last_name,
+           "user_profile_photo":user.profile_photo,
+           "user_title":user.title
            })
      data[post.id]=user_id_list
    
