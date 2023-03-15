@@ -4,7 +4,7 @@ from .posts import seed_posts, undo_posts
 from .comments import seed_comments,undo_comments
 from .messages import seed_messages,undo_messages
 from .conversations import seed_conversations,undo_conversations
-
+from .connections import seed_connections,undo_connections
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -25,6 +25,7 @@ def seed():
         undo_messages()
         undo_users()
         undo_conversations()
+        undo_connections()
         
     
     seed_conversations()
@@ -32,6 +33,7 @@ def seed():
     seed_messages()
     seed_posts()
     seed_comments()
+    seed_connections()
 
     # Add other seed functions here
 
@@ -44,4 +46,5 @@ def undo():
     undo_messages()
     undo_users()
     undo_conversations()
+    undo_connections()
     # Add other undo functions here

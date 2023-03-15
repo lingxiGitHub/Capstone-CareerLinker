@@ -10,6 +10,7 @@ import MessagingPage from "./components/MessagingPage"
 import Splash from "./components/Splash";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
+import ConnectionComponent from "./components/Connection";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ function App() {
             </Route>
             <Route exact path="/">
               <Splash />
+            </Route>
+            <Route exact path="/mynetwork">
+              <ConnectionComponent />
             </Route>
             <Route path="*">
               <NotFound />

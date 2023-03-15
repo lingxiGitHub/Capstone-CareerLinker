@@ -8,6 +8,7 @@ import Post from "../Post";
 import AddPostModal from "../AddPostModal"
 import OpenModalButton from "../OpenModalButton"
 import { getAllLikes } from "../../store/like";
+import { getAllConnections } from "../../store/connection";
 
 function PostList() {
     const [showLess, setShowLess] = useState(true);
@@ -18,16 +19,23 @@ function PostList() {
         return state.posts.allPosts
     })
 
-    // console.log(allPostsObj)
     const allPosts = allPostsObj ? Object.values(allPostsObj) : []
+
+    const allConnectionsObj = useSelector((state) => {
+        return state.connections.allConnections
+    })
+
+    const allConnections = allConnectionsObj ? Object.values(allConnectionsObj) : []
 
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getAllPosts())
-        dispatch(getAllComments())
-        dispatch(getAllLikes())
-            .then(() => setIsLoaded(true));
+    useEffect(async () => {
+        await dispatch(getAllPosts())
+        await dispatch(getAllComments())
+        await dispatch(getAllLikes())
+        await dispatch(getAllConnections())
+        setIsLoaded(true)
+
     }, [dispatch])
 
 
@@ -60,7 +68,11 @@ function PostList() {
                         {/* </div> */}
                         <hr className="left-card-line"></hr>
                         <div className="left-card-span"><span className="span-one">Who's viewed your profile</span><span className="span-two">63</span></div>
-                        <div className="left-card-span"><span className="span-one">Connections</span><span className="span-two">500+</span></div>
+                        <div className="left-card-span">
+                            <span className="span-one">Connections</span>
+                            {/* <span className="span-two">{allConnections.length}</span> */}
+                            <a className="span-two" href="/mynetwork">{allConnections.length}</a>
+                        </div>
                         <hr className="left-card-line"></hr>
                         <div>See Premium features</div>
                         <hr className="left-card-line"></hr>

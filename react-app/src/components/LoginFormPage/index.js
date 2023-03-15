@@ -66,9 +66,9 @@ function LoginFormPage() {
 
       <button
         className="demo-button"
-        onClick={() => {
-          dispatch(login("demo@aa.io", "password"));
-          closeModal();
+        onClick={async() => {
+          await dispatch(login("demo@aa.io", "password"));
+          await closeModal();
           history.push("/home")
         }
         }

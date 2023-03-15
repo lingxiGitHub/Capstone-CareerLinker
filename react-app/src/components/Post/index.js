@@ -13,20 +13,40 @@ import { getAllLikes } from "../../store/like";
 
 function Post({ post }) {
     const dispatch = useDispatch();
-
+    const [isLoaded, setIsLoaded] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     // console.log(sessionUser.id)
-    // console.log(post.post_user_id)
+    // for comments
     const allCommentsObj = useSelector(state => state.comments.allComments)
     const allComments = allCommentsObj ? Object.values(allCommentsObj) : []
     const postComments = allComments.filter(comment => comment.comment_post_id === post.post_id)
-    // console.log("%%%post id", post.post_id)
-    // console.log("%%%post comments", postComments)
-    // console.log("@@@@",post)
 
-    // let sessionLinks;
-    const isLiked = useSelector(state => state.likes.allLikes[post.post_id].some(user => user.user_id === sessionUser.id))
+
+    //for likes
+    const isLikedStatusObj = useSelector(state => state.likes.allLikes[post.post_id])
+    // console.log("isLikedStatusObj", isLikedStatusObj)
+    const isLikedStatus = isLikedStatusObj ? Object.values(isLikedStatusObj) : []
+    // console.log("isLikedStatus", isLikedStatus)
+    const isLiked = isLikedStatus.some(user => user.user_id === sessionUser.id)
     // console.log(isLiked)
+
+
+    //for connections
+    const allConnectionsObj = useSelector(state => state.connections.allConnections)
+    const allConnectionsId = allConnectionsObj ? Object.keys(allConnectionsObj) : []
+    console.log(allConnectionsId)
+    let isConnected = false;
+    for (let id in allConnectionsId) {
+        if (+id === +post.post_user_id) {
+            isConnected = true
+        }
+    }
+
+    console.log("%%%%", isConnected)
+
+
+
+
     const [liked, setLiked] = useState(isLiked);
     const commentSvg = (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="comment-cloud" width="24" height="24" focusable="false">
         <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
@@ -75,7 +95,14 @@ function Post({ post }) {
                         <div className="name-and-title">
 
 
-                            <div className="post-user-name">{post.post_user_first_name} {post.post_user_last_name}</div>
+                            <div className="post-user-name">
+                                {post.post_user_first_name} {post.post_user_last_name}
+                               {isConnected ? (
+                                <span className="connected-or-not"> · 1st</span>
+                               ):(
+                                <button className="connect-in-post">Connect</button>
+                               )} 
+                            </div>
 
 
                             <div className="post-user-title">{post.title}</div>

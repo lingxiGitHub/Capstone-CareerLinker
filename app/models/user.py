@@ -52,9 +52,12 @@ class User(db.Model, UserMixin):
     profile_photo=db.Column(db.String(500))
     title=db.Column(db.String(100))
 
+# user to post, comment, message, connection: one to many
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
     messages_users = db.relationship("Message", back_populates="user")
+    # connections= db.relationship("Connection", back_populates="user")
+
 
     #user to conversation: many to many
 
@@ -73,6 +76,8 @@ class User(db.Model, UserMixin):
         back_populates="users",
         cascade="all, delete"
         )
+    
+
 
     @property
     def password(self):

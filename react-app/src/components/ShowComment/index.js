@@ -18,7 +18,7 @@ function ShowComment({ post, postComments }) {
     // console.log("######", allLikes)
     // console.log(post.post_id)
     const myLikes = allLikes[post.post_id]
-    console.log("my likes",myLikes)
+    // console.log("my likes",myLikes)
     const likedUsers = []
     if (myLikes.length) {
 

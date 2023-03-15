@@ -6,6 +6,7 @@ import commentsReducer from "./comment"
 import conversationReducer from './conversation';
 import messageReducer from './message';
 import likeReducer from './like';
+import connectionReducer from './connection';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,9 @@ const rootReducer = combineReducers({
   comments: commentsReducer,
   conversations: conversationReducer,
   messages:messageReducer,
-  likes:likeReducer
+  likes:likeReducer,
+  connections:connectionReducer
+
 });
 
 
