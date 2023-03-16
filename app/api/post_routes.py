@@ -143,6 +143,8 @@ def delete_post(postId):
     db.session.commit()
     return {"message":["Post successfully deleted"]},200
 
+
+
 #get likes of a post
 @post_routes.route('/<int:postId>/like')
 @login_required

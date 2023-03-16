@@ -74,3 +74,35 @@
     align-items: flex-end;
     margin-left: 32px;
 }
+
+
+.connection-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.remove-connection-button {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color:rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: 300;
+
+}
+
+
+.remove-connection-button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.remove-word{
+    margin-left:8px;
+}

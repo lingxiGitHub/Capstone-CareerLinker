@@ -9,6 +9,7 @@ import ThreeDots from "../ThreeDots";
 import { addLikeThunk, deleteLikeThunk } from "../../store/like";
 import { getAllPosts } from "../../store/post";
 import { getAllLikes } from "../../store/like";
+import { addConnectionThunk, getAllConnections } from "../../store/connection";
 
 
 function Post({ post }) {
@@ -34,17 +35,13 @@ function Post({ post }) {
     //for connections
     const allConnectionsObj = useSelector(state => state.connections.allConnections)
     const allConnectionsId = allConnectionsObj ? Object.keys(allConnectionsObj) : []
-    console.log(allConnectionsId)
+    console.log("---->", allConnectionsId)
     let isConnected = false;
-    for (let id in allConnectionsId) {
-        if (+id === +post.post_user_id) {
-            isConnected = true
-        }
+    if (allConnectionsId.includes(post.post_user_id.toString())) {
+        isConnected = true
     }
-
+    console.log("&&&", post.post_id)
     console.log("%%%%", isConnected)
-
-
 
 
     const [liked, setLiked] = useState(isLiked);
@@ -52,9 +49,7 @@ function Post({ post }) {
         <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
     </svg>)
 
-    // const likeSVG = (
 
-    // )
 
     const handleLike = async (e) => {
         // e.preventDefault();
@@ -72,17 +67,14 @@ function Post({ post }) {
             setLiked(false)
         }
 
-        // dispatch(getAllPosts())
         dispatch(getAllLikes())
-
-
 
     }
 
-    // const handleUnLike =async (e)=>{
-    //     await setLiked(false)
-    // }
 
+    const connectSVG = (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" class="mercado-match" width="16" height="16" focusable="false">
+        <path d="M9 4a3 3 0 11-3-3 3 3 0 013 3zM6.75 8h-1.5A2.25 2.25 0 003 10.25V15h6v-4.75A2.25 2.25 0 006.75 8zM13 8V6h-1v2h-2v1h2v2h1V9h2V8z"></path>
+    </svg>)
 
     return (
         <>
@@ -97,11 +89,9 @@ function Post({ post }) {
 
                             <div className="post-user-name">
                                 {post.post_user_first_name} {post.post_user_last_name}
-                               {isConnected ? (
-                                <span className="connected-or-not"> · 1st</span>
-                               ):(
-                                <button className="connect-in-post">Connect</button>
-                               )} 
+                                {isConnected && sessionUser.id != post.post_user_id && (
+                                    <span className="connected-or-not"> · 1st</span>
+                                )}
                             </div>
 
 
@@ -112,6 +102,17 @@ function Post({ post }) {
 
                     {sessionUser && sessionUser.id == post.post_user_id && (
                         <ThreeDots post={post} />
+                    )}
+
+                    {!isConnected && sessionUser.id != post.post_user_id && (
+                        <button
+                            className="connect-in-post"
+                            onClick={async () => {
+                                await dispatch(addConnectionThunk(post.post_user_id))
+                                await dispatch(getAllConnections())
+                            }}
+
+                        >{connectSVG} Connect</button>
                     )}
 
 
@@ -137,7 +138,7 @@ function Post({ post }) {
                                 {isLiked ? (
                                     <>
                                         <img className="thumbs" src="https://static.licdn.com/sc/h/5zhd32fqi5pxwzsz78iui643e" alt=""></img>
-                                        <span className="liked"> Liked</span>
+                                        <span className="liked"> Like</span>
                                     </>
                                 ) : (
                                     <>

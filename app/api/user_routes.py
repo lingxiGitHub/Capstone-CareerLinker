@@ -67,7 +67,7 @@ def get_current_user_connections():
         for user in all_users:
             if user.id==id:
                 result[id]={
-
+                    "user_id":user.id,
                     "first_name":user.first_name,
                     "last_name":user.last_name,
                     "title":user.title,
@@ -100,3 +100,20 @@ def add_a_connection():
       return connection.to_dict()
 
   
+#delete a connection
+@user_routes.route("/delete-connection",methods=["DELETE"])
+@login_required
+def delete_a_connection():
+    the_user_id = request.get_json()["connected_user_id"]
+    if the_user_id==current_user.id:
+        return {"error":["you cannot delete the connection with yourself"]},401
+    
+    found_connection=Connection.query.filter(db.or_(Connection.user_id==the_user_id , Connection.connected_user_id==the_user_id)).first()
+    # print(found_connection.to_dict())
+
+    if not found_connection:
+        return {"error":["this user is not connected yet"]},404
+    
+    db.session.delete(found_connection)
+    db.session.commit()
+    return {"message":["connection successfully deleted"]},200

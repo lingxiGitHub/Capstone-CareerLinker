@@ -29,9 +29,13 @@
 
 .post-user-name {
     /* margin-left: 50px; */
-    margin-top: 20px;
+    /* margin-top: 20px; */
     font-size: 14px;
     font-weight: 600;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
 }
 
 .post-user-title {
@@ -53,16 +57,20 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding-bottom: 0px;
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 12px;
+
 }
 
 
 .about-the-poster {
     display: flex;
     flex-direction: row;
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
 .post-content {
@@ -101,23 +109,6 @@
 
 
 
-/* .four-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-} */
-
-/* .edit-and-delete {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 50%;
-} */
-
-
 .comment-and-like {
     display: flex;
     flex-direction: row;
@@ -133,24 +124,45 @@
 }
 
 
-.thumbs{
-    height: 24px;
+.thumbs {
+    height: 26px;
     fill: #00000099;
     margin-right: 6px;
 }
 
 
-.liked{
-    color:rgb(10, 102, 194);
+.liked {
+    color: rgb(10, 102, 194);
 }
 
-.connected-or-not{
-    font-size:14px;
+.connected-or-not {
+    font-size: 14px;
     font-weight: 400;
-    color:rgba(0, 0, 0, 0.6)
+    color: rgba(0, 0, 0, 0.6)
 }
 
-.connect-in-post{
+.connect-in-post {
     background-color: white;
     margin-right: 0px;
+    color: rgba(0, 0, 0, 0.6);
+    border-width: 1px;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 16px 6px 16px;
+    border-radius: 16px;
+    /* width: 114px;
+    height: 28px; */
+}
+
+.connect-in-post:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.name-and-title {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+
 }

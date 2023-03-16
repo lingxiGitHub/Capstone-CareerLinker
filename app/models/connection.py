@@ -16,18 +16,6 @@ class Connection(db.Model):
 
     # status = db.Column(db.String(20))
 
-
-
-
-
-
-
-
-
-
-
-    
-    
     #user to connection: one to many
     # user = db.relationship('User', back_populates="connections")
     # connected_user = db.relationship('User', foreign_keys=[connected_user_id])
