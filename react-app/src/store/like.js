@@ -16,7 +16,7 @@ export const getAllLikes = () => async dispatch => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
-            console.log("%%%%", data.errors)
+            // console.log("%%%%", data.errors)
             return data.errors;
         }
     } else {
@@ -50,7 +50,7 @@ export const addLikeThunk = ({ user_id, post_id }) => async dispatch => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
-            console.log("%%%%", data.errors)
+            // console.log("%%%%", data.errors)
             return data.errors;
         }
     } else {
@@ -78,13 +78,13 @@ export const deleteLikeThunk = ({user_id,post_id}) => async dispatch => {
         body: JSON.stringify({ user_id, post_id })
     })
     if (res.ok) {
-        console.log("delete the like res ok")
+        // console.log("delete the like res ok")
 
         dispatch(getAllLikes())
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
-            console.log("%%%%", data.errors)
+            // console.log("%%%%", data.errors)
             return data.errors;
         }
     } else {

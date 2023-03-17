@@ -36,3 +36,8 @@
     align-items: flex-end;
     width: 100%;
 }
+
+.hr-above-box {
+    width: 100%;
+    border-top: rgba(0, 0, 0, 0.6);
+}

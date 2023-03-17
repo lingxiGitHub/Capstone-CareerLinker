@@ -55,12 +55,12 @@ def get_current_user_connections():
     connected_user=[]
 
     for connection in all_connections:
-        print(connection.to_dict())
+        # print(connection.to_dict())
         if connection.user_id==current_user_id:
             connected_user.append(connection.connected_user_id)
         if connection.connected_user_id == current_user_id:
             connected_user.append(connection.user_id)
-    print(connected_user)
+    # print(connected_user)
 
     result={}
     for id in connected_user:

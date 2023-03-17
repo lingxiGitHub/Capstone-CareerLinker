@@ -167,15 +167,15 @@ def get_all_likes():
   all_posts=Post.query.all()
   # all_users=User.query.all()
   liked_post=Post.query.join(likes).all()
-  print(liked_post)
+  # print(liked_post)
   liked_users=User.query.join(likes).all()
-  print(liked_users)
+  # print(liked_users)
 
   data={}
   for post in all_posts:
-     print(post.id)
+    #  print(post.id)
      users=User.query.join(likes).filter(likes.c.posts==post.id).all()
-     print(users)
+    #  print(users)
      user_id_list=[]
      for user in users:
         user_id_list.append({
@@ -201,7 +201,7 @@ def add_like_to_a_post():
   post_id = request.get_json()["post_id"]
 
   result= db.session.query(likes).filter_by(users=user_id,posts=post_id).first()
-  print(result)
+  # print(result)
   if result:
      return jsonify({'exist': True})
   else:
@@ -217,9 +217,9 @@ def add_like_to_a_post():
 @login_required
 def delete_like_to_a_post():
   user_id = request.get_json()["user_id"]
-  print("!!!user id", user_id)
+  # print("!!!user id", user_id)
   post_id = request.get_json()["post_id"]
-  print("!!!post id", post_id)
+  # print("!!!post id", post_id)
   result = db.session.execute("DELETE FROM likes WHERE posts = :post_id AND users = :user_id", 
                                 {"post_id": post_id, "user_id": user_id})
 

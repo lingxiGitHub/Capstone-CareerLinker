@@ -16,7 +16,7 @@ export const getAllConnections = () => async dispatch => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
-            console.log("%%%%", data.errors)
+            // console.log("%%%%", data.errors)
             return data.errors;
         }
     } else {
@@ -48,7 +48,7 @@ export const addConnectionThunk = (connected_user_id) => async dispatch => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
-            console.log("%%%%", data.errors)
+            // console.log("%%%%", data.errors)
             return data.errors;
         }
     } else {
@@ -78,7 +78,7 @@ export const deleteConnectionThunk = (connected_user_id) => async dispatch => {
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
-            console.log("%%%%", data.errors)
+            // console.log("%%%%", data.errors)
             return data.errors;
         }
     } else {

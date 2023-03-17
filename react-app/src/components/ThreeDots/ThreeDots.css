@@ -40,6 +40,8 @@
     /* width: 60px; */
     list-style-type: none;
     padding: 0;
+    top: 15px;
+    z-index: 1;
 
 }
 

@@ -8,9 +8,9 @@ export default function MessagingPage() {
             <div className="conversation-list">
                 <ShowConversations />
             </div>
-            <div className="message-list">
+            {/* <div className="message-list"> */}
                 <ShowMessageComp />
-            </div>
+            {/* </div> */}
         </div>
     )
 }

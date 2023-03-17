@@ -33,15 +33,18 @@ function Navigation({ isLoaded }) {
 				{/* <NavLink exact to="/">{logo}</NavLink> */}
 			</li>
 
-			<li>
-				<NavLink className="nav-link" exact to="/home">
-					{homeSVG}
-					<div className='header-font'>Home</div>
 
-				</NavLink>
-			</li>
 			{sessionUser && (
 				<>
+					<li>
+						<NavLink className="nav-link" exact to="/home">
+							{homeSVG}
+							<div className='header-font'>Home</div>
+
+						</NavLink>
+					</li>
+
+
 					<li>
 						<NavLink className="nav-link" exact to="/messaging">
 							{messageSVG}

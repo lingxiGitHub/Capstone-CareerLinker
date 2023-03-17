@@ -35,7 +35,13 @@ export default function ShowConversations() {
             <div className="message-middle">
                 <div className="messaging-word">Messaging</div>
 
-
+                {allConversation.length === 0 && (
+                    <ul className="no-message-ul">
+                        <li>
+                            <p className="no-message">No messages</p>
+                        </li>
+                    </ul>
+                )}
                 {allConversation.map(conversation => {
                     const conversationDivClassName = `conversation-div ${+conversation.conversation_id === +conversationId ? "selected" : ""}`
                     return (

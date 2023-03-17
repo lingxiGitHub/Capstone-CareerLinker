@@ -46,7 +46,7 @@ def conversation_for_current_user():
         # print(current_user.id)
         if message.user_id == current_user.id:
             found_conversation_id.append(message.conversation_id)
-            print(found_conversation_id)
+            # print(found_conversation_id)
 
         participants=[]
         for message in all_messages:
@@ -61,7 +61,7 @@ def conversation_for_current_user():
                         "user_profile_photo":None,
                         "user_title":None
                         })
-    print(participants)
+    # print(participants)
 
     for item in participants:
         if item["participant_user_id"] != current_user.id:

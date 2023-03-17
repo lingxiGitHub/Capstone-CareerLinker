@@ -90,11 +90,22 @@ export default function ShowMessageComp() {
         isLoaded && sessionUser && (
             <div className="loading-message">
                 <div className="message-top-right">
+                    {singleMessage.length === 0 ? (
+                        <div className="top-section-word">
+                            <div className="top-other-person-name">New message</div>
+                            <div className="top-other-person-title">Choose a connection to start a conversation</div>
+                        </div>
+                    ) : (
 
-                    <div className="top-section-word">
-                        <div className="top-other-person-name">{otherPersonName}</div>
-                        <div className="top-other-person-title">{otherPersonTitle}</div>
-                    </div>
+                        <div className="top-section-word">
+
+                            <div className="top-other-person-name">{otherPersonName}</div>
+                            <div className="top-other-person-title">{otherPersonTitle}</div>
+                        </div>
+                    )
+
+                    }
+
                     <input
                         // className="toggle-input"
                         type="checkbox"
@@ -147,7 +158,7 @@ export default function ShowMessageComp() {
 
 
                     })}
-
+                    <div className="empty-spacer"></div>
 
                 </div>
                 <CreateMessageBox conversationId={conversationId} />

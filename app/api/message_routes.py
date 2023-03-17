@@ -55,7 +55,7 @@ def messages():
     data=[]
     all_messsage = Message.query.all()
     for message in all_messsage:
-        print(message.to_dict())
+        # print(message.to_dict())
         data.append({
             "message_id":message.id,
             "message_user_id":message.user_id,

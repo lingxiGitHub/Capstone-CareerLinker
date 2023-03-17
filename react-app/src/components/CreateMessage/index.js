@@ -43,16 +43,24 @@ export default function CreateMessageBox({ conversationId }) {
 
     return (
         <>
+
             <form
-            className="create-message-form"
+                className="create-message-form"
                 onSubmit={handleSubmit}
             >
-                <ul>
-                    {errors.map((error, idx) => (
-                        <li class="error-red" key={idx}>{error}</li>
-                    ))}
-                </ul>
 
+                {errors.length > 0 ? (
+                    <ul>
+                        {errors.map((error, idx) => (
+                            <li class="error-red" key={idx}>{error}</li>
+                        ))}
+                    </ul>
+
+                ) : (
+                    <></>
+                )}
+
+                <hr className="hr-above-box"></hr>
                 <textarea
                     className="message-input-box"
                     placeholder="Write a message..."
@@ -63,7 +71,7 @@ export default function CreateMessageBox({ conversationId }) {
                     required
                 />
                 <button
-                    className="submit-message-button" 
+                    className="submit-message-button"
                     type="submit">Send</button>
             </form>
         </>

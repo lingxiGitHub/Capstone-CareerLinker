@@ -129,6 +129,10 @@
     overflow: hidden;
 }
 
+.show-more {
+    padding-top: 1px;
+}
+
 
 .connection-count {
     display: flex;
@@ -141,12 +145,17 @@
 }
 
 
+.show-arrow {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
 
 
 
 .left-card {
     width: 225px;
-    height: 400px;
+    height: auto;
     border: 1px black solid;
     margin-top: 24px;
     background-color: white;
@@ -156,9 +165,10 @@
     align-items: center;
     border-radius: 8px;
     border-radius: 8px;
+    overflow: hidden;
     border-color: rgba(0, 0, 0, 0.1);
     border-width: 1px;
-    position: relative;
+    /* position: relative; */
 }
 
 
@@ -171,7 +181,7 @@
     height: 72px;
     object-fit: cover;
     border-radius: 50%;
-    margin: 2px;
+    margin: -38px auto 1.2rem auto;
     border: white 2px solid;
 
 }
@@ -197,6 +207,7 @@
 
 .left-card-line {
     width: 225px;
+    border-top: rgba(0, 0, 0, 0.6);
 }
 
 
@@ -204,8 +215,14 @@
     display: flex;
     justify-content: space-between;
     font-size: 12px;
+
     font-weight: 600;
     width: 200px;
+    padding: 4px 12px 4px 12px;
+}
+
+.left-card-span:hover {
+    background-color: lightgray;
 }
 
 .span-one {
@@ -219,7 +236,7 @@
 
 .create-post-container {
     width: 555px;
-    height: 116px;
+    height: 96px;
     background-color: white;
     border-radius: 8px;
     display: flex;
@@ -252,7 +269,7 @@
 
 .corp {
     font-size: 12px;
-    color:rgba(0, 0, 0, 0.9)
+    color: rgba(0, 0, 0, 0.9)
 }
 
 .little-linkedin {
@@ -267,16 +284,55 @@
     align-items: center;
 }
 
-.about-a{
+.about-a {
     text-decoration: none;
     color: inherit;
 }
 
-.premium-features{
-    font-size:12px;
-    font-weight: 600;
+.premium-features {
+    /* font-size: 12px;
+    font-weight: 600; */
+    display: flex;
+    flex-direction: column;
+    padding: 4px 12px 12px 12px;
+    /* margin: 0px; */
+    text-decoration: none;
 }
 
-.banner{
+.premium-features:hover {
+    background-color: lightgray;
+}
+
+.banner {
     /* z-index: -1; */
+}
+
+
+.grow-network {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.access-premium {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0px;
+    width: 200px;
+}
+
+.premium-line {
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration-line: underline;
+}
+
+
+svg.mercado-match {
+    margin-right: 5px;
+
 }

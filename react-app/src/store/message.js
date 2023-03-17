@@ -13,7 +13,7 @@ export const getAllMessages = () => async dispatch => {
         // console.log("message list", list)
         dispatch(loadMessage(list))
     } else {
-        console.log("get all message fetch failed")
+        // console.log("get all message fetch failed")
     }
 }
 
@@ -35,7 +35,7 @@ export const getSingleMessage = (conversationId) => async dispatch => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
-            console.log("%%%%", data.errors)
+            // console.log("%%%%", data.errors)
             return data.errors;
         }
     } else {
@@ -68,7 +68,7 @@ export const addMessageThunk = (newMessage) => async dispatch => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
-            console.log("%%%%", data.errors)
+            // console.log("%%%%", data.errors)
             return data.errors;
         }
     } else {
@@ -115,7 +115,7 @@ export const updateMessageThunk = (message, conversationId) => async dispatch =>
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
-            console.log("%%%%", data.errors)
+            // console.log("%%%%", data.errors)
             return data.errors;
         }
     } else {

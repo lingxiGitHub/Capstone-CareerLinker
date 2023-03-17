@@ -18,6 +18,7 @@ function Post({ post }) {
     const sessionUser = useSelector(state => state.session.user);
     // console.log(sessionUser.id)
     // for comments
+  
     const allCommentsObj = useSelector(state => state.comments.allComments)
     const allComments = allCommentsObj ? Object.values(allCommentsObj) : []
     const postComments = allComments.filter(comment => comment.comment_post_id === post.post_id)
@@ -35,13 +36,13 @@ function Post({ post }) {
     //for connections
     const allConnectionsObj = useSelector(state => state.connections.allConnections)
     const allConnectionsId = allConnectionsObj ? Object.keys(allConnectionsObj) : []
-    console.log("---->", allConnectionsId)
+    // console.log("---->", allConnectionsId)
     let isConnected = false;
     if (allConnectionsId.includes(post.post_user_id.toString())) {
         isConnected = true
     }
-    console.log("&&&", post.post_id)
-    console.log("%%%%", isConnected)
+    // console.log("&&&", post.post_id)
+    // console.log("%%%%", isConnected)
 
 
     const [liked, setLiked] = useState(isLiked);

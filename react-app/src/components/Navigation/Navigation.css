@@ -2,6 +2,10 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  width: 100px;
+
+  right: 0px;
+  top: 50px;
 
 }
 
@@ -21,6 +25,9 @@
   background-color: white;
   font-size: 14px;
   text-align: left;
+  /* position: relative;
+  left: -50px;
+  top: 100%; */
 }
 
 .profile-dropdown li button {
@@ -58,6 +65,11 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
+ 
+}
+
+.header li{
+   position: relative;
 }
 
 .logo {
@@ -72,6 +84,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 
