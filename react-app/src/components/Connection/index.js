@@ -41,7 +41,7 @@ export default function ConnectionComponent() {
                                 </div>
                             </div>
                             <div className="connection-buttons">
-                                <button className="message-button">Message</button>
+                                {/* <button className="message-button">Message</button> */}
                                 <button
                                     className="remove-connection-button"
                                     onClick={() => {
