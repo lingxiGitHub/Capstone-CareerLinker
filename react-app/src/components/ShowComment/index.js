@@ -9,10 +9,6 @@ import ReactionModal from "../Reaction";
 
 function ShowComment({ post, postComments }) {
 
-
-
-
-
     const sessionUser = useSelector(state => state.session.user);
     const allLikes = useSelector(state => state.likes.allLikes)
     // console.log("######", allLikes)
@@ -63,26 +59,28 @@ function ShowComment({ post, postComments }) {
 
         <>
 
-            {postComments.length > 0 && (
+            {
 
                 <div className="comment-like-count-line">
 
                     <div>
-                        {likedUsers.length ? (
+                        {likedUsers.length > 1 ? (
                             <>
-                            <OpenModalButton
-                            buttonText={`liked by ${likedUsers[likedUsers.length - 1]} and ${likedUsers.length - 1} others`}
+                                <OpenModalButton
+                                    buttonText={`liked by ${likedUsers[likedUsers.length - 1]} and ${likedUsers.length - 1} others`}
                                     className="like-count-button"
-                                    modalComponent={<ReactionModal myLikes={myLikes}/>}
-                            />
-                            
+                                    modalComponent={<ReactionModal myLikes={myLikes} />}
+                                />
+
                             </>
-                            
+
                         ) : (
-                            <></>
+                            <>
+
+                            </>
                         )}
 
-                      
+
 
                     </div>
                     <button
@@ -91,7 +89,7 @@ function ShowComment({ post, postComments }) {
                     >{postComments.length} comments</button>
 
                 </div>
-            )}
+            }
 
 
 

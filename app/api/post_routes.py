@@ -220,10 +220,22 @@ def delete_like_to_a_post():
   # print("!!!user id", user_id)
   post_id = request.get_json()["post_id"]
   # print("!!!post id", post_id)
-  result = db.session.execute("DELETE FROM likes WHERE posts = :post_id AND users = :user_id", 
-                                {"post_id": post_id, "user_id": user_id})
 
-  if result.rowcount == 0:
-        return jsonify({'error': 'Like not found'})
+  # *********works locally but not in render
+
+  # result = db.session.execute("DELETE FROM likes WHERE posts = :post_id AND users = :user_id", 
+  #                               {"post_id": post_id, "user_id": user_id})
+
+  # if result.rowcount == 0:
+  #       return jsonify({'error': 'Like not found'})
+  # db.session.commit()
+  # return jsonify({'message': 'Like deleted successfully'})
+
+  # *********works locally but not in render
+
+  user=User.query.get(user_id)
+  post = Post.query.get(post_id)
+
+  user.likes.remove(post)
   db.session.commit()
   return jsonify({'message': 'Like deleted successfully'})
