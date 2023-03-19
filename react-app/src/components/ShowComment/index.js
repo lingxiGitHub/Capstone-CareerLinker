@@ -20,7 +20,7 @@ function ShowComment({ post, postComments }) {
     const myLikes = allLikes[post.post_id]
     // console.log("my likes",myLikes)
     const likedUsers = []
-    if (myLikes.length) {
+    if (myLikes) {
 
         for (let item of myLikes) {
             likedUsers.push(item.user_first_name + " " + item.user_last_name)

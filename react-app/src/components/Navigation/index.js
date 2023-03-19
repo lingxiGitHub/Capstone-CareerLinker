@@ -14,6 +14,10 @@ function Navigation({ isLoaded }) {
 	// 	<path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
 	// </svg>)
 
+	const inLogo = (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="rgb(10,102,194)" class="mercado-match" width="41" height="41" focusable="false">
+		<path d="M 20.5 2 L 3.5 2 C 2.672 2 2 2.672 2 3.5 L 2 20.5 C 2 21.328 2.672 22 3.5 22 L 20.5 22 C 21.328 22 22 21.328 22 20.5 L 22 3.5 C 22 2.672 21.328 2 20.5 2 Z M 8 19 L 5 19 L 5.08 4.775 L 8.059 4.768 L 8 19 Z M 19 19 L 16 19 L 16 14.26 C 16 12.84 15.4 12.33 14.62 12.33 C 13.658 12.394 12.931 13.228 13 14.19 C 12.995 14.237 12.995 14.283 13 14.33 L 13 19 L 10 19 L 10 10 L 12.9 10 L 12.9 11.3 C 13.495 10.395 14.518 9.865 15.6 9.9 C 17.15 9.9 18.96 10.76 18.96 13.56 L 19 19 Z"></path>
+	</svg>)
+
 	const homeSVG = (<svg xmlns="http://www.w3.org/2000/svg" className='header-font' viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
 		<path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7 5 3.18V2h3v5.09z"></path>
 	</svg>)
@@ -29,8 +33,8 @@ function Navigation({ isLoaded }) {
 	return (
 		<ul className='header'>
 			<li>
-				<NavLink className="nav-link" exact to="/"><img className="logo" src={logo} alt=""></img></NavLink>
-				{/* <NavLink exact to="/">{logo}</NavLink> */}
+				<NavLink className="nav-link" exact to="/"> {inLogo}</NavLink>
+			
 			</li>
 
 

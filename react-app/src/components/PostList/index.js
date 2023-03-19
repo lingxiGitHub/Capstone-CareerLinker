@@ -55,11 +55,9 @@ function PostList() {
         <path d="M15 11L8 6.39 1 11V8.61L8 4l7 4.61z"></path>
     </svg>)
 
-    const littleLinkedinSVG = (
-        <svg className="little-linkedin" viewBox="0 0 128 128">
-            <path fill="#0076b2" d="M116 3H12a8.91 8.91 0 00-9 8.8v104.42a8.91 8.91 0 009 8.78h104a8.93 8.93 0 009-8.81V11.77A8.93 8.93 0 00116 3z"></path><path fill="#fff" d="M21.06 48.73h18.11V107H21.06zm9.06-29a10.5 10.5 0 11-10.5 10.49 10.5 10.5 0 0110.5-10.49M50.53 48.73h17.36v8h.24c2.42-4.58 8.32-9.41 17.13-9.41C103.6 47.28 107 59.35 107 75v32H88.89V78.65c0-6.75-.12-15.44-9.41-15.44s-10.87 7.36-10.87 15V107H50.53z"></path>
-        </svg>
-    )
+    const littleLinkedinSVG = (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="rgb(10,102,194)" class="mercado-match" width="14" height="14" focusable="false">
+        <path d="M 20.5 2 L 3.5 2 C 2.672 2 2 2.672 2 3.5 L 2 20.5 C 2 21.328 2.672 22 3.5 22 L 20.5 22 C 21.328 22 22 21.328 22 20.5 L 22 3.5 C 22 2.672 21.328 2 20.5 2 Z M 8 19 L 5 19 L 5.08 4.775 L 8.059 4.768 L 8 19 Z M 19 19 L 16 19 L 16 14.26 C 16 12.84 15.4 12.33 14.62 12.33 C 13.658 12.394 12.931 13.228 13 14.19 C 12.995 14.237 12.995 14.283 13 14.33 L 13 19 L 10 19 L 10 10 L 12.9 10 L 12.9 11.3 C 13.495 10.395 14.518 9.865 15.6 9.9 C 17.15 9.9 18.96 10.76 18.96 13.56 L 19 19 Z"></path>
+    </svg>)
 
     const premiumSVG = (
         <svg xmlns="http://www.w3.org/2000/svg" className="premium-svg" viewBox="0 0 24 24" data-supported-dps="24x24" class="mercado-match" width="16" height="16" focusable="false">
