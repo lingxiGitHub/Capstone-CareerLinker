@@ -51,9 +51,9 @@ function ProfileButton({ user }) {
       >
         {user ? (
           <img className="login-photo" src={user.profile_photo} alt=""></img>
-         
-        ):(
-        <i className="fas fa-user-circle" />
+
+        ) : (
+          <i className="fas fa-user-circle" />
 
         )}
       </button>
@@ -68,27 +68,40 @@ function ProfileButton({ user }) {
           </div>
         ) : (
           <div>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+            <li className="top-drop">
+
+              <OpenModalButton
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
+            </li>
+
+            <li className="mid-drop">
+
+              <OpenModalButton
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+            </li>
 
 
-            <button
-              className="demo-button-drop-down"
-              onClick={() => {
-                dispatch(login("demo@aa.io", "password"));
-                closeModal();
-              }
-              }
-            >Demo User</button>
+            <li className="bottom-drop">
+
+              <button
+                className="demo-button-drop-down"
+                onClick={() => {
+                  dispatch(login("demo@aa.io", "password"));
+                  closeModal();
+                }
+                }
+              >Demo User</button>
+            </li>
+
+
+
           </div>
         )}
       </ul>
