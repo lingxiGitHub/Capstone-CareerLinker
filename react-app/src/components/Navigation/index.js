@@ -48,13 +48,13 @@ function Navigation({ isLoaded }) {
 						</NavLink>
 					</li>
 
-
+{/* 
 					<li>
 						<NavLink className="nav-link" exact to="/messaging">
 							{messageSVG}
 							<div className='header-font'>Messaging</div>
 						</NavLink>
-					</li>
+					</li> */}
 					<li>
 						<NavLink className="nav-link" exact to="/mynetwork">
 							{networkSVG}
