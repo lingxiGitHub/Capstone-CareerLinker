@@ -32,10 +32,13 @@ All users can see a selection of the most recent Posts.
 Logged-in users can create/edit/delete existingposts.
 
 
-All users can see a list of comments for posts.
+Logged-in users can see a list of comments for posts.
 Logged-in users can create /edit /delete a new comment for posts.
+Logged-in users can like posts.
+Logged-in users can connect with other users.
 
-![Screen Shot 2023-03-04 at 3 27 01 PM](https://user-images.githubusercontent.com/113320584/222933247-5aa17241-5256-48db-b02b-32bbe8a42561.png)
+![Screen Shot 2023-03-19 at 9 32 06 PM](https://user-images.githubusercontent.com/113320584/226247621-4427c1bd-21ca-48b1-89b9-0421e48e2a65.png)
+
 
 ## Messaging Page
 Logged-in users can chat with each other. They can also edit/delete sent messages.
@@ -44,7 +47,7 @@ Logged-in users can chat with each other. They can also edit/delete sent message
 
 
 ## 🚧 To do list for future features
-Continue to finish the features for messaging page as well as the job posting page. I also would like to build bonus functions for reactions and search.
+I would like to build search feature and individual pages in the future.
 
 
 ## 🏁 Get started
