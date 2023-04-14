@@ -30,7 +30,7 @@ export default function ConnectionComponent() {
             <hr className="connection-hr"></hr>
             <ul className="connection-ul">
                 {allConnections.map((connection => {
-                    console.log(connection)
+                    // console.log(connection)
                     return (
                         <li className="indi-connection-li">
                             <div className="connection-left">
