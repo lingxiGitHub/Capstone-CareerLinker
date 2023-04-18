@@ -36,3 +36,14 @@
     box-sizing: border-box;
     padding-left: 30px;
 }
+
+
+.down-pic {
+    width: 100vw;
+}
+
+.splash-down {
+    background-color: white;
+    width: 100vw;
+    overflow: hidden;
+}
