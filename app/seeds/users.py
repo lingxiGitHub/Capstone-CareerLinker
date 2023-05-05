@@ -1,7 +1,7 @@
 from app.models import db, User, environment, SCHEMA
 
 demo = User(
-        username='Demo', email='demo@aa.io', password='password', first_name="Demo", last_name="User", title="Social Media Manager at Summit Solutions",profile_photo="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
+        username='Demo', email='demo@aa.io', password='password', first_name="Demo", last_name="User", title="Social Media Manager at Summit Solutions",profile_photo="https://people.com/thmb/BJqN8mOl0sT69KD6JlgmVO6MjqA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(749x0:751x2)/the-office-steve-864d7814dbcc4807944c7ea609c4972a.jpg")
 marnie = User(
         username='marnie', email='marnie@aa.io', password='password', first_name="Marnie", last_name="Stevens",title="Content Writer at BrightBridge", profile_photo="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80")
 bobbie = User(

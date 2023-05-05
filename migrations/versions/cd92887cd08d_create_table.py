@@ -57,16 +57,16 @@ def upgrade():
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
     op.create_table('connections',
-                         sa.Column('id', sa.Integer(), nullable=False),
-                         sa.Column('user_id', sa.Integer(), nullable=False),
-                         sa.Column('connected_user_id',
-                                   sa.Integer(), nullable=False),
-                         sa.ForeignKeyConstraint(
-                             ['connected_user_id'], ['users.id'], ),
-                         sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-                         sa.PrimaryKeyConstraint('id')
-                         )
-    
+                    sa.Column('id', sa.Integer(), nullable=False),
+                    sa.Column('user_id', sa.Integer(), nullable=False),
+                    sa.Column('connected_user_id',
+                              sa.Integer(), nullable=False),
+                    sa.ForeignKeyConstraint(
+                        ['connected_user_id'], ['users.id'], ),
+                    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+                    sa.PrimaryKeyConstraint('id')
+                    )
+
     if environment == "production":
         op.execute(f"ALTER TABLE connections SET SCHEMA {SCHEMA};")
 
@@ -146,7 +146,6 @@ def upgrade():
                     )
     if environment == "production":
         op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
-
 
     # ### end Alembic commands ###
 
