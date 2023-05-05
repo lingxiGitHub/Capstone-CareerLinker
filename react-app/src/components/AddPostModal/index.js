@@ -90,9 +90,9 @@ function AddPostModal() {
 
 
                     />
-                    {photoError && (
+                    {/* {photoError && (
                         <div>Invalid image url</div>
-                    )}
+                    )} */}
                     <img className="hidden-broken-image" src={post_photo}
                         onError={e => setPhotoError(true)}
                     />
