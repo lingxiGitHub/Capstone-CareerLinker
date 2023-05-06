@@ -45,15 +45,18 @@ function AddPostModal() {
         history.push(`/home`)
         closeModal()
         dispatch(getAllPosts())
-   
+
     }
 
     return (
         <div className="create-post-modal-border">
-            <h2 className="create-a-post-text">Create a post</h2>
-            <hr></hr>
-            <img className="profile-photo" src={sessionUser.profile_photo} alt=""></img>
-            <div className="create-post-user-name">{sessionUser.first_name} {sessionUser.last_name}</div>
+            {/* <h2 className="create-a-post-text">Create a post</h2> */}
+         
+            <div className="post-above">
+                <img className="profile-photo" src={sessionUser.profile_photo} alt=""></img>
+                <div className="create-post-user-name">{sessionUser.first_name} {sessionUser.last_name}</div>
+            </div>
+
 
             <form
                 className="create-post-form"
@@ -81,7 +84,7 @@ function AddPostModal() {
                 </label>
 
                 <label>
-                    <span>Attach Photo</span>
+                    <span className="photo-url">photo url (optional)</span>
                     <input
                         className="photo-url-place"
                         type="text"

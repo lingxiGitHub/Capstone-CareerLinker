@@ -152,6 +152,7 @@
     border-radius: 16px;
     /* width: 114px;
     height: 28px; */
+    display: flex;
 }
 
 .connect-in-post:hover {

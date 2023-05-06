@@ -114,7 +114,7 @@ function ShowComment({ post, postComments }) {
                                     <div className="name-plus-three-dots">
                                         <div className="comment-user-name-title">
                                             <div className="comment-user-name" key={comment.comment_user_first_name}>{comment.comment_user_first_name} {comment.comment_user_last_name}</div>
-                                            <div className="comment-user-title">placeholder for user title</div>
+                                            <div className="comment-user-title" key={comment.comment_user_title}>{comment.comment_user_title}</div>
                                         </div>
                                         {sessionUser && comment.comment_user_id == sessionUser.id && (
                                             <CommentThreeDots post={post} comment={comment} />
