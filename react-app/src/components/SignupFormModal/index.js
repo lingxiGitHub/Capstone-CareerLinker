@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import TextField from "@mui/material/TextField";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -60,61 +61,55 @@ function SignupFormModal() {
             </li>
           ))}
         </ul>
-        <label>
-          <span>Email</span>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <span>Username</span>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <span>First Name</span>
-          <input
-            type="text"
-            value={first_name}
-            onChange={(e) => setFirst_name(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <span>Last Name</span>
-          <input
-            type="text"
-            value={last_name}
-            onChange={(e) => setLast_name(e.target.value)}
-            required
-          />
-        </label>
 
-        <label>
-          <span>Password</span>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <span>Confirm Password</span>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
+        <TextField
+          required
+          className="sign-up-input"
+          label="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <TextField
+          required
+          className="sign-up-input"
+          label="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <TextField
+          required
+          className="sign-up-input"
+          label="First Name"
+          value={first_name}
+          onChange={(e) => setFirst_name(e.target.value)}
+        />
+
+        <TextField
+          required
+          className="sign-up-input"
+          label="Last Name"
+          value={last_name}
+          onChange={(e) => setLast_name(e.target.value)}
+        />
+
+        <TextField
+          required
+          className="sign-up-input"
+          label="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <TextField
+          required
+          className="sign-up-input"
+          label="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+
         <button className="sign-up-submit-button" type="submit">
           Sign Up
         </button>

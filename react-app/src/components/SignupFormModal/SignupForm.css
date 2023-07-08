@@ -5,30 +5,13 @@
   align-items: center;
   width: 1000px;
   color: rgba(0, 0, 0, 0.6);
+  row-gap: 20px;
+}
+.sign-up-input {
+  width: 600px;
+  margin: 30px;
 }
 
-.sign-up-form label {
-  display: flex;
-  flex-direction: column;
-}
-
-.sign-up-form input {
-  width: 500px;
-  height: 32px;
-  border-radius: 4px;
-  text-overflow: ellipsis;
-  margin-left: 3px;
-  border-color: rgba(0, 0, 0, 0.6);
-}
-
-.sign-up-form span {
-  display: inline-block;
-  width: 125px;
-  font-size: 14px;
-  margin-top: 16px;
-  margin-bottom: 4px;
-  padding-left: 5px;
-}
 
 .sign-up-submit-button {
   background-color: rgb(10, 102, 194);
@@ -36,7 +19,7 @@
   border-radius: 16px;
   border-color: white;
   height: 48px;
-  width: 500px;
+  width: 600px;
   display: block;
   margin-left: auto;
   margin-right: auto;
