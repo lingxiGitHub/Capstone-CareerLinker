@@ -17,7 +17,7 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal();
     }
   };
 
@@ -25,12 +25,12 @@ function LoginFormModal() {
     <div className="log-in-modal">
       <h1 className="log-in-word">Sign In</h1>
       <p className="log-in-p">Stay updated on your professional world</p>
-      <form onSubmit={handleSubmit}
-      className="log-on-form"
-      >
+      <form onSubmit={handleSubmit} className="log-on-form">
         <ul>
           {errors.map((error, idx) => (
-            <li class="error-red" key={idx}>{error}</li>
+            <li class="error-red" key={idx}>
+              {error}
+            </li>
           ))}
         </ul>
         <label>
@@ -51,8 +51,9 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit" className="log-in-button">Log In</button>
-
+        <button type="submit" className="log-in-button">
+          Log In
+        </button>
       </form>
     </div>
   );

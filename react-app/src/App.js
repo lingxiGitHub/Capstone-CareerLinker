@@ -5,8 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import PostList from "./components/PostList"
-import MessagingPage from "./components/MessagingPage"
+import PostList from "./components/PostList";
+import MessagingPage from "./components/MessagingPage";
 import Splash from "./components/Splash";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
@@ -25,7 +25,7 @@ function App() {
       {isLoaded && (
         <>
           <Switch>
-            <Route path="/login" >
+            <Route path="/login">
               <LoginFormPage />
             </Route>
             <Route path="/signup">

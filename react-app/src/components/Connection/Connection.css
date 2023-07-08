@@ -1,109 +1,101 @@
 .connections-container {
-    background-color: white;
-    margin-top: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    overflow-x: hidden;
-    overflow-y: scroll;
+  background-color: white;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .connection-hr {
-    width: 600px;
+  width: 600px;
 }
 
 .indi-connection-li {
-    width: 550px;
-    display: flex;
-    justify-content: space-between;
+  width: 550px;
+  display: flex;
+  justify-content: space-between;
 }
 
-
 .message-button {
-    width: 90px;
-    height: 32px;
-    /* padding: 6px 16px 6px 16px; */
-    background-color: white;
-    /* border-style: none; */
-    border-color: rgb(10, 102, 194);
-    border-width: 1px;
-    border-radius: 16px;
-    color: rgb(10, 102, 194);
-    font-size: 16px;
-    font-weight: 300;
+  width: 90px;
+  height: 32px;
+
+  background-color: white;
+
+  border-color: rgb(10, 102, 194);
+  border-width: 1px;
+  border-radius: 16px;
+  color: rgb(10, 102, 194);
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .connection-left {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-
 .connection-name {
-    font-size: 16px;
-    font-weight: 600;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .connection-title {
-    font-size: 14px;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 0.6)
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .connection-ul {
-    padding: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .connection-count-top {
-    /* margin: 32px 32px 16px  32px; */
-    /* margin-left: 32px;
-  margin-bottom: 10px; */
-    font-size: 18px;
-    font-weight: 400;
-    height: 32px;
-    align-self: flex-start;
-    display: flex;
-    align-items: flex-end;
-    margin-left: 32px;
+  font-size: 18px;
+  font-weight: 400;
+  height: 32px;
+  align-self: flex-start;
+  display: flex;
+  align-items: flex-end;
+  margin-left: 32px;
 }
 
-
 .connection-buttons {
-    display: flex;
-    align-items: center;
-    column-gap: 3px;
+  display: flex;
+  align-items: center;
+  column-gap: 3px;
 }
 
 .remove-connection-button {
-    appearance: none;
-    border: none;
-    background-color: transparent;
-    color: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color:rgba(0, 0, 0, 0.6);
-    font-size: 14px;
-    font-weight: 300;
-
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  font-weight: 300;
 }
-
 
 .remove-connection-button:hover {
-    background-color: lightgray;
-    cursor: pointer;
+  background-color: lightgray;
+  cursor: pointer;
 }
 
-.remove-word{
-    margin-left:3px;
+.remove-word {
+  margin-left: 3px;
 }

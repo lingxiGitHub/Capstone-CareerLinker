@@ -1,27 +1,23 @@
 .messaging-page {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    /* background-color: white; */
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  /* background-color: white; */
 }
-
 
 .conversation-list {
-    background-color: white;
-    width: 300px;
-    margin-right: 0px;
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.08);
-    border-style: solid;
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
+  background-color: white;
+  width: 300px;
+  margin-right: 0px;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.08);
+  border-style: solid;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
 }
 
-
 .messaging-list {
-    background-color: white;
-    width: 300px;
-    margin-left: 0px;
-
-
+  background-color: white;
+  width: 300px;
+  margin-left: 0px;
 }

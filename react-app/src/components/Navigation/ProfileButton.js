@@ -6,7 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { login } from "../../store/session";
 import { useModal } from "../../context/Modal";
-import { useHistory, } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    history.push("/")
+    history.push("/");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -45,16 +45,11 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button
-        className="profile-button"
-        onClick={openMenu}
-      >
+      <button className="profile-button" onClick={openMenu}>
         {user ? (
           <img className="login-photo" src={user.profile_photo} alt=""></img>
-
         ) : (
           <i className="fas fa-user-circle" />
-
         )}
       </button>
       <ul className={ulClassName} ref={ulRef}>
@@ -63,14 +58,14 @@ function ProfileButton({ user }) {
             <li className="top-drop">{user.username}</li>
             <li className="mid-drop">{user.email}</li>
             <li className="bottom-drop">
-              <button onClick={handleLogout}><span className="sign-out-text">Sign Out</span></button>
+              <button onClick={handleLogout}>
+                <span className="sign-out-text">Sign Out</span>
+              </button>
             </li>
           </div>
         ) : (
           <div>
-
             <li className="top-drop">
-
               <OpenModalButton
                 buttonText="Log In"
                 onItemClick={closeMenu}
@@ -79,7 +74,6 @@ function ProfileButton({ user }) {
             </li>
 
             <li className="mid-drop">
-
               <OpenModalButton
                 buttonText="Sign Up"
                 onItemClick={closeMenu}
@@ -87,21 +81,17 @@ function ProfileButton({ user }) {
               />
             </li>
 
-
             <li className="bottom-drop">
-
               <button
                 className="demo-button-drop-down"
                 onClick={() => {
                   dispatch(login("demo@aa.io", "password"));
                   closeModal();
-                }
-                }
-              >Demo User</button>
+                }}
+              >
+                Demo User
+              </button>
             </li>
-
-
-
           </div>
         )}
       </ul>

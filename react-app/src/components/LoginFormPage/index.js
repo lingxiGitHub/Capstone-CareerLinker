@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { useHistory, } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import OpenModalButton from "../OpenModalButton";
 import SignupFormModal from "../SignupFormModal";
-import './LoginForm.css';
+import "./LoginForm.css";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -26,25 +26,25 @@ function LoginFormPage() {
     if (data) {
       setErrors(data);
     } else {
-      history.push("/home")
+      history.push("/home");
     }
-
   };
 
   return (
     <div className="splash-left-flex">
-
-      <form onSubmit={handleSubmit}
-        className="splash-left">
+      <form onSubmit={handleSubmit} className="splash-left">
         <ul>
           {errors.map((error, idx) => (
-            <li class="error-red" key={idx}>{error}</li>
+            <li class="error-red" key={idx}>
+              {error}
+            </li>
           ))}
         </ul>
         <div className="splash-log-in">
           <label className="splash-label">
             Email
-            <input className="log-in-input"
+            <input
+              className="log-in-input"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -53,40 +53,43 @@ function LoginFormPage() {
           </label>
           <label className="splash-label">
             Password
-            <input className="log-in-input"
+            <input
+              className="log-in-input"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </label>
-          <button className="sign-in-button" type="submit">Sign In</button>
+          <button className="sign-in-button" type="submit">
+            Sign In
+          </button>
         </div>
       </form>
 
       <button
         className="demo-button"
-        onClick={async() => {
+        onClick={async () => {
           await dispatch(login("demo@aa.io", "password"));
           await closeModal();
-          history.push("/home")
-        }
-        }
-      >Demo User</button>
+          history.push("/home");
+        }}
+      >
+        Demo User
+      </button>
 
       <div class="lines">
         <div class="line-1"></div>
         <p className="or">or</p>
         <div class="line-2"></div>
       </div>
-    
+
       <OpenModalButton
         buttonText="New to Linkedin? Join now"
         className="splash-sign-up"
         modalComponent={<SignupFormModal />}
       />
     </div>
-    
   );
 }
 

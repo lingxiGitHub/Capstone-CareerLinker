@@ -6,14 +6,12 @@
 
   right: 0px;
   top: 50px;
-
 }
 
 .profile-dropdown button {
   text-align: left;
   background-color: white;
   border-style: none;
-
 }
 
 .profile-dropdown button:hover {
@@ -98,7 +96,6 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
-
 }
 
 .header li {
@@ -117,9 +114,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-
 
 .nav-link {
   text-decoration: none;
@@ -139,9 +134,7 @@ li {
   object-fit: cover;
   border-radius: 50%;
   margin: 5px;
-
 }
-
 
 .header-font {
   color: rgba(0, 0, 0, 0.6);

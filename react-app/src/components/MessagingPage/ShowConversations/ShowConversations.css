@@ -1,76 +1,66 @@
 .message-middle {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    border-radius: 10px;
-    overflow: hidden;
-    /* width: 250px; */
-
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  /* width: 250px; */
 }
 
 .messaging-word {
-    font-weight: 800px;
-    font-size: 16px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    border-width: 0.5px;
+  font-weight: 800px;
+  font-size: 16px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  border-width: 0.5px;
 
- 
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.08);
-    width: 284px;
-    padding-left: 16px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.08);
+  width: 284px;
+  padding-left: 16px;
 }
 
 .conversation-div {
-    border-color: rgba(0, 0, 0, 0.08);
-    border-width: 1px;
-    border-style: solid;
-    width: 279px;
-    padding: 5px;
-    padding-left: 16px;
-
+  border-color: rgba(0, 0, 0, 0.08);
+  border-width: 1px;
+  border-style: solid;
+  width: 279px;
+  padding: 5px;
+  padding-left: 16px;
 }
 
 h3.conversation-other-name {
-    color: rgba(0, 0, 0, 0.9);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    text-overflow: ellipsis;
-    width: 150px;
-    text-decoration: none;
-    padding-left: 5px
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  width: 150px;
+  text-decoration: none;
+  padding-left: 5px;
 }
 
-/* .profile-photo-conversation {
-    height: 56px;
-    width: 56px;
-} */
-
-
 .conversation-person-div {
-    display: flex;
-    flex-direction: row;
-    text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
 }
 
 .conversation-div:hover {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
 .selected {
-    background-color: rgb(238, 243, 248);
+  background-color: rgb(238, 243, 248);
 }
 
 .no-message-ul {
-    width: 100%;
-    padding: 0px;
-
+  width: 100%;
+  padding: 0px;
 }
 
 .no-message {
-    text-align: center;
+  text-align: center;
 }

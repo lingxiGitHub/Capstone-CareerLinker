@@ -1,49 +1,47 @@
 .splash-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    overflow: hidden;
-    width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  overflow: hidden;
+  width: 100vw;
 }
 
-@media (max-width:1250px) {
-    .splash-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        background-color: white;
-    }
-
+@media (max-width: 1250px) {
+  .splash-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+  }
 }
 
 .splash-container-left {
-    width: 620px;
-    padding-right: 30px;
+  width: 620px;
+  padding-right: 30px;
 }
 
 .splash-container-right {
-    width: 620px;
+  width: 620px;
 }
 
 .welcome-word {
-    color: rgb(143, 88, 73);
-    font-size: 32px;
-    font-weight: 300;
-    line-height: 38.4px;
-    box-sizing: border-box;
-    padding-left: 30px;
+  color: rgb(143, 88, 73);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 38.4px;
+  box-sizing: border-box;
+  padding-left: 30px;
 }
 
-
 .down-pic {
-    width: 100vw;
+  width: 100vw;
 }
 
 .splash-down {
-    background-color: white;
-    width: 100vw;
-    overflow: hidden;
+  background-color: white;
+  width: 100vw;
+  overflow: hidden;
 }

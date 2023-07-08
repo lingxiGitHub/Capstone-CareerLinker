@@ -48,8 +48,6 @@ function AddPostModal() {
 
   return (
     <div className="create-post-modal-border">
-      {/* <h2 className="create-a-post-text">Create a post</h2> */}
-
       <div className="post-above">
         <img
           className="profile-photo"
@@ -99,14 +97,7 @@ function AddPostModal() {
           />
         </label> */}
 
-        {/* <button className="post-submit-button" type="submit">
-          Post
-        </button> */}
-        <Button
-          id="post-submit-button"
-          type="submit"
-          variant="contained"
-        >
+        <Button id="post-submit-button" type="submit" variant="contained">
           Post
         </Button>
       </form>

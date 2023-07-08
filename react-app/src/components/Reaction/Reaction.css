@@ -1,89 +1,78 @@
 .display-liked-users-container {
-    width: 552px;
-    height: 520px;
-    overflow-y: scroll;
-
+  width: 552px;
+  height: 520px;
+  overflow-y: scroll;
 }
-
 
 .liked-users-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 16px 24px 16px 24px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px 16px 24px;
 }
 
-
 .liked-user-photo {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .indi-liked-user {
-    display: flex;
-    flex-direction: row;
-    margin: 8px;
-    align-items: center;
-    justify-content: center;
-
+  display: flex;
+  flex-direction: row;
+  margin: 8px;
+  align-items: center;
+  justify-content: center;
 }
 
 .liked-user-name-title {
-    border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
-    padding-left: 8px;
-    height: 64px;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+  border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
+  padding-left: 8px;
+  height: 64px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
-
 
 .liked-user-name {
-    font-size: 16px;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.9);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.9);
 }
 
-
 .liked-user-title {
-    color: rgba(0, 0, 0, 0.6);
-    font-size: 14px;
-    font-weight: 400;
-
-
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .display-liked-users-container h2 {
-    font-size: 20px;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 0.9);
-    margin-left: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.9);
+  margin-left: 24px;
 }
 
 .display-liked-users-container h4 {
-    margin: 12px 12px 12px 36px;
-    color: rgba(0, 0, 0, 0.6);
-    font-size: 14px;
-
+  margin: 12px 12px 12px 36px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
 }
 
 .display-liked-users-container hr {
-    color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.05);
 }
-
 
 .model-likes-count {
-    display: flex;
-    align-items: center;
-    margin: 12px 12px 12px 24px;
+  display: flex;
+  align-items: center;
+  margin: 12px 12px 12px 24px;
 }
 
-.modal-like-span{
-    margin-left: 8px;
+.modal-like-span {
+  margin-left: 8px;
 }

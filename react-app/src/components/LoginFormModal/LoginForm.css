@@ -1,72 +1,58 @@
 .log-on-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
 }
 
 .log-on-form input {
-
-    width: 352px;
-    height: 52px;
-    border-radius: 5px;
-    text-overflow: ellipsis;
-    margin-left: 3px;
-    border-color: rgba(0, 0, 0, 0.35);
-    margin-top: 12px;
-    margin-bottom: 12px;
-  
-
+  width: 352px;
+  height: 52px;
+  border-radius: 5px;
+  text-overflow: ellipsis;
+  margin-left: 3px;
+  border-color: rgba(0, 0, 0, 0.35);
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
-
 
 .log-on-form span {
-    display: inline-block;
-    width: 125px;
-    font-size: 14px;
-    margin: 10px;
-
+  display: inline-block;
+  width: 125px;
+  font-size: 14px;
+  margin: 10px;
 }
-
 
 .log-in-button {
+  background-color: rgb(10, 102, 194);
+  color: white;
+  border-radius: 28px;
+  border-color: white;
 
-    background-color: rgb(10, 102, 194);
-    color: white;
-    border-radius: 28px;
-    border-color: white;
+  display: block;
 
-    display: block;
-    /* margin-left: auto;
-    margin-right: auto; */
-    margin-top: 20px;
-    margin-bottom: 45px;
-    width: 352px;
-    height: 52px;
-
+  margin-top: 20px;
+  margin-bottom: 45px;
+  width: 352px;
+  height: 52px;
 }
 
-
 .log-in-word {
-
-    font-size: 32px;
-    font-weight: 600;
-    margin-top: 50px;
-
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 50px;
 }
 
 .log-in-modal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-
 .log-in-p {
-    font-size: 14px;
-    font-weight: 400;
-    margin-top: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 0px;
 }
