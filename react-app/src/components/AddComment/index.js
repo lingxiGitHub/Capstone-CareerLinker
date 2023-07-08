@@ -61,6 +61,7 @@ function AddComment({ post }) {
             placeholder="Add a comment..."
             value={comment_content}
             onChange={(e) => setComment_content(e.target.value)}
+            required
           />
         </label>
 
