@@ -8,3 +8,9 @@ body {
   padding-top: 52px;
   margin: 0px;
 }
+
+/* @media (max-width: 768px) {
+  #root {
+    width: 100%;
+  }
+} */

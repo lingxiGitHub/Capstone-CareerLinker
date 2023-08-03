@@ -21,6 +21,21 @@
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  div.create-post-container {
+    width: auto;
+  }
+
+  .profile-photo {
+    display: none;
+  }
+
+  button.start-a-post-button {
+    width: 350px;
+    margin: 0;
+  }
+}
+
 .the-line {
   display: flex;
   width: 540px;
@@ -265,7 +280,6 @@
   background-color: lightgray;
 }
 
-
 .grow-network {
   display: flex;
   flex-direction: column;
@@ -290,4 +304,24 @@
 
 svg.mercado-match {
   margin-right: 3px;
+}
+
+@media (max-width: 768px) {
+  .home-post-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-card {
+    display: none;
+  }
+
+  .right-right {
+    display: none;
+  }
+
+  .home-middle {
+    display: block;
+    width: 100%;
+  }
 }

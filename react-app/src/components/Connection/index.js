@@ -67,7 +67,7 @@ export default function ConnectionComponent() {
                     dispatch(deleteConnectionThunk(connection.user_id));
                   }}
                 >
-                  {removeConnectionSVG}{" "}
+                  {removeConnectionSVG}
                   <span className="remove-word">Remove</span>
                 </button>
               </div>

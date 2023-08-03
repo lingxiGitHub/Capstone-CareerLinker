@@ -164,7 +164,7 @@ function Post({ post }) {
           </div>
         )}
 
-        <div>
+        <div className="show-comment-div">
           <ShowComment postComments={postComments} post={post} />
         </div>
       </div>

@@ -91,7 +91,7 @@ function Navigation({ isLoaded }) {
           <li>
             <NavLink className="nav-link" exact to="/mynetwork">
               {networkSVG}
-              <div className="header-font">My NetWork</div>
+              <div className="header-font">NetWork</div>
             </NavLink>
           </li>
         </>

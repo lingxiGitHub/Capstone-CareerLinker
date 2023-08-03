@@ -43,6 +43,16 @@
   margin: 5px;
 }
 
+@media (max-width: 768px) {
+
+
+  img.comment-profile-photo {
+    width: 28px;
+    height: 28px;
+    margin: 3px 3px 3px 0px;
+  }
+}
+
 .comment-user-name {
   font-size: 14px;
   font-weight: 600;

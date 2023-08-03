@@ -12,6 +12,47 @@
   overflow-y: scroll;
 }
 
+@media (max-width: 768px) {
+  div.connections-container {
+    background-color: white;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 8px;
+  }
+
+  div.connection-count-top {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+  }
+
+  ul.connection-ul {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  li.indi-connection-li {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+  }
+
+
+}
+
 .connection-hr {
   width: 600px;
 }

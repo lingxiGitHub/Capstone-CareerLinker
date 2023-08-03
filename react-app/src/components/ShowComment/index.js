@@ -102,7 +102,7 @@ function ShowComment({ post, postComments }) {
                       {comment.comment_user_title}
                     </div>
                   </div>
-                  {sessionUser && comment.comment_user_id == sessionUser.id && (
+                  {sessionUser && comment.comment_user_id === sessionUser.id && (
                     <CommentThreeDots post={post} comment={comment} />
                   )}
                 </div>
