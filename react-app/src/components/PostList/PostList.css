@@ -26,10 +26,6 @@
     width: auto;
   }
 
-  .profile-photo {
-    display: none;
-  }
-
   button.start-a-post-button {
     width: 350px;
     margin: 0;
