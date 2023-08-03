@@ -77,7 +77,7 @@ export const deleteLikeThunk =
 
 //reducer
 
-const initialState = {};
+const initialState = { allLikes: {} };
 
 export default function likeReducer(state = initialState, action) {
   switch (action.type) {

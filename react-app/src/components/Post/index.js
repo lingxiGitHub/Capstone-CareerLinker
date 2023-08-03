@@ -22,9 +22,11 @@ function Post({ post }) {
   );
 
   //for likes
-  const isLikedStatusObj = useSelector(
-    (state) => state.likes.allLikes[post.post_id]
-  );
+  const isLikedStatusObj = useSelector((state) => {
+    if (state.likes.alllikes) {
+      return state.likes.allLikes[post.post_id];
+    }
+  });
 
   const isLikedStatus = isLikedStatusObj ? Object.values(isLikedStatusObj) : [];
 
@@ -99,10 +101,11 @@ function Post({ post }) {
               src={post.profile_photo}
               alt=""
             ></img>
+            
             <div className="name-and-title">
               <div className="post-user-name">
                 {post.post_user_first_name} {post.post_user_last_name}
-                {isConnected && sessionUser.id != post.post_user_id && (
+                {sessionUser && isConnected && sessionUser.id !== post.post_user_id && (
                   <span className="connected-or-not"> · 1st</span>
                 )}
               </div>
@@ -111,11 +114,11 @@ function Post({ post }) {
             </div>
           </div>
 
-          {sessionUser && sessionUser.id == post.post_user_id && (
+          {sessionUser && sessionUser?.id === post.post_user_id && (
             <ThreeDots post={post} />
           )}
 
-          {!isConnected && sessionUser.id != post.post_user_id && (
+          {sessionUser && !isConnected && sessionUser.id !== post.post_user_id && (
             <button
               className="connect-in-post"
               onClick={async () => {

@@ -7,6 +7,7 @@ import SignupFormModal from "../SignupFormModal";
 import { login } from "../../store/session";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
+import "./ProfileButoon.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -44,58 +45,39 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
-      <button className="profile-button" onClick={openMenu}>
-        {user ? (
-          <img className="login-photo" src={user.profile_photo} alt=""></img>
-        ) : (
-          <i className="fas fa-user-circle" />
-        )}
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <div>
-            <li className="top-drop">{user.username}</li>
-            <li className="mid-drop">{user.email}</li>
-            <li className="bottom-drop">
-              <button onClick={handleLogout}>
-                <span className="sign-out-text">Sign Out</span>
-              </button>
-            </li>
-          </div>
-        ) : (
-          <div>
-            <li className="top-drop">
-              <OpenModalButton
-                buttonText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-            </li>
+    <li>
+      {user ? (
+        <button onClick={handleLogout} className="join-in-button">
+          <span className="sign-out-text">Sign Out</span>
+        </button>
+      ) : (
+        <div className="three-top-buttons">
+          <OpenModalButton
+            className="join-in-button"
+            buttonText="Join Now"
+            onItemClick={closeMenu}
+            modalComponent={<SignupFormModal />}
+          />
 
-            <li className="mid-drop">
-              <OpenModalButton
-                buttonText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </li>
+          <OpenModalButton
+            className="sign-in-button-top"
+            buttonText="Sign In"
+            onItemClick={closeMenu}
+            modalComponent={<LoginFormModal />}
+          />
 
-            <li className="bottom-drop">
-              <button
-                className="demo-button-drop-down"
-                onClick={() => {
-                  dispatch(login("demo@aa.io", "password"));
-                  closeModal();
-                }}
-              >
-                Demo User
-              </button>
-            </li>
-          </div>
-        )}
-      </ul>
-    </>
+          <button
+            className="sign-in-button-top"
+            onClick={() => {
+              dispatch(login("demo@aa.io", "password"));
+              closeModal();
+            }}
+          >
+            Demo User
+          </button>
+        </div>
+      )}
+    </li>
   );
 }
 
