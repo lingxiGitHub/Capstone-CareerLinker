@@ -160,6 +160,10 @@ div.log-in-drop {
     align-items: center;
   }
 
+  ul.header {
+
+  }
+
   div.header-font {
     font-size: 14px;
     width: auto;

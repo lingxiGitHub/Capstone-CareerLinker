@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <li>
+    <>
       {user ? (
         <button onClick={handleLogout} className="join-in-button">
           <span className="sign-out-text">Sign Out</span>
@@ -77,7 +77,7 @@ function ProfileButton({ user }) {
           </button>
         </div>
       )}
-    </li>
+    </>
   );
 }
 

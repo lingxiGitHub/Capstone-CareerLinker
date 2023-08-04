@@ -51,7 +51,7 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="sign-up-form-modal">
       <h1 className="sign-up-word">Make the most of your professional life</h1>
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <ul>
@@ -114,7 +114,7 @@ function SignupFormModal() {
           Sign Up
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

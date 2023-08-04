@@ -8,13 +8,35 @@
   width: 100vw;
 }
 
-@media (max-width: 1250px) {
+.two-image-container {
+  display: none;
+}
+
+.splash-container-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
   .splash-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     background-color: white;
+  }
+
+  .splash-container-right {
+    display: none;
+  }
+
+  .two-image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center;
   }
 }
 

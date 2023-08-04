@@ -7,11 +7,11 @@
   color: rgba(0, 0, 0, 0.6);
   row-gap: 20px;
 }
+
 .sign-up-input {
   width: 600px;
   margin: 30px;
 }
-
 
 .sign-up-submit-button {
   background-color: rgb(10, 102, 194);
@@ -34,4 +34,37 @@
   font-size: 32px;
   font-weight: 400;
   margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .sign-up-form-modal {
+    width: 350px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+  }
+  .sign-up-form {
+    width: auto;
+  }
+
+  .sign-up-input {
+    width: auto;
+    margin: 10px;
+    height: 40px;
+  }
+
+  .sign-up-input {
+    width: 250px;
+  }
+
+  .sign-up-submit-button {
+    width: 100px;
+  }
+
+  .sign-up-word {
+    display: none;
+  }
 }

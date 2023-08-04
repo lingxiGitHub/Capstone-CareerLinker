@@ -51,6 +51,20 @@
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  .log-in-modal {
+    width: 350px;
+  }
+
+  .log-on-form input {
+    width: 250px;
+  }
+
+  .log-in-button {
+    width: 250px;
+  }
+}
+
 .log-in-p {
   font-size: 14px;
   font-weight: 400;
