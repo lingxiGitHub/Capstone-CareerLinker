@@ -16,10 +16,6 @@ function ProfileButton({ user }) {
   const { closeModal } = useModal();
   const history = useHistory();
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -41,7 +37,7 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+
   const closeMenu = () => setShowMenu(false);
 
   return (
@@ -71,6 +67,7 @@ function ProfileButton({ user }) {
             onClick={() => {
               dispatch(login("demo@aa.io", "password"));
               closeModal();
+              history.push("/home");
             }}
           >
             Demo User

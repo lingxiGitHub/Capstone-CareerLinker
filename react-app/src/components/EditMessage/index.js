@@ -7,10 +7,8 @@ import { getSingleMessage, updateMessageThunk } from "../../store/message";
 
 export default function EditMessageComponent({ message, conversationId }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
-
   const [message_content, setMessage_content] = useState(
     message.message_content
   );

@@ -19,7 +19,7 @@ export default function NotFound() {
           >
             Help Center
           </a>
-        </span>{" "}
+        </span>
         for more information
       </p>
       <button
@@ -28,7 +28,7 @@ export default function NotFound() {
       >
         Go to your feed
       </button>
-      <img src={notFoundImg}></img>
+      <img src={notFoundImg} alt=""></img>
     </div>
   );
 }

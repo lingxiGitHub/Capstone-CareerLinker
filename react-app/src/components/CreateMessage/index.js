@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addMessageThunk,
-  getAllMessages,
   getSingleMessage,
 } from "../../store/message";
 import { useHistory } from "react-router-dom";

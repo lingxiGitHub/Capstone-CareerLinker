@@ -1,5 +1,4 @@
 import "./EditComment.css";
-
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -7,11 +6,11 @@ import { useHistory } from "react-router-dom";
 import { updateCommentThunk } from "../../store/comment";
 import { getAllComments } from "../../store/comment";
 import { getAllPosts } from "../../store/post";
+
 function EditComment({ post, comment }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [errors, setErrors] = useState([]);
-
   const [comment_content, setComment_content] = useState(
     comment.comment_content
   );

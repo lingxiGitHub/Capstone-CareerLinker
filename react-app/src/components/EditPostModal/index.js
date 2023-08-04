@@ -8,10 +8,8 @@ import { useHistory } from "react-router-dom";
 function EditPostModal({ post }) {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const [post_content, setPost_content] = useState(post.post_content);
   const [post_photo, setPost_photo] = useState(post.post_photo);
-
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
