@@ -41,28 +41,26 @@ function LoginFormPage() {
           ))}
         </ul>
         <div className="splash-log-in">
-         
-            <label className="splash-label">
-              Email
-              <input
-                className="log-in-input"
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </label>
-            <label className="splash-label">
-              Password
-              <input
-                className="log-in-input"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </label>
-        
+          <label className="splash-label">
+            Email
+            <input
+              className="log-in-input"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label className="splash-label">
+            Password
+            <input
+              className="log-in-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
 
           <button className="sign-in-button" type="submit">
             Sign In
@@ -88,7 +86,7 @@ function LoginFormPage() {
       </div>
 
       <OpenModalButton
-        buttonText="New to Linkedin? Join now"
+        buttonText="New to CareerLinker? Join now"
         className="splash-sign-up"
         modalComponent={<SignupFormModal />}
       />
