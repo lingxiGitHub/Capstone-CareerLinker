@@ -176,7 +176,7 @@ export default function NewsRight() {
         <div className="footer-linkedin-small">
           {littleLinkedinSVG}
 
-          <span className="corp">LinkedLing Corporation 2023</span>
+          <span className="corp">CareerLinker Corporation 2023</span>
         </div>
       </div>
     </div>

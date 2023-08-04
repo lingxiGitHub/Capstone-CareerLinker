@@ -1,9 +1,9 @@
-# LinkedLing
+# CareerLinker
 
 
 
 ## 🧐 Description
-LinkedLing is a website clone, inspired by LinkedIn. LinkedLing can be used for adding posts, leaving comments for posts, messaging and job posting.
+CareerLinker is a website clone, inspired by LinkedIn. CareerLinker can be used for adding posts, leaving comments for posts, messaging and job posting.
 
 [Live site](https://linkedling.onrender.com)
 
