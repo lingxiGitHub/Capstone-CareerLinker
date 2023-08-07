@@ -11,7 +11,7 @@ export default function ReactionModal({ myLikes }) {
         ></img>
         <span className="modal-like-span"> {myLikes.length} likes</span>
       </div>
-      <hr></hr>
+      <hr id="open-like-hr"></hr>
       <ul className="liked-users-list">
         {myLikes.map((user) => {
           return (

@@ -15,6 +15,7 @@
 }
 
 .create-post-section {
+  width: 300px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,12 +24,20 @@
 
 @media (max-width: 768px) {
   div.create-post-container {
-    width: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
   button.start-a-post-button {
-    width: 350px;
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .create-post-section {
+    width: 90%;
   }
 }
 
@@ -320,8 +329,11 @@ svg.mercado-match {
     display: block;
     width: 100%;
   }
-  /* div.create-post-container {
+  hr.the-line {
     width: 100%;
-    padding: 20px;
-  } */
+  }
+
+  .create-post-container {
+    display: block;
+  }
 }

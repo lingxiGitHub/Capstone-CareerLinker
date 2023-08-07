@@ -20,12 +20,7 @@
   background-color: white;
 }
 
-@media (max-width: 768px) {
-  .indi-post-area {
-    width: 100%; /* Make the div span the full width of the screen */
-    margin: 0 auto; /* Center the div horizontally */
-  }
-}
+
 
 .indi-post-area:hover {
   box-shadow: 0 0 10px #0000001a;
@@ -49,19 +44,7 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
-@media (max-width: 768px) {
-  .post-user-title {
-    width: 200px; /* Make the div span the full width of the screen */
-    margin: 0; /* Remove any margin to ensure it occupies the full width */
-      font-size: 10px;
-  }
 
-  img.profile-photo {
-    width: 40px;
-    height: 40px;
-    margin: 5px 5px 5px 0px;
-  }
-}
 
 .profile-photo {
   width: 48px;
@@ -158,8 +141,6 @@
   font-weight: 400;
   padding: 6px 16px 6px 16px;
   border-radius: 16px;
-  /* width: 114px;
-    height: 28px; */
   display: flex;
 }
 
@@ -184,5 +165,30 @@
   .comment-content {
     width: 95%; /* Make the div span the full width of the screen */
     margin: 0; /* Remove any margin to ensure it occupies the full width */
+  }
+
+  .indi-post-area {
+    width: 100%; /* Make the div span the full width of the screen */
+  
+  }
+
+  .post-top-section {
+    width: 300px;
+  }
+
+  .post-user-title {
+    width: 200px; /* Make the div span the full width of the screen */
+    margin: 0; /* Remove any margin to ensure it occupies the full width */
+    font-size: 10px;
+  }
+
+  img.profile-photo {
+    width: 40px;
+    height: 40px;
+    margin: 5px 5px 5px 0px;
+  }
+
+  .connect-in-post{
+    font-size: 12px;
   }
 }

@@ -10,7 +10,8 @@ def seed_posts():
     p2 = Post(
         user_id='2', 
         users=[demo,bobbie,hazel],
-        post_content="I am excited to share with you that I have recently completed a new certification in ABC Company.This certification has expanded my knowledge and skills in computer science, which I am eager to apply to my work.I want to give a special thank you to DEF institution. The program was rigorous, but the instructors were knowledgeable and supportive throughout the process.", post_photo="https://media.licdn.com/dms/image/C5622AQFRWMU6ulYmZA/feedshare-shrink_800/0/1675683501981?e=1680134400&v=beta&t=OsmLsRtA5olXihBVD-NgGJWxLwqZiiQIuzXSfRNPwy4")
+        post_content="I am excited to share with you that I have recently completed a new certification in ABC Company.This certification has expanded my knowledge and skills in computer science, which I am eager to apply to my work.I want to give a special thank you to DEF institution. The program was rigorous, but the instructors were knowledgeable and supportive throughout the process.", 
+        post_photo="https://images.shiksha.ws/mediadata/images/articles/businessman-hand-chooses-it-wording-on-interface-screen-picture-id644048362.jpg")
     p3 = Post(
         user_id='3', 
         users=[hazel,bobbie],

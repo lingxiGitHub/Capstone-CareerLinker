@@ -23,9 +23,7 @@ function Post({ post }) {
 
   //for likes
   const isLikedStatusObj = useSelector((state) => {
-    if (state.likes.alllikes) {
-      return state.likes.allLikes[post.post_id];
-    }
+    return state.likes.allLikes[post.post_id];
   });
 
   const isLikedStatus = isLikedStatusObj ? Object.values(isLikedStatusObj) : [];
@@ -65,7 +63,7 @@ function Post({ post }) {
     const user_id = +sessionUser.id;
     const post_id = +post.post_id;
 
-    if (liked == false) {
+    if (liked === false) {
       await dispatch(addLikeThunk({ user_id, post_id }));
       setLiked(true);
     } else {
@@ -101,13 +99,15 @@ function Post({ post }) {
               src={post.profile_photo}
               alt=""
             ></img>
-            
+
             <div className="name-and-title">
               <div className="post-user-name">
                 {post.post_user_first_name} {post.post_user_last_name}
-                {sessionUser && isConnected && sessionUser.id !== post.post_user_id && (
-                  <span className="connected-or-not"> · 1st</span>
-                )}
+                {sessionUser &&
+                  isConnected &&
+                  sessionUser.id !== post.post_user_id && (
+                    <span className="connected-or-not"> · 1st</span>
+                  )}
               </div>
 
               <div className="post-user-title">{post.title}</div>
@@ -118,17 +118,19 @@ function Post({ post }) {
             <ThreeDots post={post} />
           )}
 
-          {sessionUser && !isConnected && sessionUser.id !== post.post_user_id && (
-            <button
-              className="connect-in-post"
-              onClick={async () => {
-                await dispatch(addConnectionThunk(post.post_user_id));
-                await dispatch(getAllConnections());
-              }}
-            >
-              {connectSVG} Connect
-            </button>
-          )}
+          {sessionUser &&
+            !isConnected &&
+            sessionUser.id !== post.post_user_id && (
+              <button
+                className="connect-in-post"
+                onClick={async () => {
+                  await dispatch(addConnectionThunk(post.post_user_id));
+                  await dispatch(getAllConnections());
+                }}
+              >
+                {connectSVG} Connect
+              </button>
+            )}
         </div>
 
         <span className="post-content">{post.post_content}</span>

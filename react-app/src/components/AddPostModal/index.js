@@ -77,26 +77,6 @@ function AddPostModal() {
           required
         />
 
-        {/* <label>
-          <span className="photo-url">photo url (optional)</span>
-          <input
-            className="photo-url-place"
-            type="text"
-            value={post_photo}
-            onChange={(e) => {
-              setPhotoError(false);
-              setPost_photo(e.target.value);
-            }}
-          />
-
-          <img
-            alt=""
-            className="hidden-broken-image"
-            src={post_photo}
-            onError={(e) => setPhotoError(true)}
-          />
-        </label> */}
-
         <Button id="post-submit-button" type="submit" variant="contained">
           Post
         </Button>

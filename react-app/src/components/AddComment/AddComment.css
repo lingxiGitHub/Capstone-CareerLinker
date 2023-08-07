@@ -28,3 +28,9 @@
   margin-top: 45px;
   margin-bottom: 45px;
 }
+
+@media (max-width: 768px) {
+  .comment-text-area {
+    width: 80%;
+  }
+}

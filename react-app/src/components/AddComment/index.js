@@ -53,16 +53,14 @@ function AddComment({ post }) {
           ))}
         </ul>
 
-        <label>
-          <input
-            className="comment-text-area"
-            type="text"
-            placeholder="Add a comment..."
-            value={comment_content}
-            onChange={(e) => setComment_content(e.target.value)}
-            required
-          />
-        </label>
+        <input
+          className="comment-text-area"
+          type="text"
+          placeholder="Add a comment..."
+          value={comment_content}
+          onChange={(e) => setComment_content(e.target.value)}
+          required
+        />
 
         <Button id="comment-submit-button" type="submit" variant="contained">
           Comment
