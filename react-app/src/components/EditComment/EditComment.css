@@ -8,20 +8,19 @@
   height: 100px;
   border-radius: 5px;
   margin: 3px;
-  background-color: rgb(243, 242, 239);
+  background-color: transparent;
   border-radius: 8px;
   border: 0px solid rgba(0, 0, 0, 0.6);
   white-space: normal;
-
   text-overflow: ellipsis;
   overflow-wrap: break-word;
   border: none;
-  outline: none;
   resize: none;
+  padding: 15px;
 }
 
 .update-comment-form button {
-  background-color: rgb(1, 70, 138);
+  background-color: rgb(10,102,194);
   color: white;
   border-radius: 16px;
   border-color: white;
@@ -31,7 +30,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 45px;
-  margin-bottom: 45px;
+  margin-bottom: 30px;
 }
 
 .update-comment-form span {
@@ -43,4 +42,18 @@
 .edit-comment-text {
   display: flex;
   justify-content: center;
+}
+
+.update-comment-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  textarea.edit-comment-textarea {
+    width: 80%;
+    height: 200px;
+  }
 }

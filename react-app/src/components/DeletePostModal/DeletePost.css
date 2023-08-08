@@ -18,3 +18,21 @@
   margin-right: auto;
   text-align: center;
 }
+
+.delete-post-confirmation-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .delete-post-confirmation-form {
+    width: 100%;
+  }
+
+  .confirm {
+    width: 100%;
+    margin-top: 40px;
+  }
+}

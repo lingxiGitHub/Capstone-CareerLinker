@@ -11,14 +11,13 @@
   background-color: rgb(243, 242, 239);
   border-radius: 8px;
   border: 0px solid rgba(0, 0, 0, 0.6);
-
   white-space: normal;
-
   text-overflow: ellipsis;
   overflow-wrap: break-word;
   border: none;
-  outline: none;
   resize: none;
+  background-color: transparent;
+  padding: 20px;
 }
 
 .update-post-form input {
@@ -51,4 +50,10 @@
 .edit-post-text {
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  textarea.edit-post-textarea {
+    width: 82%;
+  }
 }

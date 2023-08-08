@@ -25,11 +25,11 @@ export default function DeleteCommentComponent({ post, comment }) {
   };
 
   return (
-    <>
+    <form className="delete-comment-confirmation-form">
       <h3 className="confirm-delete-comment">Confirm Delete?</h3>
       <button className="yes-delete-comment-button" onClick={handleDelete}>
         Yes
       </button>
-    </>
+    </form>
   );
 }

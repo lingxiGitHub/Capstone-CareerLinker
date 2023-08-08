@@ -55,16 +55,17 @@ function EditComment({ post, comment }) {
           ))}
         </ul>
 
-        <label>
+  
           <textarea
             type="text"
+            className="edit-comment-textarea"
             value={comment_content}
             onChange={(e) => setComment_content(e.target.value)}
           />
-        </label>
+ 
 
         <button className="update-comment-button" type="submit">
-          Update
+          save
         </button>
       </form>
     </>

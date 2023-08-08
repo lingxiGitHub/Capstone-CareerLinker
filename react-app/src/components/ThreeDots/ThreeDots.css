@@ -4,7 +4,6 @@
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
-  display: block;
   fill: rgba(0, 0, 0, 0.6);
   font-size: 14px;
   font-weight: 600;
@@ -23,32 +22,25 @@
   overflow: hidden;
 }
 
-.three-dots-drop-down {
-  position: relative;
-}
-
 .three-dots-dropdown {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   right: 0;
   background-color: white;
   border: 1px solid;
   border-radius: 10px;
   border-color: rgba(0, 0, 0, 0.9);
-
   list-style-type: none;
   padding: 0;
   top: 15px;
   z-index: 1;
 }
 
-.hidden {
-  display: none;
-}
-
 .edit-delete-button {
-  background-color: white;
+  background-color: transparent;
   border-color: rgba(0, 0, 0, 0.9);
   border-style: none;
   border-radius: 8px;
@@ -60,20 +52,17 @@
   font-weight: 400;
   left: -315px;
   line-height: 24px;
-
   padding-bottom: 4px;
-
   text-align: right;
   top: 40px;
   right: -8px;
-
   width: 100px;
 }
 
-.edit-delete-button:hover {
-  background-color: gray;
+button.edit-delete-button:hover {
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
-.three-dots-li {
-  list-style-type: none;
+#basic-button {
+  color: rgb(102, 102, 102);
 }

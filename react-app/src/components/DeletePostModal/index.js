@@ -20,7 +20,7 @@ export default function DeletePost({ post }) {
 
   return (
     <>
-      <form>
+      <form className="delete-post-confirmation-form">
         <h3 className="confirm">Confirm Delete?</h3>
         <button className="yes-button" onClick={handleDelete}>
           Yes

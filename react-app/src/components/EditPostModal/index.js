@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { updatePostThunk, getAllPosts } from "../../store/post";
 import { useHistory } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
 function EditPostModal({ post }) {
   const dispatch = useDispatch();
@@ -49,8 +50,8 @@ function EditPostModal({ post }) {
         </ul>
 
         <label>
-          <span>Post</span>
           <textarea
+            className="edit-post-textarea"
             type="text"
             value={post_content}
             onChange={(e) => setPost_content(e.target.value)}
@@ -58,17 +59,8 @@ function EditPostModal({ post }) {
           />
         </label>
 
-        <label>
-          <span>Post Photo</span>
-          <input
-            type="text"
-            value={post_photo}
-            onChange={(e) => setPost_photo(e.target.value)}
-          />
-        </label>
-
-        <button className="update-button" type="submit">
-          Update
+        <button id="update-button" type="submit">
+          Save
         </button>
       </form>
     </>
