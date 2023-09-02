@@ -1,83 +1,59 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-# ---- many to many ----
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import relationship
-# from sqlalchemy.schema import Column, ForeignKey, Table
-# from sqlalchemy.types import Integer, String
-# ---- many to many ----
 
 
 import os
+
 environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get('SCHEMA')
+SCHEMA = os.environ.get("SCHEMA")
 
-#join table 
-user_conversations=db.Table(
-    "user_conversations",
-    db.Model.metadata,
-    db.Column('users', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
-    db.Column('conversations', db.Integer, db.ForeignKey(add_prefix_for_prod('conversations.id')), primary_key=True)
-)
 
-if environment == "production":
-    user_conversations.schema = SCHEMA
-
-#join table
-likes=db.Table(
+# join table
+likes = db.Table(
     "likes",
     db.Model.metadata,
-    db.Column('users', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
-    db.Column('posts', db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')), primary_key=True)
+    db.Column(
+        "users",
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("users.id")),
+        primary_key=True,
+    ),
+    db.Column(
+        "posts",
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("posts.id")),
+        primary_key=True,
+    ),
 )
 
 if environment == "production":
     likes.schema = SCHEMA
 
-####
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = "users"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40),nullable=False, unique=True)
+    username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(20), nullable=False)
     last_name = db.Column(db.String(20), nullable=False)
-    profile_photo=db.Column(db.String(500))
-    title=db.Column(db.String(100))
+    profile_photo = db.Column(db.String(500))
+    title = db.Column(db.String(100))
 
-# user to post, comment, message, connection: one to many
+    # user to post, comment, connection: one to many
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
-    messages_users = db.relationship("Message", back_populates="user")
-    # connections= db.relationship("Connection", back_populates="user")
-
-
-    #user to conversation: many to many
-
-    conversations=db.relationship(
-        "Conversation",
-        secondary=user_conversations,
-        back_populates="users",
-        cascade="all, delete"
-    )
 
     # user to posts - likes : many to many
-
-    likes=db.relationship(
-        'Post',
-        secondary=likes,
-        back_populates="users",
-        cascade="all, delete"
-        )
-    
-
+    likes = db.relationship(
+        "Post", secondary=likes, back_populates="users", cascade="all, delete"
+    )
 
     @property
     def password(self):
@@ -92,11 +68,11 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'username': self.username,
-            'email': self.email,
-            'last_name': self.last_name,
-            'first_name': self.first_name,
-            "profile_photo":self.profile_photo,
-            "title":self.title
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            "last_name": self.last_name,
+            "first_name": self.first_name,
+            "profile_photo": self.profile_photo,
+            "title": self.title,
         }

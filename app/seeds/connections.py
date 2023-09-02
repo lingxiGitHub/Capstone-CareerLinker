@@ -1,48 +1,74 @@
-from app.models import db, User, Connection,environment, SCHEMA
-from .users import demo, marnie, bobbie, tommy, eleanor, james, hazel, ellis, audrey, olive, william, charlie, ivy, ella, adrian
-
-connection1=Connection(
-    user_id=1, connected_user_id=2,
-    # status="accepted"
+from app.models import db, User, Connection, environment, SCHEMA
+from .users import (
+    demo,
+    marnie,
+    bobbie,
+    tommy,
+    eleanor,
+    james,
+    hazel,
+    ellis,
+    audrey,
+    olive,
+    william,
+    charlie,
+    ivy,
+    ella,
+    adrian,
 )
 
-connection2=Connection(
-    user_id=1, connected_user_id=3,
-    # status="pending"
+connection1 = Connection(
+    user_id=1,
+    connected_user_id=2,
 )
 
-connection3=Connection(
-    user_id=2, connected_user_id=3,
-    # status="rejected"
+connection2 = Connection(
+    user_id=1,
+    connected_user_id=3,
 )
 
-connection4=Connection(
-    user_id=1, connected_user_id=4, 
-    # status="accepted"
+connection3 = Connection(
+    user_id=2,
+    connected_user_id=3,
 )
 
-connection5=Connection(
-    user_id=2, connected_user_id=4,
-    # status="accepted"
+connection4 = Connection(
+    user_id=1,
+    connected_user_id=4,
 )
 
-connection6=Connection(
-    user_id=3, connected_user_id=4,
-    # status="accepted"
+connection5 = Connection(
+    user_id=2,
+    connected_user_id=4,
 )
+
+connection6 = Connection(
+    user_id=3,
+    connected_user_id=4,
+)
+
 
 def seed_connections():
+    connection_list = [
+        connection1,
+        connection2,
+        connection3,
+        connection4,
+        connection5,
+        connection6,
+    ]
 
-    connection_list=[connection1,connection2,connection3,connection4,connection5,connection6]
-
-    add_connections=[db.session.add(connection) for connection in connection_list]
+    add_connections = [db.session.add(connection) for connection in connection_list]
 
     db.session.commit()
 
+
 def undo_connections():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.connections RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.connections RESTART IDENTITY CASCADE;"
+        )
     else:
         db.session.execute("DELETE FROM connections")
-        
-    db.session.commit()   
+
+    db.session.commit()

@@ -3,39 +3,42 @@ from sqlalchemy.sql import func
 from .user import likes
 
 import os
+
 environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get('SCHEMA')
+SCHEMA = os.environ.get("SCHEMA")
+
 
 class Post(db.Model):
-    __tablename__ = 'posts'
+    __tablename__ = "posts"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')),nullable=False)
+    user_id = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
+    )
     post_content = db.Column(db.String(1000), nullable=False)
     post_photo = db.Column(db.String(1000))
     created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
 
     user = db.relationship("User", back_populates="posts")
-    comments = db.relationship("Comment", back_populates="post", cascade="all, delete-orphan")
+    comments = db.relationship(
+        "Comment", back_populates="post", cascade="all, delete-orphan"
+    )
 
-    #user to post - likes :many to many
+    # user to post - likes :many to many
     users = db.relationship(
-        "User",
-        secondary=likes,
-        back_populates="likes",
-        cascade="all, delete"
+        "User", secondary=likes, back_populates="likes", cascade="all, delete"
     )
 
     def to_dict(self):
         return {
-            'id': self.id,
-            "user_id" : self.user_id,
-            "post_content" : self.post_content,
-            "post_photo":self.post_photo,
-            "created_at":self.created_at,
-            "updated_at":self.updated_at,
+            "id": self.id,
+            "user_id": self.user_id,
+            "post_content": self.post_content,
+            "post_photo": self.post_photo,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
         }
