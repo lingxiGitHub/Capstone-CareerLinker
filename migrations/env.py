@@ -89,6 +89,9 @@ def run_migrations_online():
         # Create a schema (only in production)
         if environment == "production":
             connection.execute(sa.text(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}"))
+            # SQLAlchemy 2 autobegins a transaction here; commit it so Alembic
+            # opens (and commits) its own instead of joining this one.
+            connection.commit()
 
         # Set search path to your schema (only in production)
         with context.begin_transaction():
