@@ -1,0 +1,39 @@
+/* CareerLinker design tokens — modeled on LinkedIn's visual language. */
+:root {
+  --bg: #f4f2ee;
+  --surface: #ffffff;
+  --surface-hover: rgba(0, 0, 0, 0.08);
+  --surface-muted: #f9fafb;
+  --border: rgba(140, 140, 140, 0.2);
+  --border-strong: rgba(0, 0, 0, 0.6);
+  --divider: #e8e8e8;
+
+  --text: rgba(0, 0, 0, 0.9);
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --text-tertiary: rgba(0, 0, 0, 0.45);
+
+  --brand: #0a66c2;
+  --brand-hover: #004182;
+  --brand-tint: #e8f3ff;
+  --brand-tint-strong: #d0e8ff;
+  --success: #057642;
+  --success-tint: #e6f4ea;
+  --danger: #b24020;
+  --notify: #cb112d;
+  --premium: #915907;
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-pill: 9999px;
+
+  --shadow-card: 0 0 0 1px var(--border);
+  --shadow-pop: 0 0 0 1px rgba(140, 140, 140, 0.2), 0 6px 9px rgba(0, 0, 0, 0.2);
+
+  --nav-h: 52px;
+  --container: 1128px;
+
+  --font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+}

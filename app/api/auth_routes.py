@@ -1,87 +1,85 @@
-from flask import Blueprint, jsonify, session, request
+import re
+
+from flask import Blueprint
+from flask_login import current_user, login_user, logout_user
+
 from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user, login_required
+
+from .utils import ApiError, body, require_text
 
 auth_routes = Blueprint("auth", __name__)
 
-
-def validation_errors_to_error_messages(validation_errors):
-    """
-    Simple function that turns the WTForms validation errors into a simple list
-    """
-    errorMessages = []
-    for field in validation_errors:
-        for error in validation_errors[field]:
-            errorMessages.append(f"{field} : {error}")
-    return errorMessages
+EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
 @auth_routes.route("/")
 def authenticate():
-    """
-    Authenticates a user.
-    """
+    """Return the logged-in user, or null when signed out."""
     if current_user.is_authenticated:
-        return current_user.to_dict()
-    return {"errors": ["Unauthorized"]}
+        return {"user": current_user.to_dict()}
+    return {"user": None}
 
 
 @auth_routes.route("/login", methods=["POST"])
 def login():
-    """
-    Logs a user in
-    """
-    form = LoginForm()
-    # Get the csrf_token from the request cookie and put it into the
-    # form manually to validate_on_submit can be used
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data["email"]).first()
-        login_user(user)
-        return user.to_dict()
-    return {"errors": ["Invalid credentials"]}, 401
+    data = body()
+    email = (data.get("email") or "").strip().lower()
+    password = data.get("password") or ""
+    user = User.query.filter(db.func.lower(User.email) == email).first()
+    if not user or not user.check_password(password):
+        raise ApiError(
+            "That email and password combination isn't right. Try again.",
+            401,
+            {"password": "Wrong email or password. Try again."},
+        )
+    login_user(user, remember=True)
+    return {"user": user.to_dict()}
 
 
-@auth_routes.route("/logout")
+@auth_routes.route("/demo", methods=["POST"])
+def demo():
+    user = User.query.filter_by(email="demo@careerlinker.io").first()
+    if not user:
+        raise ApiError("Demo user is not seeded", 404)
+    login_user(user, remember=True)
+    return {"user": user.to_dict()}
+
+
+@auth_routes.route("/logout", methods=["POST"])
 def logout():
-    """
-    Logs a user out
-    """
     logout_user()
-    return {"message": "User logged out"}
+    return {"user": None}
 
 
 @auth_routes.route("/signup", methods=["POST"])
 def sign_up():
-    """
-    Creates a new user and logs them in
-    """
-    form = SignUpForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        user = User(
-            username=form.data["username"],
-            email=form.data["email"],
-            password=form.data["password"],
-            first_name=form.data["first_name"],
-            last_name=form.data["last_name"],
-            profile_photo="https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM=",
-        )
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        return user.to_dict()
-    else:
+    data = body()
+    first_name = require_text(data, "first_name", "First name", 40)
+    last_name = require_text(data, "last_name", "Last name", 40)
+    email = require_text(data, "email", "Email", 255).lower()
+    password = data.get("password") or ""
 
-        return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+    if not EMAIL_RE.match(email):
+        raise ApiError("Please enter a valid email address", errors={"email": "Please enter a valid email address"})
+    if User.query.filter(db.func.lower(User.email) == email).first():
+        raise ApiError("Someone's already using that email", errors={"email": "Someone's already using that email"})
+    if len(password) < 6:
+        raise ApiError("Password must be 6 characters or more", errors={"password": "Password must be 6 characters or more"})
+
+    user = User(
+        email=email,
+        password=password,
+        first_name=first_name,
+        last_name=last_name,
+        headline=(data.get("headline") or "").strip() or None,
+        location=(data.get("location") or "").strip() or None,
+    )
+    db.session.add(user)
+    db.session.commit()
+    login_user(user, remember=True)
+    return {"user": user.to_dict()}, 201
 
 
 @auth_routes.route("/unauthorized")
 def unauthorized():
-    """
-    Returns unauthorized JSON when flask-login authentication fails
-    """
-    return {"errors": ["Unauthorized"]}, 401
+    raise ApiError("Please sign in to continue", 401)
