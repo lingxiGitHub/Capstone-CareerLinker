@@ -1,0 +1,252 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-h);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 16px;
+  gap: 8px;
+}
+
+@media (min-width: 1160px) {
+  .nav-inner {
+    padding: 0;
+  }
+}
+
+.nav-logo {
+  display: flex;
+}
+
+/* ---------- search ---------- */
+.nav-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 280px;
+  height: 34px;
+  background: #edf3f8;
+  border-radius: var(--r-sm);
+  transition: width 0.2s ease;
+}
+
+.nav-search.focused {
+  width: 380px;
+  box-shadow: 0 0 0 1px var(--text);
+  background: var(--surface);
+}
+
+.nav-search-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.nav-search input {
+  width: 100%;
+  height: 100%;
+  padding: 0 8px 0 36px;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+}
+
+.nav-search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.nav-typeahead {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: max(100%, 380px);
+  padding: 8px 0;
+  background: var(--surface);
+  border-radius: 0 0 var(--r-md) var(--r-md);
+  box-shadow: var(--shadow-pop);
+}
+
+.typeahead-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.typeahead-row:hover {
+  background: var(--surface-hover);
+}
+
+.typeahead-all {
+  color: var(--text-secondary);
+  border-top: 1px solid var(--divider);
+  margin-top: 4px;
+  padding-top: 12px;
+}
+
+/* ---------- items ---------- */
+.nav-items {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  margin-left: auto;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  height: 100%;
+  padding: 0 4px;
+  color: var(--text-secondary);
+}
+
+.nav-item:hover {
+  color: var(--text);
+}
+
+.nav-item.active,
+.nav-item.active-menu {
+  color: var(--text);
+}
+
+.nav-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--text);
+}
+
+.nav-icon {
+  position: relative;
+  display: flex;
+}
+
+.nav-badge {
+  position: absolute;
+  top: -4px;
+  right: -10px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--r-pill);
+  background: var(--notify);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+.nav-label {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.33;
+  white-space: nowrap;
+}
+
+/* ---------- me menu ---------- */
+.nav-me {
+  position: relative;
+  border-right: 1px solid var(--divider);
+  padding-right: 8px;
+}
+
+.me-dropdown {
+  position: absolute;
+  right: 8px;
+  top: calc(100% - 4px);
+  width: 264px;
+  padding-bottom: 4px;
+  background: var(--surface);
+  border-radius: var(--r-md) 0 var(--r-md) var(--r-md);
+  box-shadow: var(--shadow-pop);
+  animation: fade-in 0.1s;
+}
+
+.me-head {
+  display: flex;
+  gap: 8px;
+  padding: 12px 12px 4px;
+}
+
+.me-name {
+  font-size: 16px;
+}
+
+.me-actions {
+  padding: 8px 12px 12px;
+}
+
+.me-section {
+  padding: 8px 0;
+}
+
+.me-section-title {
+  padding: 4px 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.me-link {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  text-align: left;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.me-link:hover {
+  text-decoration: underline;
+}
+
+.me-signout {
+  padding: 10px 12px;
+}
+
+@media (max-width: 960px) {
+  .nav-label {
+    display: none;
+  }
+  .nav-item {
+    min-width: 56px;
+  }
+  .nav-search,
+  .nav-search.focused {
+    width: auto;
+    flex: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .nav-item {
+    min-width: 44px;
+  }
+  .nav-me {
+    border-right: 0;
+    padding-right: 0;
+  }
+}

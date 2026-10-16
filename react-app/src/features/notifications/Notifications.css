@@ -1,0 +1,174 @@
+.ntf-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr) 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  .ntf-layout {
+    grid-template-columns: 225px minmax(0, 1fr);
+  }
+  .ntf-right {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .ntf-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ntf-left {
+    display: none;
+  }
+}
+
+.ntf-left {
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+}
+
+.ntf-me {
+  text-align: center;
+}
+
+.ntf-me-banner {
+  height: 56px;
+  background: linear-gradient(135deg, #a0b4b7, #dbe7e9);
+  background-size: cover;
+  background-position: center;
+}
+
+.ntf-me-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.ntf-me-avatar {
+  margin-top: -38px;
+}
+
+.ntf-me-headline {
+  padding: 4px 12px 12px;
+}
+
+.ntf-me-settings {
+  padding: 12px;
+  text-align: left;
+}
+
+.ntf-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+}
+
+.ntf-pill {
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  color: var(--text-secondary);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.ntf-pill:hover {
+  background: var(--surface-hover);
+  box-shadow: inset 0 0 0 2px var(--border-strong);
+}
+
+.ntf-pill.active {
+  background: var(--success);
+  color: #fff;
+  box-shadow: none;
+}
+
+.ntf-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 12px 16px 24px;
+  border-bottom: 1px solid var(--divider);
+  cursor: pointer;
+}
+
+.ntf-item:last-child {
+  border-bottom: 0;
+}
+
+.ntf-item:hover {
+  background: var(--surface-hover);
+}
+
+.ntf-item.unread {
+  background: var(--brand-tint);
+}
+
+.ntf-item.unread:hover {
+  background: var(--brand-tint-strong);
+}
+
+.ntf-dot {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.ntf-avatar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ntf-badge {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+.ntf-body {
+  padding-top: 2px;
+}
+
+.ntf-text {
+  display: block;
+  font-size: 14px;
+  line-height: 1.43;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.ntf-cta {
+  margin-top: 8px;
+}
+
+.ntf-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.ntf-empty {
+  padding: 48px 24px;
+  text-align: center;
+}

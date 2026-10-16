@@ -1,0 +1,424 @@
+/* ---------- layout ---------- */
+.pf-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 804px) 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+.pf-main {
+  min-width: 0;
+}
+
+.pf-main > .card + .card {
+  margin-top: 8px;
+}
+
+.pf-aside > .card + .card {
+  margin-top: 8px;
+}
+
+@media (max-width: 1000px) {
+  .pf-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- intro ---------- */
+.pf-intro {
+  position: relative;
+}
+
+.pf-banner {
+  height: 200px;
+  background: linear-gradient(135deg, #a0b4b7 0%, #c8d6d8 45%, #dfe7e8 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+.pf-intro-body {
+  position: relative;
+  padding: 0 24px 24px;
+}
+
+.pf-avatar-wrap {
+  position: absolute;
+  top: -116px;
+  left: 20px;
+}
+
+.pf-edit-intro {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+}
+
+.pf-intro-grid {
+  display: flex;
+  gap: 24px;
+  padding-top: 64px;
+}
+
+.pf-intro-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.pf-name {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.pf-headline {
+  margin-top: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.pf-meta {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.pf-meta + .pf-meta {
+  margin-top: 4px;
+}
+
+.pf-orgs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 232px;
+  flex-shrink: 0;
+}
+
+.pf-orgs li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.pf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.pf-actions .menu-trigger {
+  width: auto;
+  min-width: 0;
+  height: auto;
+  border-radius: var(--r-pill);
+}
+
+.pf-actions .menu-trigger:hover {
+  background: none;
+}
+
+@media (max-width: 700px) {
+  .pf-banner {
+    height: 120px;
+  }
+  .pf-avatar-wrap {
+    top: -80px;
+  }
+  .pf-avatar-wrap .avatar {
+    width: 104px !important;
+    height: 104px !important;
+  }
+  .pf-intro-grid {
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 44px;
+  }
+  .pf-orgs {
+    width: auto;
+  }
+}
+
+/* ---------- sections ---------- */
+.pf-section {
+  padding: 20px 24px 12px;
+}
+
+.pf-section.pf-activity {
+  padding-bottom: 0;
+}
+
+.pf-section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pf-section-head .card-title {
+  line-height: 1.4;
+}
+
+.pf-seemore {
+  margin-bottom: 8px;
+}
+
+.pf-seemore-text {
+  white-space: pre-line;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pf-seemore-text[data-open="true"] {
+  display: block;
+}
+
+.pf-seemore-btn {
+  float: right;
+  margin-top: -20px;
+  padding-left: 24px;
+  background: linear-gradient(90deg, transparent, var(--surface) 20px);
+  color: var(--text-secondary);
+}
+
+.pf-seemore-btn:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+/* ---------- activity ---------- */
+.pf-activity-list {
+  margin: 0 -24px;
+}
+
+.pf-activity-item {
+  padding: 12px 24px;
+  border-top: 1px solid var(--divider);
+}
+
+.pf-activity-body {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.pf-activity-thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--r-sm);
+  flex-shrink: 0;
+}
+
+.pf-activity-stats {
+  margin-top: 8px;
+}
+
+.pf-reaction-stack {
+  display: inline-flex;
+}
+
+.pf-reaction-dot {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 9px;
+  box-shadow: 0 0 0 1.5px var(--surface);
+}
+
+.pf-reaction-dot + .pf-reaction-dot {
+  margin-left: -4px;
+}
+
+.pf-activity .show-all {
+  margin: 0;
+  width: calc(100% + 48px);
+  margin-left: -24px;
+}
+
+/* ---------- experience / education / skills ---------- */
+.pf-entry {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+}
+
+.pf-entry + .pf-entry {
+  border-top: 1px solid var(--divider);
+}
+
+.pf-entry-body {
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.pf-entry-title {
+  font-size: 16px;
+}
+
+.pf-entry-desc {
+  margin-top: 8px;
+}
+
+.pf-entry-delete {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.pf-entry:hover .pf-entry-delete,
+.pf-skill:hover .pf-entry-delete,
+.pf-entry-delete:focus-visible {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .pf-entry-delete {
+    opacity: 1;
+  }
+}
+
+.pf-skill {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  font-size: 16px;
+}
+
+.pf-skill + .pf-skill {
+  border-top: 1px solid var(--divider);
+}
+
+.pf-empty {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0 12px;
+}
+
+/* ---------- analytics ---------- */
+.pf-analytics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+.pf-analytic {
+  display: flex;
+  gap: 8px;
+  color: var(--text-secondary);
+}
+
+.pf-analytic .bold {
+  color: var(--text);
+}
+
+@media (max-width: 700px) {
+  .pf-analytics {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- aside ---------- */
+.pf-aside-card {
+  padding-top: 4px;
+}
+
+.pf-aside-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.pf-aside-title {
+  padding: 12px 16px 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pf-pymk {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.pf-pymk + .pf-pymk {
+  border-top: 1px solid var(--divider);
+}
+
+/* ---------- misc ---------- */
+.pf-unavailable {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.pf-unavailable h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.pf-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+
+@media (max-width: 560px) {
+  .pf-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pf-counter {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.pf-modal-section {
+  margin: 8px 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pf-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.pf-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--success);
+}
+
+.pf-banner-preview {
+  height: 72px;
+  margin-bottom: 8px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, #a0b4b7, #dfe7e8);
+  background-size: cover;
+  background-position: center;
+}
+
+.pf-contact-row {
+  display: flex;
+  gap: 16px;
+  padding: 8px 0;
+  color: var(--text-secondary);
+}
+
+.pf-contact-row .bold {
+  color: var(--text);
+}

@@ -1,203 +1,139 @@
-from flask import Blueprint, jsonify, request, session
-from flask_login import login_required, current_user
-from app.models import db
-from app.models import User
-from app.models import Post
+from flask import Blueprint
+from flask_login import current_user, login_required
 
-# from app.models import Like
-from app.forms import PostForm
+from app.models import REACTION_TYPES, Comment, Connection, Post, Reaction, db
 
-# from app.forms import LikeForm
-from app.models.user import likes
+from .utils import ApiError, body, forbid_unless, get_or_404, optional_text, pagination, require_text
 
 post_routes = Blueprint("posts", __name__)
 
 
-def validation_errors_to_error_messages(validation_errors):
-    """
-    Simple function that turns the WTForms validation errors into a simple list
-    """
-    errorMessages = []
-    for field in validation_errors:
-        for error in validation_errors[field]:
-            errorMessages.append(f"{field} : {error}")
-    return errorMessages
+def serialize(post):
+    return post.to_dict(current_user.id, Connection.connected_ids(current_user.id))
 
 
-# get all posts
 @post_routes.route("/")
-def posts():
-    all_posts = Post.query.order_by(Post.created_at.desc()).all()
-    all_users = User.query.all()
-
-    for post in all_posts:
-        post.user_first_name = None
-        post.user_last_name = None
-        post.user_profile_photo = None
-        post.user_title = None
-        for user in all_users:
-            if post.user_id == user.id:
-                post.user_first_name = user.first_name
-                post.user_last_name = user.last_name
-                post.user_profile_photo = user.profile_photo
-                post.user_title = user.title
-
-    data = {
-        "posts": [
-            {
-                "post_id": post.id,
-                "post_user_id": post.user_id,
-                "post_user_first_name": post.user_first_name,
-                "post_user_last_name": post.user_last_name,
-                "post_content": post.post_content,
-                "post_photo": post.post_photo,
-                "created_at": post.created_at,
-                "updated_at": post.updated_at,
-                "profile_photo": post.user_profile_photo,
-                "title": post.user_title,
-            }
-            for post in all_posts
-        ]
+@login_required
+def feed():
+    offset, limit = pagination()
+    posts = Post.query.order_by(Post.created_at.desc()).offset(offset).limit(limit + 1).all()
+    connected = Connection.connected_ids(current_user.id)
+    return {
+        "posts": [p.to_dict(current_user.id, connected) for p in posts[:limit]],
+        "has_more": len(posts) > limit,
     }
 
-    return data
+
+@post_routes.route("/<int:post_id>")
+@login_required
+def get_post(post_id):
+    return serialize(get_or_404(Post, post_id, "Post"))
 
 
-# get a post
-@post_routes.route("/<int:postId>")
-def post_by_id(postId):
-    post = Post.query.get(postId)
-    data = {"post": [{"post_id": post.id, "post_content": post.post_content}]}
-
-    return data
-
-
-# create a post
 @post_routes.route("/", methods=["POST"])
 @login_required
 def create_post():
-    form = PostForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-
-    if form.validate_on_submit():
-        post = Post(
-            user_id=int(current_user.id),
-            post_content=request.get_json()["post_content"],
-            post_photo=request.get_json().get("post_photo"),
-        )
-
-        db.session.add(post)
-        db.session.commit()
-        return post.to_dict()
-    else:
-        return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+    data = body()
+    post = Post(
+        user_id=current_user.id,
+        content=require_text(data, "content", "Post", 3000),
+        image_url=optional_text(data, "image_url", 1000),
+    )
+    db.session.add(post)
+    db.session.commit()
+    return serialize(post), 201
 
 
-# edit a post
-@post_routes.route("/<int:postId>", methods=["PUT"])
+@post_routes.route("/<int:post_id>", methods=["PUT"])
 @login_required
-def edit_post_by_post_id(postId):
-    post = Post.query.get(postId)
-    if not post:
-        return {"errors": ["post couldn't be found"]}, 404
-
-    form = PostForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-
-    if form.validate_on_submit():
-        post.id = int(postId)
-        post.user_id = int(current_user.id)
-        post.post_content = request.get_json()["post_content"]
-        post.post_photo = request.get_json()["post_photo"]
-
-        db.session.commit()
-        return post.to_dict()
-
-    else:
-        return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+def edit_post(post_id):
+    post = get_or_404(Post, post_id, "Post")
+    forbid_unless(post.user_id == current_user.id)
+    data = body()
+    post.content = require_text(data, "content", "Post", 3000)
+    post.image_url = optional_text(data, "image_url", 1000)
+    db.session.commit()
+    return serialize(post)
 
 
-# delete a post
-@post_routes.route("/<int:postId>", methods=["DELETE"])
+@post_routes.route("/<int:post_id>", methods=["DELETE"])
 @login_required
-def delete_post(postId):
-    post = Post.query.get(postId)
-    if not post:
-        return {"errors": ["Post could not be found"]}, 404
-
+def delete_post(post_id):
+    post = get_or_404(Post, post_id, "Post")
+    forbid_unless(post.user_id == current_user.id)
     db.session.delete(post)
     db.session.commit()
-    return {"message": ["Post successfully deleted"]}, 200
+    return {"id": post_id}
 
 
-# get likes of a post
-@post_routes.route("/<int:postId>/like")
+@post_routes.route("/<int:post_id>/reaction", methods=["PUT"])
 @login_required
-def get_all_like(postId):
-    post = Post.query.get(postId)
-    if not post:
-        return {"errors": ["Post could not be found"]}, 404
-
-    liked_users = User.query.join(likes).filter(likes.c.posts == postId).all()
-
-    return {"liked_users": [user.to_dict() for user in liked_users]}
-
-
-# get all likes of all posts
-@post_routes.route("/likes")
-@login_required
-def get_all_likes():
-    all_posts = Post.query.all()
-    liked_post = Post.query.join(likes).all()
-    liked_users = User.query.join(likes).all()
-
-    data = {}
-    for post in all_posts:
-        users = User.query.join(likes).filter(likes.c.posts == post.id).all()
-        user_id_list = []
-        for user in users:
-            user_id_list.append(
-                {
-                    "user_id": user.id,
-                    "user_first_name": user.first_name,
-                    "user_last_name": user.last_name,
-                    "user_profile_photo": user.profile_photo,
-                    "user_title": user.title,
-                }
-            )
-        data[post.id] = user_id_list
-
-    return data
-
-
-# add a like to a post
-@post_routes.route("/createLike", methods=["POST"])
-@login_required
-def add_like_to_a_post():
-    user_id = int(current_user.id)
-    post_id = request.get_json()["post_id"]
-
-    result = db.session.query(likes).filter_by(users=user_id, posts=post_id).first()
-
-    if result:
-        return jsonify({"exist": True})
+def react(post_id):
+    post = get_or_404(Post, post_id, "Post")
+    kind = body().get("type", "like")
+    if kind not in REACTION_TYPES:
+        raise ApiError("Unknown reaction")
+    reaction = Reaction.query.filter_by(user_id=current_user.id, post_id=post.id).first()
+    if reaction:
+        reaction.type = kind
     else:
-        like = likes.insert().values(users=user_id, posts=post_id)
-        db.session.execute(like)
-        db.session.commit()
-        return jsonify({"success": True})
-
-
-# delete a like to a post
-@post_routes.route("/deleteLike", methods=["DELETE"])
-@login_required
-def delete_like_to_a_post():
-    user_id = request.get_json()["user_id"]
-    post_id = request.get_json()["post_id"]
-
-    user = User.query.get(user_id)
-    post = Post.query.get(post_id)
-
-    user.likes.remove(post)
+        db.session.add(Reaction(user_id=current_user.id, post_id=post.id, type=kind))
     db.session.commit()
-    return jsonify({"message": "Like deleted successfully"})
+    db.session.refresh(post)
+    return serialize(post)
+
+
+@post_routes.route("/<int:post_id>/reaction", methods=["DELETE"])
+@login_required
+def unreact(post_id):
+    post = get_or_404(Post, post_id, "Post")
+    Reaction.query.filter_by(user_id=current_user.id, post_id=post.id).delete()
+    db.session.commit()
+    db.session.refresh(post)
+    return serialize(post)
+
+
+@post_routes.route("/<int:post_id>/reactions")
+@login_required
+def reactions(post_id):
+    post = get_or_404(Post, post_id, "Post")
+    return {"reactions": [r.to_dict() for r in sorted(post.reactions, key=lambda r: r.created_at, reverse=True)]}
+
+
+@post_routes.route("/<int:post_id>/comments", methods=["POST"])
+@login_required
+def add_comment(post_id):
+    post = get_or_404(Post, post_id, "Post")
+    db.session.add(
+        Comment(
+            user_id=current_user.id,
+            post_id=post.id,
+            content=require_text(body(), "content", "Comment", 1250),
+        )
+    )
+    db.session.commit()
+    db.session.refresh(post)
+    return serialize(post), 201
+
+
+@post_routes.route("/comments/<int:comment_id>", methods=["PUT"])
+@login_required
+def edit_comment(comment_id):
+    comment = get_or_404(Comment, comment_id, "Comment")
+    forbid_unless(comment.user_id == current_user.id)
+    comment.content = require_text(body(), "content", "Comment", 1250)
+    db.session.commit()
+    return serialize(comment.post)
+
+
+@post_routes.route("/comments/<int:comment_id>", methods=["DELETE"])
+@login_required
+def delete_comment(comment_id):
+    """Comment authors can delete their comments; post authors can remove any comment on their post."""
+    comment = get_or_404(Comment, comment_id, "Comment")
+    post = comment.post
+    forbid_unless(current_user.id in (comment.user_id, post.user_id))
+    db.session.delete(comment)
+    db.session.commit()
+    db.session.refresh(post)
+    return serialize(post)

@@ -1,7 +1,7 @@
-Dockerfile
-README.md
-*.pyc
-*.pyo
-*.pyd
-__pycache__
-.pytest_cache
+.git
+.venv
+.env
+instance
+**/node_modules
+react-app/dist
+**/__pycache__

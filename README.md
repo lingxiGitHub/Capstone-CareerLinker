@@ -1,61 +1,82 @@
 # CareerLinker
 
+CareerLinker is a LinkedIn-inspired professional network. You can build a profile, grow a network, post and react, message other members, and apply to jobs.
 
+> v2 is a full redesign and re-engineering of the original 2023 capstone. See [What changed in v2](#what-changed-in-v2).
 
-## 🧐 Description
-CareerLinker is a website clone, inspired by LinkedIn. CareerLinker can be used for adding posts, leaving comments for posts, messaging and job posting.
+## Features
 
-[Live site](https://linkedling.onrender.com)
+| Area | What you can do |
+| --- | --- |
+| **Feed** | Infinite-scroll feed. Create, edit and delete posts with an image. Six reaction types through a hover picker (Like, Celebrate, Support, Love, Insightful, Funny). Threaded comments, with edit and delete. A "who reacted" modal with tabs per reaction type. |
+| **Profiles** | `/in/:id` with banner, avatar, headline, About, Activity, Experience, Education and Skills. Edit your intro and About, and add or remove positions, schools and skills. |
+| **My Network** | Connection *requests* (send, accept, ignore, withdraw), People You May Know ranked by mutual connections, and connections management with sort and search. |
+| **Messaging** | Two-pane inbox with unread state, date separators, grouped messages, inline edit and delete, a new-message picker, and "Message" buttons across the app. |
+| **Jobs** | Search with filters (remote, hybrid, on-site, saved, applied), a split list and detail view, save jobs, and a multi-step Easy Apply flow. |
+| **Notifications** | Built from reactions, comments, invitations and accepted connections, with unread highlighting and filters. |
+| **Search** | Global typeahead plus a results page for people, posts and jobs. |
+| **Everywhere** | Unread badges in the nav, toasts, skeleton loading states, keyboard-accessible menus and modals, and a responsive layout down to phone width. |
 
+## Tech
 
-## 👩‍💻 Technologies used
-Framewors/Platforms/Libraries:
-Javascript, Flask, React, Redux, HTML, CSS
+- **Client:** React 18, React Router 6, Redux Toolkit Query, Vite. Plain CSS with design tokens (`react-app/src/styles/tokens.css`).
+- **Server:** Flask 3, SQLAlchemy 2, Flask-Login, Flask-Migrate (Alembic), Flask-WTF CSRF.
+- **Database:** SQLite in development, Postgres in production.
 
-Database:
-Postgres
+## Getting started
 
-Hosting:
-Render
+Prerequisites: Python 3.11+ and Node 20+.
 
+```bash
+# 1. API
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env            # then set SECRET_KEY
+flask db upgrade && flask seed all
+flask run --port 5001            # macOS reserves port 5000 for AirPlay
 
-## 🌐 Landing Page
+# 2. Client (new terminal)
+cd react-app
+npm install
+npm run dev                      # http://localhost:3000, proxies /api to :5001
+```
 
-You can log in with creditials or as a demo user to test the features.
+Sign in with **Continue as demo user**, or use `demo@careerlinker.io` / `password`. Every seeded account uses the password `password`.
 
-![Screen Shot 2023-03-02 at 4 23 41 PM](https://user-images.githubusercontent.com/113320584/222599643-c6a9df11-13f4-43a3-9152-4774e3bb2964.png)
+## Project layout
 
+```
+app/
+  models/      User (+ Experience, Education, Skill), Post, Reaction, Comment,
+               Connection, Conversation/Message, Job/SavedJob/JobApplication
+  api/         auth, users, network, posts, messaging, jobs, notifications, search
+  seeds/       realistic demo data (timestamps are relative to "now")
+react-app/src/
+  api/         one RTK Query slice; mutations patch cached posts in place
+  components/  Nav, Avatar, Button, Modal, Menu, Toaster, ConnectButton, Icon …
+  features/    auth, feed, profile, network, messaging, jobs, notifications, search
+```
 
-## 🏠 Home Page
+## API overview
 
-All users can see a selection of the most recent Posts.
-Logged-in users can create/edit/delete existingposts.
+Every endpoint is JSON under `/api`. Errors come back as `{ message, errors: { field: msg } }`. Requests that change data must send the `X-CSRFToken` header; the client copies it from the `csrf_token` cookie. `GET /api/docs` lists every route.
 
+## Deploying
 
-Logged-in users can see a list of comments for posts.
-Logged-in users can create /edit /delete a new comment for posts.
-Logged-in users can like posts.
-Logged-in users can connect with other users.
+The `Dockerfile` builds the client, installs the API, runs `flask db upgrade` on boot, and serves the app with gunicorn on `$PORT`. Set these environment variables: `SECRET_KEY`, `DATABASE_URL`, `FLASK_ENV=production`, and `SCHEMA` (tables are created inside this Postgres schema). Seed data once with `flask seed all`.
 
-![Screen Shot 2023-03-19 at 9 32 06 PM](https://user-images.githubusercontent.com/113320584/226247621-4427c1bd-21ca-48b1-89b9-0421e48e2a65.png)
+## What changed in v2
 
+- **Upgraded stack:** CRA + React 17 + Router 5 became Vite + React 18 + Router 6 + RTK Query, and Flask 2 + SQLAlchemy 1.4 became Flask 3 + SQLAlchemy 2. The old stack no longer installs on current Node or Python.
+- **Security fixes:**
+  - Any signed-in user could edit or delete anyone's posts and comments. Every write now checks ownership.
+  - Removing a connection deleted the wrong row.
+  - The CSRF check was a no-op because the server copied the cookie into the form itself. It now uses a real double-submit header.
+- **Messaging works again:** the client called `/api/conversations` and `/api/messages`, which no longer existed on the server. Those models and routes are rebuilt.
+- **New data model:** connections are requests with a status, likes became typed reactions, and profiles gained experience, education and skills. Jobs and notifications are new.
+- **Faster API:** list endpoints return data embedded and ready to render. They no longer loop over every user in Python for each post or comment.
+- **Redesigned UI:** a LinkedIn-faithful design system and a page for every main LinkedIn area.
 
-## Messaging Page
-Logged-in users can chat with each other. They can also edit/delete sent messages.
+## Contact
 
-![Screen Shot 2023-03-05 at 11 19 36 PM](https://user-images.githubusercontent.com/113320584/223044060-d60bf6b9-cf75-4b84-969d-2d8f35493cb7.png)
-
-
-## 🚧 To do list for future features
-I would like to build search feature and individual pages in the future.
-
-
-## 🏁 Get started
-In order to run the repo locally, you will need to
-1. cd into root folder and run pipenv run flask run
-2. cd into react-app folder and npm start
-
-
-
-## 📝 Contact information
 lingxi1023@gmail.com

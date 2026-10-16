@@ -1,0 +1,291 @@
+.net-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.net-left {
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+}
+
+@media (max-width: 860px) {
+  .net-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .net-left {
+    position: static;
+  }
+}
+
+.net-main .card + .card {
+  margin-top: 8px;
+}
+
+/* manage card */
+.net-manage-title {
+  padding: 16px 16px 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.net-manage-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.net-manage-row:hover {
+  background: var(--surface-hover);
+}
+
+.net-manage-static {
+  cursor: default;
+}
+
+.net-manage li:last-child .net-manage-row {
+  padding-bottom: 16px;
+}
+
+/* card headers */
+.net-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+}
+
+.net-card-title {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.net-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.net-tab {
+  padding: 4px 12px;
+  border-radius: var(--r-pill);
+  color: var(--text-secondary);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.net-tab:hover {
+  background: var(--surface-hover);
+}
+
+.net-tab.active {
+  background: var(--success);
+  color: #fff;
+  box-shadow: none;
+}
+
+.net-empty {
+  padding: 24px 16px;
+  text-align: center;
+}
+
+/* invitations */
+.net-inv {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 12px 16px;
+}
+
+.net-inv + .net-inv {
+  border-top: 1px solid var(--divider);
+}
+
+.net-inv-name {
+  font-size: 16px;
+}
+
+.net-inv-msg {
+  position: relative;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 0 var(--r-md) var(--r-md) var(--r-md);
+  background: #f3f2ef;
+  color: var(--text);
+}
+
+.net-inv-actions {
+  display: flex;
+  gap: 8px;
+  align-self: center;
+}
+
+@media (max-width: 560px) {
+  .net-inv {
+    flex-wrap: wrap;
+  }
+  .net-inv-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* people you may know */
+.net-pymk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+
+.net-pymk {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  background: var(--surface);
+  transition: box-shadow 0.15s;
+}
+
+.net-pymk:hover {
+  box-shadow: 0 0 0 1px var(--border), 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.net-pymk-banner {
+  height: 62px;
+  background: linear-gradient(135deg, #a0b4b7, #dbe7e9);
+  background-size: cover;
+  background-position: center;
+}
+
+.net-pymk-dismiss {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.net-pymk-dismiss:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+.net-pymk-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+  text-align: center;
+}
+
+.net-pymk-avatar {
+  margin-top: -56px;
+}
+
+.net-pymk-name {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.net-pymk-headline {
+  min-height: 32px;
+  margin-top: 2px;
+}
+
+.net-pymk-foot {
+  margin-top: auto;
+  padding: 8px 12px 12px;
+}
+
+.net-pymk-mutual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  min-height: 20px;
+  margin-bottom: 8px;
+}
+
+/* connections page */
+.net-conn-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .net-conn-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.net-conn-head {
+  padding: 16px 16px 0;
+}
+
+.net-conn-title {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.net-conn-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+}
+
+.net-conn-tools select {
+  border: 0;
+  background: none;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.net-conn-search {
+  position: relative;
+  margin-left: auto;
+  width: 240px;
+}
+
+.net-conn-search .input {
+  padding-left: 32px;
+}
+
+.net-conn-search svg {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.net-conn-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--divider);
+}
+
+.net-promo {
+  padding: 16px;
+  text-align: center;
+}
+
+.net-promo p {
+  margin: 8px 0 12px;
+}
